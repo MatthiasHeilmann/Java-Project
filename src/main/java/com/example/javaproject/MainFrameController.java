@@ -85,7 +85,6 @@ public class MainFrameController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         fillKursTable();
         fillStudentTable();
-        table_student_header.setText("Alle Kurse");
         table_kurs.setRowFactory(tv -> {
                     TableRow<Kurs> row = new TableRow<>();
                     row.setOnMouseClicked(event -> {
@@ -117,6 +116,8 @@ public class MainFrameController implements Initializable {
      */
     public void fillStudentTable(){
         table_student.getItems().clear();
+        table_student_header.setText("Alle Kurse");
+        button_show_all.setVisible(false);
         table_student_column_vorname.setCellValueFactory(new PropertyValueFactory<>("vorname"));
         table_student_column_nachname.setCellValueFactory(new PropertyValueFactory<>("nachname"));
         table_student_column_geschlecht.setCellValueFactory(new PropertyValueFactory<>("geschlecht"));
