@@ -4,6 +4,7 @@ import java.sql.*;
 import java.util.ArrayList;
 
 /**
+ * Model class of project
  * DBConnection class creates a connection to database and communicates with it
  */
 public class DBConnection {
@@ -11,9 +12,15 @@ public class DBConnection {
     private final String connectionUrl = "jdbc:mysql://sql11.freesqldatabase.com:3306/sql11495010";
     private final String userName = "sql11495010";
     private final String password = "SRwSuf13UR";
+    private ArrayList<Student> studentArrayList;
+    private ArrayList<Kurs> kursArrayList;
+    private ArrayList<Unternehmen> unternehmenArrayList;
 
     public DBConnection(){
         createConnection();
+        studentArrayList=getAllSchueler();
+        kursArrayList=getAllKurs();
+        unternehmenArrayList=getAllUnternehmen();
     }
 
     private void createConnection(){
@@ -31,7 +38,7 @@ public class DBConnection {
      *
      * @return ArrayList<Student>
      */
-    public ArrayList<Student> getAllSchueler(){
+    private ArrayList<Student> getAllSchueler(){
         ArrayList<Student> arrayList = new ArrayList<>();
         try{
             Statement statement = connection.createStatement();
@@ -58,7 +65,7 @@ public class DBConnection {
      *
      * @return ArrayList<Kurs>
      */
-    public ArrayList<Kurs> getAllKurs(){
+    private ArrayList<Kurs> getAllKurs(){
         ArrayList<Kurs> arrayList = new ArrayList<>();
         try{
             Statement statement = connection.createStatement();
@@ -81,7 +88,7 @@ public class DBConnection {
      *
      * @return ArrayList<Unternehmen>
      */
-    public ArrayList<Unternehmen> getAllUnternehmen(){
+    private ArrayList<Unternehmen> getAllUnternehmen(){
         ArrayList<Unternehmen> arrayList = new ArrayList<>();
         try{
             Statement statement = connection.createStatement();
@@ -96,6 +103,18 @@ public class DBConnection {
             ex.printStackTrace();
         }
         return arrayList;
+    }
+
+    public ArrayList<Student> getStudentArrayList() {
+        return studentArrayList;
+    }
+
+    public ArrayList<Kurs> getKursArrayList() {
+        return kursArrayList;
+    }
+
+    public ArrayList<Unternehmen> getUnternehmenArrayList() {
+        return unternehmenArrayList;
     }
 
     /**

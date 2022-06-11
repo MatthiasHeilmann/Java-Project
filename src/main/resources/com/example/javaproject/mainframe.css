@@ -1,3 +1,9 @@
+.root{
+    font-family: Calibri;
+}
 #table_student_header{
     -fx-background-color: #ffffff;
+}
+Button:hover{
+    -fx-background-color: black;
 }

@@ -3,10 +3,14 @@ package com.example.javaproject;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -68,9 +72,16 @@ public class MainFrameController implements Initializable {
     }
 
     private DBConnection mycon = new DBConnection();
-    private ArrayList<Student> studentArrayList = mycon.getAllSchueler();
-    private ArrayList<Kurs> kursArrayList = mycon.getAllKurs();
-    private ArrayList<Unternehmen> unternehmenArrayList = mycon.getAllUnternehmen();
+    private ArrayList<Student> studentArrayList;
+    private ArrayList<Kurs> kursArrayList;
+    private ArrayList<Unternehmen> unternehmenArrayList;
+
+    public MainFrameController(DBConnection mycon){
+        this.mycon=mycon;
+        this.kursArrayList=mycon.getKursArrayList();
+        this.studentArrayList=mycon.getStudentArrayList();
+        this.unternehmenArrayList=mycon.getUnternehmenArrayList();
+    }
 
     /**
      * Initialize method gets called when mainframe is launched
@@ -104,6 +115,11 @@ public class MainFrameController implements Initializable {
                         if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
                             Student rowData = row.getItem();
                             System.out.println(rowData.getVorname()+" "+rowData.getNachname()+" clicked");
+                            try {
+                            editStudent(rowData);
+                            }catch (IOException e){
+                                e.printStackTrace();
+                            }
                         }
                     });
                     return row ;
@@ -168,11 +184,22 @@ public class MainFrameController implements Initializable {
      * fills kurs table with alle kurse in database
      */
     public void fillKursTable(){
-        ObservableList<Kurs> observableList = FXCollections.observableArrayList(new DBConnection().getAllKurs());
+        ObservableList<Kurs> observableList = FXCollections.observableArrayList(kursArrayList);
         table_kurs_column_kurs.setCellValueFactory(new PropertyValueFactory<>("bezeichnung"));
         for (Kurs k : observableList){
             table_kurs.getItems().add(k);
         }
+    }
+
+    public void editStudent(Student student) throws IOException {
+        Stage stage = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("editstudent.fxml"));
+        EditStudentController controller = new EditStudentController(student,mycon);
+        fxmlLoader.setController(controller);
+        Scene scene = new Scene(fxmlLoader.load(), 470, 350);
+        stage.setTitle("Student bearbeiten");
+        stage.setScene(scene);
+        stage.show();
     }
 
     public MainFrameController(){
