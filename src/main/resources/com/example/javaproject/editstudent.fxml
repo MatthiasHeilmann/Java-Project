@@ -133,7 +133,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Slider fx:id="slider_java" blockIncrement="1.0" max="10.0" prefHeight="14.0" prefWidth="152.0" showTickLabels="true" showTickMarks="true">
+                  <Slider fx:id="slider_java" blockIncrement="1.0" majorTickUnit="1.0" max="10.0" minorTickCount="1" prefHeight="14.0" prefWidth="152.0" showTickLabels="true">
                      <padding>
                         <Insets top="10.0" />
                      </padding>

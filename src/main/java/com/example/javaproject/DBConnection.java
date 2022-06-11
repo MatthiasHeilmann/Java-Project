@@ -140,6 +140,26 @@ public class DBConnection {
         }
     }
 
+    public void updateStudent(Student student){
+        try{
+            PreparedStatement preparedStatement;
+            preparedStatement = connection.prepareStatement(
+                    "UPDATE schueler"+
+                            "SET uId=?,kId=?,nachname=?,vorname=?,geschlecht=?,vorkenntnisse=?)"+
+                            "WHERE sId="+student.getsId()
+            );
+            preparedStatement.setInt(1,student.getuId());
+            preparedStatement.setInt(2,student.getkId());
+            preparedStatement.setString(3,student.getNachname());
+            preparedStatement.setString(4,student.getVorname());
+            preparedStatement.setString(5,student.getGeschlecht());
+            preparedStatement.setInt(6,student.getVorkenntnisse());
+            preparedStatement.execute();
+        }catch (SQLException ex){
+            ex.printStackTrace();
+        }
+    }
+
     /**
      * inserts new kurs into database using prepared statement
      *
