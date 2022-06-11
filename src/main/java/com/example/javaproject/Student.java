@@ -25,6 +25,30 @@ public class Student {
         this.vorkenntnisse = vorkenntnisse;
     }
 
+    public Student(Student student){
+        this.sId=student.getsId();
+        this.uId=student.getuId();
+        this.kId=student.getkId();
+        this.vorname=student.getVorname();
+        this.nachname=student.getNachname();
+        this.geschlecht=student.getGeschlecht();
+        this.vorkenntnisse=student.getVorkenntnisse();
+        this.unternehmen=student.getUnternehmen();
+        this.kurs=student.getKurs();
+    }
+
+    public void update(Student student){
+        this.sId=student.getsId();
+        this.uId=student.getuId();
+        this.kId=student.getkId();
+        this.vorname=student.getVorname();
+        this.nachname=student.getNachname();
+        this.geschlecht=student.getGeschlecht();
+        this.vorkenntnisse=student.getVorkenntnisse();
+        this.unternehmen=student.getUnternehmen();
+        this.kurs=student.getKurs();
+    }
+
     public int getsId() {
         return sId;
     }

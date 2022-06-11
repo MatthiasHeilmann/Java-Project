@@ -118,6 +118,19 @@ public class DBConnection {
     }
 
     /**
+     * updates the student arraylist
+     *
+     * @param student
+     */
+    public void updateStudentArrayList(Student student){
+        studentArrayList.forEach(student1 -> {
+           if (student1.getsId()==student.getsId()){
+               student.update(student1);
+           }
+        });
+    }
+
+    /**
      * inserts a Student to database using prepared statement
      *
      * @param student
@@ -140,13 +153,17 @@ public class DBConnection {
         }
     }
 
+    /**
+     * updates a student from database
+     *
+     * @param student
+     */
     public void updateStudent(Student student){
         try{
             PreparedStatement preparedStatement;
             preparedStatement = connection.prepareStatement(
-                    "UPDATE schueler"+
-                            "SET uId=?,kId=?,nachname=?,vorname=?,geschlecht=?,vorkenntnisse=?)"+
-                            "WHERE sId="+student.getsId()
+                    "UPDATE schueler SET uId = ?,kId = ?,nachname = ?,vorname = ?,geschlecht = ?,vorkenntnisse = ? "+
+                            "WHERE sId = "+student.getsId()+";"
             );
             preparedStatement.setInt(1,student.getuId());
             preparedStatement.setInt(2,student.getkId());
