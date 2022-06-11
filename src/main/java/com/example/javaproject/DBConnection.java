@@ -2,12 +2,13 @@ package com.example.javaproject;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Observable;
 
 /**
  * Model class of project
  * DBConnection class creates a connection to database and communicates with it
  */
-public class DBConnection {
+public class DBConnection extends Observable {
     private Connection connection;
     private final String connectionUrl = "jdbc:mysql://sql11.freesqldatabase.com:3306/sql11495010";
     private final String userName = "sql11495010";
@@ -126,6 +127,7 @@ public class DBConnection {
         studentArrayList.forEach(student1 -> {
            if (student1.getsId()==student.getsId()){
                student.update(student1);
+               notifyObservers();
            }
         });
     }

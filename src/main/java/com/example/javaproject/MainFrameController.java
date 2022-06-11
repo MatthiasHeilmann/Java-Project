@@ -13,9 +13,11 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.ResourceBundle;
 
-public class MainFrameController implements Initializable {
+public class MainFrameController implements Initializable, Observer {
     @FXML
     private Label label_headline;
     @FXML
@@ -71,16 +73,16 @@ public class MainFrameController implements Initializable {
         fillStudentTable();
     }
 
-    private DBConnection mycon = new DBConnection();
+    private DBConnection dbConnection;
     private ArrayList<Student> studentArrayList;
     private ArrayList<Kurs> kursArrayList;
     private ArrayList<Unternehmen> unternehmenArrayList;
 
-    public MainFrameController(DBConnection mycon){
-        this.mycon=mycon;
-        this.kursArrayList=mycon.getKursArrayList();
-        this.studentArrayList=mycon.getStudentArrayList();
-        this.unternehmenArrayList=mycon.getUnternehmenArrayList();
+    public MainFrameController(DBConnection dbConnection){
+        this.dbConnection=dbConnection;
+        this.kursArrayList=dbConnection.getKursArrayList();
+        this.studentArrayList=dbConnection.getStudentArrayList();
+        this.unternehmenArrayList=dbConnection.getUnternehmenArrayList();
     }
 
     /**
@@ -194,7 +196,7 @@ public class MainFrameController implements Initializable {
     public void editStudent(Student student) throws IOException {
         Stage stage = new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("editstudent.fxml"));
-        EditStudentController controller = new EditStudentController(student,mycon);
+        EditStudentController controller = new EditStudentController(student,dbConnection);
         fxmlLoader.setController(controller);
         Scene scene = new Scene(fxmlLoader.load(), 470, 350);
         stage.setTitle("Student bearbeiten");
@@ -204,5 +206,13 @@ public class MainFrameController implements Initializable {
 
     public MainFrameController(){
 //        fillKursTable();
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        this.studentArrayList= dbConnection.getStudentArrayList();
+        this.kursArrayList=dbConnection.getKursArrayList();
+        this.unternehmenArrayList=dbConnection.getUnternehmenArrayList();
+        fillStudentTable();
     }
 }
