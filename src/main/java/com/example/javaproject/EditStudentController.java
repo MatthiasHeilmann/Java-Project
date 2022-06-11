@@ -47,7 +47,9 @@ public class EditStudentController implements Initializable {
 
     public EditStudentController(Student student,DBConnection mycon){
         this.student=student;
-        this.changedStudent=new Student(student);
+        this.changedStudent=new Student(student.getsId(),student.getuId(), student.getkId(), student.getVorname(),student.getNachname(),student.getGeschlecht(),student.getVorkenntnisse());
+        this.changedStudent.setKurs(student.getKurs());
+        this.changedStudent.setUnternehmen(student.getUnternehmen());
         this.mycon=mycon;
     }
     @Override

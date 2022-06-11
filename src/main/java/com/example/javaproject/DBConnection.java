@@ -3,6 +3,7 @@ package com.example.javaproject;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Observable;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Model class of project
@@ -124,11 +125,14 @@ public class DBConnection extends Observable {
      * @param student
      */
     public void updateStudentArrayList(Student student){
+        AtomicInteger i= new AtomicInteger();
         studentArrayList.forEach(student1 -> {
            if (student1.getsId()==student.getsId()){
-               student.update(student1);
+               student1.update(student);
+               this.setChanged();
                notifyObservers();
            }
+            i.getAndIncrement();
         });
     }
 

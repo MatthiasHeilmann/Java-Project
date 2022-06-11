@@ -74,15 +74,10 @@ public class MainFrameController implements Initializable, Observer {
     }
 
     private DBConnection dbConnection;
-    private ArrayList<Student> studentArrayList;
-    private ArrayList<Kurs> kursArrayList;
-    private ArrayList<Unternehmen> unternehmenArrayList;
 
     public MainFrameController(DBConnection dbConnection){
         this.dbConnection=dbConnection;
-        this.kursArrayList=dbConnection.getKursArrayList();
-        this.studentArrayList=dbConnection.getStudentArrayList();
-        this.unternehmenArrayList=dbConnection.getUnternehmenArrayList();
+        dbConnection.addObserver(this);
     }
 
     /**
@@ -143,6 +138,10 @@ public class MainFrameController implements Initializable, Observer {
         table_student_column_kurs.setCellValueFactory(new PropertyValueFactory<>("kurs"));
         table_student_column_unternehmen.setCellValueFactory(new PropertyValueFactory<>("unternehmen"));
 
+        ArrayList<Student> studentArrayList = dbConnection.getStudentArrayList();
+        ArrayList<Unternehmen> unternehmenArrayList = dbConnection.getUnternehmenArrayList();
+        ArrayList<Kurs> kursArrayList = dbConnection.getKursArrayList();
+
         for (Student student : studentArrayList){
             for(Kurs kurs : kursArrayList) {
                 if (kurs.getkId() == student.getkId()) {
@@ -155,6 +154,7 @@ public class MainFrameController implements Initializable, Observer {
                 }
             }
             table_student.getItems().add(student);
+            table_student.refresh();
         }
     }
     /**
@@ -168,6 +168,9 @@ public class MainFrameController implements Initializable, Observer {
         table_student_column_java.setCellValueFactory(new PropertyValueFactory<>("vorkenntnisse"));
         table_student_column_kurs.setCellValueFactory(new PropertyValueFactory<>("kurs"));
         table_student_column_unternehmen.setCellValueFactory(new PropertyValueFactory<>("unternehmen"));
+
+        ArrayList<Student> studentArrayList = dbConnection.getStudentArrayList();
+        ArrayList<Unternehmen> unternehmenArrayList = dbConnection.getUnternehmenArrayList();
 
         for (Student student : studentArrayList){
             if(student.getkId()==kurs.getkId()){
@@ -186,7 +189,7 @@ public class MainFrameController implements Initializable, Observer {
      * fills kurs table with alle kurse in database
      */
     public void fillKursTable(){
-        ObservableList<Kurs> observableList = FXCollections.observableArrayList(kursArrayList);
+        ObservableList<Kurs> observableList = FXCollections.observableArrayList(dbConnection.getKursArrayList());
         table_kurs_column_kurs.setCellValueFactory(new PropertyValueFactory<>("bezeichnung"));
         for (Kurs k : observableList){
             table_kurs.getItems().add(k);
@@ -210,9 +213,6 @@ public class MainFrameController implements Initializable, Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        this.studentArrayList= dbConnection.getStudentArrayList();
-        this.kursArrayList=dbConnection.getKursArrayList();
-        this.unternehmenArrayList=dbConnection.getUnternehmenArrayList();
         fillStudentTable();
     }
 }
