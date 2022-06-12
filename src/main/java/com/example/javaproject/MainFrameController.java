@@ -101,19 +101,19 @@ public class MainFrameController implements Initializable, Observer {
         fillUnternehmenTable();
         fillStudentTable();
         table_kurs.setRowFactory(tv -> {
-                    TableRow<Kurs> row = new TableRow<>();
-                    row.setOnMouseClicked(event -> {
-                        if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
-                            Kurs rowData = row.getItem();
-                            table_student_header.setText(rowData.getBezeichnung());
-                            fillStudentTableOnKurs(rowData);
-                            button_show_all.setVisible(true);
-                            table_student_header_raum.setText("| Raum: "+rowData.getRaum());
-                            table_student_header_raum.setVisible(true);
-                            System.out.println(rowData.getBezeichnung()+" clicked");
-                        }
-                    });
-                    return row ;
+            TableRow<Kurs> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
+                    Kurs rowData = row.getItem();
+                    table_student_header.setText(rowData.getBezeichnung());
+                    fillStudentTableOnKurs(rowData);
+                    button_show_all.setVisible(true);
+                    table_student_header_raum.setText("| Raum: "+rowData.getRaum());
+                    table_student_header_raum.setVisible(true);
+                    System.out.println(rowData.getBezeichnung()+" clicked");
+                }
+            });
+            return row ;
         });
         table_unternehmen.setRowFactory(tv -> {
             TableRow<Unternehmen> row = new TableRow<>();
@@ -130,19 +130,19 @@ public class MainFrameController implements Initializable, Observer {
             return row ;
         });
         table_student.setRowFactory(tv -> {
-                    TableRow<Student> row = new TableRow<>();
-                    row.setOnMouseClicked(event -> {
-                        if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
-                            Student rowData = row.getItem();
-                            System.out.println(rowData.getVorname()+" "+rowData.getNachname()+" clicked");
-                            try {
-                            editStudent(rowData);
-                            }catch (IOException e){
-                                e.printStackTrace();
-                            }
-                        }
-                    });
-                    return row ;
+            TableRow<Student> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
+                    Student rowData = row.getItem();
+                    System.out.println(rowData.getVorname()+" "+rowData.getNachname()+" clicked");
+                    try {
+                    editStudent(rowData);
+                    }catch (IOException e){
+                        e.printStackTrace();
+                    }
+                }
+            });
+            return row ;
         });
     }
 
@@ -258,6 +258,7 @@ public class MainFrameController implements Initializable, Observer {
         EditStudentController controller = new EditStudentController(student,dbConnection);
         fxmlLoader.setController(controller);
         Scene scene = new Scene(fxmlLoader.load(), 470, 350);
+        scene.getStylesheets().add(getClass().getResource("editstudent.css").toExternalForm());
         stage.setTitle("Student bearbeiten");
         stage.setScene(scene);
         stage.show();

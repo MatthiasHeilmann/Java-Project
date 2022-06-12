@@ -125,14 +125,12 @@ public class DBConnection extends Observable {
      * @param student
      */
     public void updateStudentArrayList(Student student){
-        AtomicInteger i= new AtomicInteger();
         studentArrayList.forEach(student1 -> {
            if (student1.getsId()==student.getsId()){
                student1.update(student);
                this.setChanged();
                notifyObservers();
            }
-            i.getAndIncrement();
         });
     }
 

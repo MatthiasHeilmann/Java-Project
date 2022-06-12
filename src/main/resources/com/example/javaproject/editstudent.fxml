@@ -118,7 +118,7 @@
                   <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <Button fx:id="button_delete" mnemonicParsing="false" onAction="#button_delete_click" prefHeight="25.0" prefWidth="98.0" style="-fx-background-color: red;" text="Exmatrikulieren" textFill="#fffbfb" GridPane.columnIndex="1">
+                  <Button fx:id="button_delete" mnemonicParsing="false" onAction="#button_delete_click" prefHeight="25.0" prefWidth="98.0" text="Exmatrikulieren" textFill="#fffbfb" GridPane.columnIndex="1">
                      <GridPane.margin>
                         <Insets bottom="10.0" right="10.0" top="10.0" />
                      </GridPane.margin></Button>

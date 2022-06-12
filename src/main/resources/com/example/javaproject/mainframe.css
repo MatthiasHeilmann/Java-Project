@@ -2,5 +2,5 @@
     font-family: Calibri;
 }
 Button:hover{
-    -fx-background-color: black;
+    -fx-background-color: darkgrey;
 }
