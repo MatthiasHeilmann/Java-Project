@@ -103,7 +103,7 @@ public class MainFrameController implements Initializable, Observer {
         table_kurs.setRowFactory(tv -> {
             TableRow<Kurs> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
-                if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
+                if (event.getClickCount() == 1 && (! row.isEmpty()) ) {
                     Kurs rowData = row.getItem();
                     table_student_header.setText(rowData.getBezeichnung());
                     fillStudentTableOnKurs(rowData);
@@ -118,13 +118,20 @@ public class MainFrameController implements Initializable, Observer {
         table_unternehmen.setRowFactory(tv -> {
             TableRow<Unternehmen> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
-                if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
+                if (event.getClickCount() == 1 && (! row.isEmpty()) ) {
                     Unternehmen rowData = row.getItem();
                     table_student_header.setText(rowData.getName());
                     fillStudentTableOnUnternehmen(rowData);
                     button_show_all.setVisible(true);
                     table_student_header_raum.setVisible(false);
                     System.out.println(rowData.getName()+" clicked");
+                }else if(event.getClickCount() == 2 && (!row.isEmpty())){
+                    Unternehmen rowData = row.getItem();
+                    try{
+                        editUnternehmen(rowData);
+                    }catch (IOException e){
+                        e.printStackTrace();
+                    }
                 }
             });
             return row ;
@@ -145,6 +152,8 @@ public class MainFrameController implements Initializable, Observer {
             return row ;
         });
     }
+
+
 
 
     /**
@@ -237,6 +246,7 @@ public class MainFrameController implements Initializable, Observer {
      * fills kurs table with alle kurse in database
      */
     public void fillKursTable(){
+        table_kurs.getItems().clear();
         ObservableList<Kurs> observableList = FXCollections.observableArrayList(dbConnection.getKursArrayList());
         table_kurs_column_kurs.setCellValueFactory(new PropertyValueFactory<>("bezeichnung"));
         for (Kurs k : observableList){
@@ -245,6 +255,7 @@ public class MainFrameController implements Initializable, Observer {
     }
 
     public void fillUnternehmenTable(){
+        table_unternehmen.getItems().clear();
         ObservableList<Unternehmen> observableList = FXCollections.observableArrayList(dbConnection.getUnternehmenArrayList());
         table_unternehmen_column_unternehmen.setCellValueFactory(new PropertyValueFactory<>("name"));
         for (Unternehmen u : observableList){
@@ -264,6 +275,18 @@ public class MainFrameController implements Initializable, Observer {
         stage.show();
     }
 
+    private void editUnternehmen(Unternehmen unternehmen) throws IOException {
+        Stage stage = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("editunternehmen.fxml"));
+        EditUnternehmenController controller = new EditUnternehmenController(unternehmen,dbConnection);
+        fxmlLoader.setController(controller);
+        Scene scene = new Scene(fxmlLoader.load(), 470, 350);
+        scene.getStylesheets().add(getClass().getResource("editunternehmen.css").toExternalForm());
+        stage.setTitle("Student bearbeiten");
+        stage.setScene(scene);
+        stage.show();
+    }
+
     public MainFrameController(){
 //        fillKursTable();
     }
@@ -271,5 +294,7 @@ public class MainFrameController implements Initializable, Observer {
     @Override
     public void update(Observable o, Object arg) {
         fillStudentTable();
+        fillUnternehmenTable();
+        fillKursTable();
     }
 }
