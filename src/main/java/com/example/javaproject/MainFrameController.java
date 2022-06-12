@@ -25,6 +25,10 @@ public class MainFrameController implements Initializable, Observer {
     @FXML
     private TableColumn<Kurs, String> table_kurs_column_kurs;
     @FXML
+    private TableView<Unternehmen> table_unternehmen;
+    @FXML
+    private TableColumn<Unternehmen,String> table_unternehmen_column_unternehmen;
+    @FXML
     private TableView<Student> table_student;
     @FXML
     private TableColumn<Student,String> table_student_column_geschlecht;
@@ -40,6 +44,8 @@ public class MainFrameController implements Initializable, Observer {
     private TableColumn<Student, String> table_student_column_vorname;
     @FXML
     private Label table_student_header;
+    @FXML
+    private Label table_student_header_raum;
     @FXML
     private Button button_show_all;
 
@@ -92,19 +98,36 @@ public class MainFrameController implements Initializable, Observer {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         fillKursTable();
+        fillUnternehmenTable();
         fillStudentTable();
         table_kurs.setRowFactory(tv -> {
                     TableRow<Kurs> row = new TableRow<>();
                     row.setOnMouseClicked(event -> {
                         if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
                             Kurs rowData = row.getItem();
-                            table_student_header.setText("Kurs: "+rowData.getBezeichnung());
+                            table_student_header.setText(rowData.getBezeichnung());
                             fillStudentTableOnKurs(rowData);
                             button_show_all.setVisible(true);
+                            table_student_header_raum.setText("| Raum: "+rowData.getRaum());
+                            table_student_header_raum.setVisible(true);
                             System.out.println(rowData.getBezeichnung()+" clicked");
                         }
                     });
                     return row ;
+        });
+        table_unternehmen.setRowFactory(tv -> {
+            TableRow<Unternehmen> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
+                    Unternehmen rowData = row.getItem();
+                    table_student_header.setText(rowData.getName());
+                    fillStudentTableOnUnternehmen(rowData);
+                    button_show_all.setVisible(true);
+                    table_student_header_raum.setVisible(false);
+                    System.out.println(rowData.getName()+" clicked");
+                }
+            });
+            return row ;
         });
         table_student.setRowFactory(tv -> {
                     TableRow<Student> row = new TableRow<>();
@@ -129,8 +152,9 @@ public class MainFrameController implements Initializable, Observer {
      */
     public void fillStudentTable(){
         table_student.getItems().clear();
-        table_student_header.setText("Alle Kurse");
+        table_student_header.setText("Alle Studenten");
         button_show_all.setVisible(false);
+        table_student_header_raum.setVisible(false);
         table_student_column_vorname.setCellValueFactory(new PropertyValueFactory<>("vorname"));
         table_student_column_nachname.setCellValueFactory(new PropertyValueFactory<>("nachname"));
         table_student_column_geschlecht.setCellValueFactory(new PropertyValueFactory<>("geschlecht"));
@@ -184,6 +208,30 @@ public class MainFrameController implements Initializable, Observer {
             }
         }
     }
+    public void fillStudentTableOnUnternehmen(Unternehmen unternehmen){
+        table_student.getItems().clear();
+        table_student_column_vorname.setCellValueFactory(new PropertyValueFactory<>("vorname"));
+        table_student_column_nachname.setCellValueFactory(new PropertyValueFactory<>("nachname"));
+        table_student_column_geschlecht.setCellValueFactory(new PropertyValueFactory<>("geschlecht"));
+        table_student_column_java.setCellValueFactory(new PropertyValueFactory<>("vorkenntnisse"));
+        table_student_column_kurs.setCellValueFactory(new PropertyValueFactory<>("kurs"));
+        table_student_column_unternehmen.setCellValueFactory(new PropertyValueFactory<>("unternehmen"));
+
+        ArrayList<Student> studentArrayList = dbConnection.getStudentArrayList();
+        ArrayList<Kurs> kursArrayList = dbConnection.getKursArrayList();
+
+        for (Student student : studentArrayList){
+            if(student.getuId()==unternehmen.getuId()){
+                student.setUnternehmen(unternehmen.getName());
+                for(Kurs kurs : kursArrayList){
+                    if(kurs.getkId()==student.getkId()){
+                        student.setKurs(kurs.getBezeichnung());
+                    }
+                }
+                table_student.getItems().add(student);
+            }
+        }
+    }
 
     /**
      * fills kurs table with alle kurse in database
@@ -193,6 +241,14 @@ public class MainFrameController implements Initializable, Observer {
         table_kurs_column_kurs.setCellValueFactory(new PropertyValueFactory<>("bezeichnung"));
         for (Kurs k : observableList){
             table_kurs.getItems().add(k);
+        }
+    }
+
+    public void fillUnternehmenTable(){
+        ObservableList<Unternehmen> observableList = FXCollections.observableArrayList(dbConnection.getUnternehmenArrayList());
+        table_unternehmen_column_unternehmen.setCellValueFactory(new PropertyValueFactory<>("name"));
+        for (Unternehmen u : observableList){
+            table_unternehmen.getItems().add(u);
         }
     }
 
