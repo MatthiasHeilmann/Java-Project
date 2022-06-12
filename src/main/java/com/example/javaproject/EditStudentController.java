@@ -43,14 +43,14 @@ public class EditStudentController implements Initializable {
     boolean changed;
     ArrayList<Kurs> kursArrayList;
     ArrayList<Unternehmen> unternehmenArrayList;
-    DBConnection mycon;
+    DBConnection dbConnection;
 
-    public EditStudentController(Student student,DBConnection mycon){
+    public EditStudentController(Student student,DBConnection dbConnection){
         this.student=student;
         this.changedStudent=new Student(student.getsId(),student.getuId(), student.getkId(), student.getVorname(),student.getNachname(),student.getGeschlecht(),student.getVorkenntnisse());
         this.changedStudent.setKurs(student.getKurs());
         this.changedStudent.setUnternehmen(student.getUnternehmen());
-        this.mycon=mycon;
+        this.dbConnection=dbConnection;
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -59,6 +59,8 @@ public class EditStudentController implements Initializable {
             if (!newValue.equals(student.getVorname())){
                 changed=true;
                 changedStudent.setVorname(newValue);
+            }else{
+                changed=false;
             }
         });
         text_nachname.setText(student.getNachname());
@@ -66,6 +68,8 @@ public class EditStudentController implements Initializable {
             if (!newValue.equals(student.getNachname())){
                 changed=true;
                 changedStudent.setNachname(newValue);
+            }else{
+                changed=false;
             }
         });
         text_geschlecht.setText(student.getGeschlecht());
@@ -73,37 +77,54 @@ public class EditStudentController implements Initializable {
             if (!newValue.equals(student.getGeschlecht())){
                 changed=true;
                 changedStudent.setGeschlecht(newValue);
+            }else{
+                changed=false;
             }
         });
         slider_java.setValue(student.getVorkenntnisse());
         //only integers
         slider_java.valueProperty().addListener((obs, oldval, newVal) -> {
-                slider_java.setValue(newVal.intValue());
-                if(!(newVal.intValue()==student.getVorkenntnisse())){
-                    changed=true;
-                    changedStudent.setVorkenntnisse(newVal.intValue());
-                    System.out.println("changed");
-                }
-            });
+            slider_java.setValue(newVal.intValue());
+            if(!(newVal.intValue()==student.getVorkenntnisse())){
+                changed=true;
+                changedStudent.setVorkenntnisse(newVal.intValue());
+            }else{
+                changed=false;
+            }
+        });
         label_java.setText(Integer.toString(student.getVorkenntnisse()));
         //bind label to value of slider
         label_java.textProperty().bind(Bindings.format("%.2f",slider_java.valueProperty()));
         //fill box_kurs with all kurse and select kurs of student
-        this.kursArrayList=mycon.getKursArrayList();
+        this.kursArrayList=dbConnection.getKursArrayList();
         for (Kurs kurs : kursArrayList){
             box_kurs.getItems().add(kurs.getBezeichnung());
             if(kurs.getkId()==student.getkId()){
                 box_kurs.setValue(kurs.getBezeichnung());
             }
         }
+        box_kurs.valueProperty().addListener((obs, oldval, newVal) -> {
+            if(!(box_kurs.getValue().equals(student.getKurs()))){
+                changed=true;
+            }else{
+                changed=false;
+            }
+        });
         //fill box_unternehmen with all unternehmen and select unternehmen of student
-        this.unternehmenArrayList=mycon.getUnternehmenArrayList();
+        this.unternehmenArrayList=dbConnection.getUnternehmenArrayList();
         for(Unternehmen unternehmen : unternehmenArrayList){
             box_unternehmen.getItems().add(unternehmen.getName());
             if(unternehmen.getuId()==student.getuId()){
                 box_unternehmen.setValue(unternehmen.getName());
             }
         }
+        box_unternehmen.valueProperty().addListener((obs, oldval, newVal) -> {
+            if(!(box_unternehmen.getValue().equals(student.getUnternehmen()))){
+                changed=true;
+            }else{
+                changed=false;
+            }
+        });
     }
 
     @FXML
@@ -115,6 +136,11 @@ public class EditStudentController implements Initializable {
         Stage stage = (Stage) button_abbrechen.getScene().getWindow();
         stage.close();
     }
+
+    /**
+     * If anything has changed at student information a alert is called with changed information
+     * If Ok method calls updateStudent and updateStudentArrayList in DBConnection with changedStudent
+     */
     @FXML
     private void button_speichern_click(){
         if(changed){
@@ -131,14 +157,32 @@ public class EditStudentController implements Initializable {
             if(!(student.getVorkenntnisse()==changedStudent.getVorkenntnisse())){
                 check = check+ "Java-Skills: "+student.getVorkenntnisse()+" -> "+changedStudent.getVorkenntnisse()+"\n";
             }
+            if(!(student.getUnternehmen().equals(box_unternehmen.getValue()))){
+                for(Unternehmen unternehmen : unternehmenArrayList){
+                    if(unternehmen.getName().equals(box_unternehmen.getValue())){
+                        changedStudent.setUnternehmen(unternehmen.getName());
+                        changedStudent.setuId(unternehmen.getuId());
+                    }
+                }
+                check = check + "Unternehmen: " + student.getUnternehmen() + " -> " + changedStudent.getUnternehmen()+"\n";
+            }
+            if(!(student.getKurs().equals(box_kurs.getValue()))){
+                for(Kurs kurs : kursArrayList){
+                    if(kurs.getBezeichnung().equals(box_kurs.getValue())){
+                        changedStudent.setKurs(kurs.getBezeichnung());
+                        changedStudent.setkId(kurs.getkId());
+                    }
+                }
+                check = check + "Kurs: " + student.getKurs() + " -> " + changedStudent.getKurs()+"\n";
+            }
             check=check + "Trotzdem fortfahren?";
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Bestätigung");
             alert.setContentText(check);
             alert.showAndWait().ifPresent(rs -> {
                 if (rs == ButtonType.OK) {
-                    mycon.updateStudent(changedStudent);
-                    mycon.updateStudentArrayList(changedStudent);
+                    dbConnection.updateStudent(changedStudent);
+                    dbConnection.updateStudentArrayList(changedStudent);
                     button_abbrechen_click();
                 }
             });
