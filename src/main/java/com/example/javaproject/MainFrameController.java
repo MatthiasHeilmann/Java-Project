@@ -2,9 +2,11 @@ package com.example.javaproject;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -52,9 +54,29 @@ public class MainFrameController implements Initializable, Observer {
     /**
      * Opens a Window where a new student can be added
      */
+/*    @FXML
+    protected void button_add_student_click(ActionEvent event) throws Exception {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("addStudent.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root1));
+            stage.show();
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+    }*/
     @FXML
-    protected void button_add_student_click() {
-        System.out.println("Neuer Student!");
+    public void button_add_student_click(ActionEvent event) throws Exception {
+        Stage stage = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("addStudent.fxml"));
+        addStudentController controller = new addStudentController(dbConnection);
+        fxmlLoader.setController(controller);
+        Scene scene = new Scene(fxmlLoader.load(), 470, 350);
+/*      scene.getStylesheets().add(getClass().getResource("editstudent.css").toExternalForm());*/
+        stage.setTitle("Student hinzufügen");
+        stage.setScene(scene);
+        stage.show();
     }
     /**
      * Opens a Window where a new kurs can be added
