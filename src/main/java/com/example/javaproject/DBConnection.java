@@ -3,7 +3,7 @@ package com.example.javaproject;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Observable;
-import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * Model class of project
@@ -82,6 +82,7 @@ public class DBConnection extends Observable {
         }catch (Exception ex){
             ex.printStackTrace();
         }
+
         return arrayList;
     }
 
@@ -125,14 +126,12 @@ public class DBConnection extends Observable {
      * @param student
      */
     public void updateStudentArrayList(Student student){
-        AtomicInteger i= new AtomicInteger();
         studentArrayList.forEach(student1 -> {
            if (student1.getsId()==student.getsId()){
                student1.update(student);
                this.setChanged();
                notifyObservers();
            }
-            i.getAndIncrement();
         });
     }
 
@@ -160,7 +159,7 @@ public class DBConnection extends Observable {
     }
 
     /**
-     * updates a student from database
+     * updates a student in database
      *
      * @param student
      */
@@ -204,11 +203,92 @@ public class DBConnection extends Observable {
     }
 
     /**
+     * updates a kurs in database
+     *
+     * @param kurs
+     */
+    public void updateKurs(Kurs kurs){
+        try{
+            PreparedStatement preparedStatement;
+            preparedStatement = connection.prepareStatement(
+                    "UPDATE kurs SET bezeichnung = ?,raum = ?"+
+                            "WHERE kId = "+kurs.getkId()+";"
+            );
+            preparedStatement.setString(1,kurs.getBezeichnung());
+            preparedStatement.setString(2,kurs.getRaum());
+            preparedStatement.execute();
+        }catch (SQLException ex){
+            ex.printStackTrace();
+        }
+    }
+
+    /**
+     * updates or adds a kurs to ArrayList
+     *
+     * @param kurs
+     */
+    public void updateKursArrayList(Kurs kurs) {
+        AtomicBoolean added= new AtomicBoolean(true);
+        kursArrayList.forEach(kurs1 -> {
+            if (kurs1.getkId()==kurs.getkId()){
+                kurs.update(kurs1);
+                added.set(false);
+                this.setChanged();
+                notifyObservers();
+            }
+        });
+        if(added.get()){
+            kursArrayList.add(kurs);
+            this.setChanged();
+            notifyObservers();
+        }
+    }
+
+    public void deleteKurs(Kurs kurs){
+        try{
+            PreparedStatement preparedStatement;
+            preparedStatement = connection.prepareStatement(
+                    "UPDATE schueler SET kId = 1000 "+
+                            "WHERE kId = ?;"
+            );
+            preparedStatement.setInt(1,kurs.getkId());
+            preparedStatement.execute();
+            PreparedStatement preparedStatement1;
+            preparedStatement1 = connection.prepareStatement(
+                    "DELETE FROM kurs "+
+                            "WHERE kId = ?;"
+            );
+            preparedStatement.setInt(1,kurs.getkId());
+            preparedStatement.execute();
+        }catch (SQLException ex){
+            ex.printStackTrace();
+        }
+    }
+
+    public void deleteKursArrayList(Kurs kurs){
+        kursArrayList.forEach(kurs1 -> {
+            if (kurs1.getkId()==kurs.getkId()){
+                kurs.update(new Kurs(1000,"kurslos", "NA"));
+                updateKursArrayList(kurs);
+                updateKurs(kurs);
+                studentArrayList.forEach(student -> {
+                    if(student.getkId()==kurs.getkId()){
+                        student.setkId(1000);
+                        student.setKurs("kurslos");
+                    }
+                });
+                this.setChanged();
+                notifyObservers();
+            }
+        });
+    }
+
+    /**
      * inserts new unternehmen into database using prepared statement
      *
      * @param unternehmen
      */
-    public void insertKurs(Unternehmen unternehmen){
+    public void insertUnternehmen(Unternehmen unternehmen){
         try{
             PreparedStatement preparedStatement;
             preparedStatement = connection.prepareStatement(
@@ -220,5 +300,87 @@ public class DBConnection extends Observable {
         }catch (SQLException ex){
             ex.printStackTrace();
         }
+    }
+
+
+    /**
+     * updates an unternehmen in database
+     *
+     * @param unternehmen
+     */
+    public void updateUnternehmen(Unternehmen unternehmen) {
+        try{
+            PreparedStatement preparedStatement;
+            preparedStatement = connection.prepareStatement(
+                    "UPDATE unternehmen SET name = ? "+
+                            "WHERE uId = "+unternehmen.getuId()+";"
+            );
+            preparedStatement.setString(1,unternehmen.getName());
+            preparedStatement.execute();
+        }catch (SQLException ex){
+            ex.printStackTrace();
+        }
+    }
+
+    /**
+     * updates an unternehmen in ArrayList
+     *
+     * @param unternehmen
+     */
+    public void updateUnternehmenArrayList(Unternehmen unternehmen) {
+        unternehmenArrayList.forEach(unternehmen1 -> {
+            if (unternehmen1.getuId()==unternehmen.getuId()){
+                unternehmen.update(unternehmen1);
+                this.setChanged();
+                notifyObservers();
+            }
+        });
+    }
+
+    /**
+     * deletes an unternehmen from database
+     *
+     * @param unternehmen
+     */
+    public void deleteUnternehmen(Unternehmen unternehmen){
+        try{
+            PreparedStatement preparedStatement;
+            preparedStatement = connection.prepareStatement(
+                    "UPDATE schueler SET uId = 3 "+
+                            "WHERE uId = ?;"
+            );
+            preparedStatement.setInt(1,unternehmen.getuId());
+            preparedStatement.execute();
+            PreparedStatement preparedStatement1;
+            preparedStatement1 = connection.prepareStatement(
+                    "DELETE FROM unternehmen "+
+                            "WHERE uId = ?;"
+            );
+            preparedStatement.setInt(1,unternehmen.getuId());
+            preparedStatement.execute();
+        }catch (SQLException ex){
+            ex.printStackTrace();
+        }
+    }
+
+    /**
+     * deletes an unternehmen from ArrayList
+     *
+     * @param unternehmen
+     */
+    public void deleteUnternehmenArrayList(Unternehmen unternehmen){
+        unternehmenArrayList.forEach(unternehmen1 -> {
+            if (unternehmen1.getuId()==unternehmen.getuId()){
+                unternehmen.update(new Unternehmen(3,"Others UG"));
+                studentArrayList.forEach(student -> {
+                    if(student.getuId()==unternehmen.getuId()){
+                        student.setuId(3);
+                        student.setUnternehmen("Others UG");
+                    }
+                });
+                this.setChanged();
+                notifyObservers();
+            }
+        });
     }
 }

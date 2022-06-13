@@ -60,8 +60,16 @@ public class MainFrameController implements Initializable, Observer {
      * Opens a Window where a new kurs can be added
      */
     @FXML
-    protected void button_add_kurs_click() {
-        System.out.println("Neuer Kurs!");
+    protected void button_add_kurs_click() throws IOException {
+        ArrayList<Kurs> kursArrayList = dbConnection.getKursArrayList();
+        int max=0;
+        for (Kurs kurs:
+             kursArrayList) {
+            if(kurs.getkId()>max){
+                max=kurs.getkId();
+            }
+        }
+        editKurs(new Kurs(max+1,"",""));
     }
     /**
      * Opens a Window where a new unternehmen can be added
@@ -101,50 +109,66 @@ public class MainFrameController implements Initializable, Observer {
         fillUnternehmenTable();
         fillStudentTable();
         table_kurs.setRowFactory(tv -> {
-                    TableRow<Kurs> row = new TableRow<>();
-                    row.setOnMouseClicked(event -> {
-                        if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
-                            Kurs rowData = row.getItem();
-                            table_student_header.setText(rowData.getBezeichnung());
-                            fillStudentTableOnKurs(rowData);
-                            button_show_all.setVisible(true);
-                            table_student_header_raum.setText("| Raum: "+rowData.getRaum());
-                            table_student_header_raum.setVisible(true);
-                            System.out.println(rowData.getBezeichnung()+" clicked");
-                        }
-                    });
-                    return row ;
+            TableRow<Kurs> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 1 && (! row.isEmpty()) ) {
+                    Kurs rowData = row.getItem();
+                    table_student_header.setText(rowData.getBezeichnung());
+                    fillStudentTableOnKurs(rowData);
+                    button_show_all.setVisible(true);
+                    table_student_header_raum.setText("| Raum: "+rowData.getRaum());
+                    table_student_header_raum.setVisible(true);
+                    System.out.println(rowData.getBezeichnung()+" clicked");
+                }else if(event.getClickCount() == 2 && (!row.isEmpty())){
+                    Kurs rowData = row.getItem();
+                    try{
+                        editKurs(rowData);
+                    }catch (IOException e){
+                        e.printStackTrace();
+                    }
+                }
+            });
+            return row ;
         });
         table_unternehmen.setRowFactory(tv -> {
             TableRow<Unternehmen> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
-                if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
+                if (event.getClickCount() == 1 && (! row.isEmpty()) ) {
                     Unternehmen rowData = row.getItem();
                     table_student_header.setText(rowData.getName());
                     fillStudentTableOnUnternehmen(rowData);
                     button_show_all.setVisible(true);
                     table_student_header_raum.setVisible(false);
                     System.out.println(rowData.getName()+" clicked");
+                }else if(event.getClickCount() == 2 && (!row.isEmpty())){
+                    Unternehmen rowData = row.getItem();
+                    try{
+                        editUnternehmen(rowData);
+                    }catch (IOException e){
+                        e.printStackTrace();
+                    }
                 }
             });
             return row ;
         });
         table_student.setRowFactory(tv -> {
-                    TableRow<Student> row = new TableRow<>();
-                    row.setOnMouseClicked(event -> {
-                        if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
-                            Student rowData = row.getItem();
-                            System.out.println(rowData.getVorname()+" "+rowData.getNachname()+" clicked");
-                            try {
-                            editStudent(rowData);
-                            }catch (IOException e){
-                                e.printStackTrace();
-                            }
-                        }
-                    });
-                    return row ;
+            TableRow<Student> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
+                    Student rowData = row.getItem();
+                    System.out.println(rowData.getVorname()+" "+rowData.getNachname()+" clicked");
+                    try {
+                    editStudent(rowData);
+                    }catch (IOException e){
+                        e.printStackTrace();
+                    }
+                }
+            });
+            return row ;
         });
     }
+
+
 
 
     /**
@@ -237,6 +261,7 @@ public class MainFrameController implements Initializable, Observer {
      * fills kurs table with alle kurse in database
      */
     public void fillKursTable(){
+        table_kurs.getItems().clear();
         ObservableList<Kurs> observableList = FXCollections.observableArrayList(dbConnection.getKursArrayList());
         table_kurs_column_kurs.setCellValueFactory(new PropertyValueFactory<>("bezeichnung"));
         for (Kurs k : observableList){
@@ -245,6 +270,7 @@ public class MainFrameController implements Initializable, Observer {
     }
 
     public void fillUnternehmenTable(){
+        table_unternehmen.getItems().clear();
         ObservableList<Unternehmen> observableList = FXCollections.observableArrayList(dbConnection.getUnternehmenArrayList());
         table_unternehmen_column_unternehmen.setCellValueFactory(new PropertyValueFactory<>("name"));
         for (Unternehmen u : observableList){
@@ -258,7 +284,33 @@ public class MainFrameController implements Initializable, Observer {
         EditStudentController controller = new EditStudentController(student,dbConnection);
         fxmlLoader.setController(controller);
         Scene scene = new Scene(fxmlLoader.load(), 470, 350);
+        scene.getStylesheets().add(getClass().getResource("editstudent.css").toExternalForm());
         stage.setTitle("Student bearbeiten");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void editKurs(Kurs kurs) throws IOException {
+        Stage stage = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("editkurs.fxml"));
+        EditCourseController controller = new EditCourseController(kurs,dbConnection);
+        fxmlLoader.setController(controller);
+        Scene scene = new Scene(fxmlLoader.load(), 470, 350);
+        scene.getStylesheets().add(getClass().getResource("editkurs.css").toExternalForm());
+        stage.setTitle("Kurs bearbeiten");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+
+    private void editUnternehmen(Unternehmen unternehmen) throws IOException {
+        Stage stage = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("editunternehmen.fxml"));
+        EditUnternehmenController controller = new EditUnternehmenController(unternehmen,dbConnection);
+        fxmlLoader.setController(controller);
+        Scene scene = new Scene(fxmlLoader.load(), 470, 350);
+        scene.getStylesheets().add(getClass().getResource("editunternehmen.css").toExternalForm());
+        stage.setTitle("Unternehmen bearbeiten");
         stage.setScene(scene);
         stage.show();
     }
@@ -270,5 +322,7 @@ public class MainFrameController implements Initializable, Observer {
     @Override
     public void update(Observable o, Object arg) {
         fillStudentTable();
+        fillUnternehmenTable();
+        fillKursTable();
     }
 }

@@ -27,4 +27,9 @@ public class Unternehmen {
     public void setName(String name) {
         this.name = name;
     }
+
+    public void update(Unternehmen unternehmen) {
+        this.uId=unternehmen.getuId();
+        this.name=unternehmen.getName();
+    }
 }
