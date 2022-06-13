@@ -215,14 +215,14 @@ public class DBConnection extends Observable {
                     "UPDATE schueler SET kId = 1000 "+
                             "WHERE kId = ?;"
             );
-            preparedStatement.setInt(1,kurs.getkId());
+            preparedStatement.setInt(1,kurs.getKId());
             preparedStatement.execute();
             PreparedStatement preparedStatement1;
             preparedStatement1 = connection.prepareStatement(
                     "DELETE FROM kurs "+
                             "WHERE kId = ?;"
             );
-            preparedStatement.setInt(1,kurs.getkId());
+            preparedStatement.setInt(1,kurs.getKId());
             preparedStatement.execute();
         }catch (SQLException ex){
             ex.printStackTrace();
@@ -259,7 +259,7 @@ public class DBConnection extends Observable {
             PreparedStatement preparedStatement;
             preparedStatement = connection.prepareStatement(
                     "UPDATE unternehmen SET name = ? "+
-                            "WHERE uId = "+unternehmen.getuId()+";"
+                            "WHERE uId = "+unternehmen.getUId()+";"
             );
             preparedStatement.setString(1,unternehmen.getName());
             preparedStatement.execute();
@@ -280,14 +280,14 @@ public class DBConnection extends Observable {
                     "UPDATE schueler SET uId = 3 "+
                             "WHERE uId = ?;"
             );
-            preparedStatement.setInt(1,unternehmen.getuId());
+            preparedStatement.setInt(1,unternehmen.getUId());
             preparedStatement.execute();
             PreparedStatement preparedStatement1;
             preparedStatement1 = connection.prepareStatement(
                     "DELETE FROM unternehmen "+
                             "WHERE uId = ?;"
             );
-            preparedStatement.setInt(1,unternehmen.getuId());
+            preparedStatement.setInt(1,unternehmen.getUId());
             preparedStatement.execute();
         }catch (SQLException ex){
             ex.printStackTrace();

@@ -1,6 +1,7 @@
 package com.example.javaproject;
 
-import javafx.event.ActionEvent;
+import com.example.javaproject.Tables.Tables;
+import com.example.javaproject.Tables.Unternehmen;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -24,10 +25,12 @@ public class EditUnternehmenController implements Initializable {
 
     Unternehmen unternehmen;
     DBConnection dbConnection;
+    Tables tables;
 
-    public EditUnternehmenController(Unternehmen unternehmen,DBConnection dbConnection){
+    public EditUnternehmenController(Unternehmen unternehmen){
         this.unternehmen=unternehmen;
-        this.dbConnection=dbConnection;
+        this.dbConnection=DBConnection.getInstance();
+        this.tables = Tables.getInstance();
     }
 
     @Override
@@ -49,7 +52,7 @@ public class EditUnternehmenController implements Initializable {
         alert.showAndWait().ifPresent(rs -> {
             if (rs == ButtonType.OK) {
                 dbConnection.deleteUnternehmen(this.unternehmen);
-                dbConnection.deleteUnternehmenArrayList(this.unternehmen);
+                tables.removeUnternehmen(unternehmen.getUId());
                 button_abbrechen_click();
             }
         });
@@ -68,7 +71,7 @@ public class EditUnternehmenController implements Initializable {
                 if (rs == ButtonType.OK) {
                     unternehmen.setName(text_name.getText());
                     dbConnection.updateUnternehmen(unternehmen);
-                    dbConnection.updateUnternehmenArrayList(unternehmen);
+                    tables.updateUnternehmen(unternehmen.getUId(), unternehmen);
                     button_abbrechen_click();
                 }
             });

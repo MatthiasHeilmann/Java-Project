@@ -6,6 +6,8 @@ import com.example.javaproject.Tables.Unternehmen;
 import com.example.javaproject.Tables.Schueler;
 
 import javafx.beans.property.ReadOnlyStringWrapper;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -65,15 +67,18 @@ public class MainFrameController implements Initializable, Observer {
      */
     @FXML
     protected void button_add_kurs_click() throws IOException {
-        ArrayList<Kurs> kursArrayList = dbConnection.getKursArrayList();
+        ArrayList<Kurs> kursArrayList = tables.getAllKurse();
         int max=0;
         for (Kurs kurs:
              kursArrayList) {
-            if(kurs.getkId()>max){
-                max=kurs.getkId();
+            if(kurs.getKId()>max){
+                max=kurs.getKId();
             }
         }
-        editKurs(new Kurs(max+1,"",""));
+
+        editKurs(new Kurs(new SimpleIntegerProperty(max+1)
+                        , new SimpleStringProperty("")
+                        , new SimpleStringProperty("")));
     }
     /**
      * Opens a Window where a new unternehmen can be added
@@ -277,7 +282,7 @@ public class MainFrameController implements Initializable, Observer {
     public void editKurs(Kurs kurs) throws IOException {
         Stage stage = new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("editkurs.fxml"));
-        EditCourseController controller = new EditCourseController(kurs,dbConnection);
+        EditCourseController controller = new EditCourseController(kurs);
         fxmlLoader.setController(controller);
         Scene scene = new Scene(fxmlLoader.load(), 470, 350);
         scene.getStylesheets().add(getClass().getResource("editkurs.css").toExternalForm());
@@ -290,7 +295,7 @@ public class MainFrameController implements Initializable, Observer {
     private void editUnternehmen(Unternehmen unternehmen) throws IOException {
         Stage stage = new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("editunternehmen.fxml"));
-        EditUnternehmenController controller = new EditUnternehmenController(unternehmen,dbConnection);
+        EditUnternehmenController controller = new EditUnternehmenController(unternehmen);
         fxmlLoader.setController(controller);
         Scene scene = new Scene(fxmlLoader.load(), 470, 350);
         scene.getStylesheets().add(getClass().getResource("editunternehmen.css").toExternalForm());
