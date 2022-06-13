@@ -3,7 +3,7 @@ package com.example.javaproject;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Observable;
-import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * Model class of project
@@ -202,6 +202,11 @@ public class DBConnection extends Observable {
         }
     }
 
+    /**
+     * updates a kurs in database
+     *
+     * @param kurs
+     */
     public void updateKurs(Kurs kurs){
         try{
             PreparedStatement preparedStatement;
@@ -217,9 +222,66 @@ public class DBConnection extends Observable {
         }
     }
 
+    /**
+     * updates or adds a kurs to ArrayList
+     *
+     * @param kurs
+     */
+    public void updateKursArrayList(Kurs kurs) {
+        AtomicBoolean added= new AtomicBoolean(true);
+        kursArrayList.forEach(kurs1 -> {
+            if (kurs1.getkId()==kurs.getkId()){
+                kurs.update(kurs1);
+                added.set(false);
+                this.setChanged();
+                notifyObservers();
+            }
+        });
+        if(added.get()){
+            kursArrayList.add(kurs);
+            this.setChanged();
+            notifyObservers();
+        }
+    }
 
+    public void deleteKurs(Kurs kurs){
+        try{
+            PreparedStatement preparedStatement;
+            preparedStatement = connection.prepareStatement(
+                    "UPDATE schueler SET kId = 1000 "+
+                            "WHERE kId = ?;"
+            );
+            preparedStatement.setInt(1,kurs.getkId());
+            preparedStatement.execute();
+            PreparedStatement preparedStatement1;
+            preparedStatement1 = connection.prepareStatement(
+                    "DELETE FROM kurs "+
+                            "WHERE kId = ?;"
+            );
+            preparedStatement.setInt(1,kurs.getkId());
+            preparedStatement.execute();
+        }catch (SQLException ex){
+            ex.printStackTrace();
+        }
+    }
 
-
+    public void deleteKursArrayList(Kurs kurs){
+        kursArrayList.forEach(kurs1 -> {
+            if (kurs1.getkId()==kurs.getkId()){
+                kurs.update(new Kurs(1000,"kurslos", "NA"));
+                updateKursArrayList(kurs);
+                updateKurs(kurs);
+                studentArrayList.forEach(student -> {
+                    if(student.getkId()==kurs.getkId()){
+                        student.setkId(1000);
+                        student.setKurs("kurslos");
+                    }
+                });
+                this.setChanged();
+                notifyObservers();
+            }
+        });
+    }
 
     /**
      * inserts new unternehmen into database using prepared statement
@@ -238,53 +300,6 @@ public class DBConnection extends Observable {
         }catch (SQLException ex){
             ex.printStackTrace();
         }
-    }
-
-    public void updateKursArrayList(Kurs kurs) {
-        kursArrayList.forEach(kurs1 -> {
-            if (kurs1.getkId()==kurs.getkId()){
-                kurs.update(kurs1);
-                this.setChanged();
-                notifyObservers();
-            }
-        });
-    }
-
-    public void deleteKurs(Kurs kurs){
-        try{
-            PreparedStatement preparedStatement;
-            preparedStatement = connection.prepareStatement(
-                    "UPDATE schueler SET kId = 1 "+
-                            "WHERE kId = ?;"
-            );
-            preparedStatement.setInt(1,kurs.getkId());
-            preparedStatement.execute();
-            PreparedStatement preparedStatement1;
-            preparedStatement1 = connection.prepareStatement(
-                    "DELETE FROM unternehmen "+
-                            "WHERE kId = ?;"
-            );
-            preparedStatement.setInt(1,kurs.getkId());
-            preparedStatement.execute();
-        }catch (SQLException ex){
-            ex.printStackTrace();
-        }
-    }
-
-    public void deleteKursArrayList(Kurs kurs){
-        kursArrayList.forEach(kurs1 -> {
-            if (kurs1.getkId()==kurs.getkId()){
-                kurs.update(new Kurs(1000,"kurslos", "NA"));
-                studentArrayList.forEach(student -> {
-                    if(student.getkId()==kurs.getkId()){
-                        student.setuId(3);
-                        student.setKurs("kurslos");
-                    }
-                });
-                this.setChanged();
-                notifyObservers();
-            }
-        });
     }
 
 
