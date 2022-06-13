@@ -18,6 +18,8 @@ public class Main extends Application {
 
 //    MainFrameController mainFrameController = new MainFrameController();
 
+    DBConnection dbc;
+
     @Override
     public void start(Stage stage) throws IOException {
         try {
@@ -30,12 +32,17 @@ public class Main extends Application {
         Scene scene = new Scene(fxmlLoader.load(), 800, 600);
         scene.getStylesheets().add(getClass().getResource("mainframe.css").toExternalForm());
         stage.setTitle("DHBW Datenbank");
+        stage.setOnCloseRequest(e -> {
+            e.consume();
+            stage.close();
+            dbc.closeConnection();
+        });
         stage.setScene(scene);
         stage.show();
     }
 
     private void initializeData() throws SQLException {
-        DBConnection dbc = DBConnection.getInstance();
+        dbc = DBConnection.getInstance();
         Tables tables = Tables.getInstance();
 
         tables.insertKurs(dbc.getAllKurs());

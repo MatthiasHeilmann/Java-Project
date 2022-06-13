@@ -37,6 +37,7 @@ public class DBConnection extends Observable {
     }
 
     private void createConnection(){
+        System.out.println("new Connection");
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             this.connection = DriverManager.getConnection(this.connectionUrl,this.userName,this.password);
@@ -291,6 +292,14 @@ public class DBConnection extends Observable {
             preparedStatement.execute();
         }catch (SQLException ex){
             ex.printStackTrace();
+        }
+    }
+
+    public void closeConnection(){
+        try {
+            this.connection.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 }
