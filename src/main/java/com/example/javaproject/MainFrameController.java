@@ -60,8 +60,16 @@ public class MainFrameController implements Initializable, Observer {
      * Opens a Window where a new kurs can be added
      */
     @FXML
-    protected void button_add_kurs_click() {
-        System.out.println("Neuer Kurs!");
+    protected void button_add_kurs_click() throws IOException {
+        ArrayList<Kurs> kursArrayList = dbConnection.getKursArrayList();
+        int max=0;
+        for (Kurs kurs:
+             kursArrayList) {
+            if(kurs.getkId()>max){
+                max=kurs.getkId();
+            }
+        }
+        editKurs(new Kurs(max+1,"",""));
     }
     /**
      * Opens a Window where a new unternehmen can be added
@@ -111,6 +119,13 @@ public class MainFrameController implements Initializable, Observer {
                     table_student_header_raum.setText("| Raum: "+rowData.getRaum());
                     table_student_header_raum.setVisible(true);
                     System.out.println(rowData.getBezeichnung()+" clicked");
+                }else if(event.getClickCount() == 2 && (!row.isEmpty())){
+                    Kurs rowData = row.getItem();
+                    try{
+                        editKurs(rowData);
+                    }catch (IOException e){
+                        e.printStackTrace();
+                    }
                 }
             });
             return row ;
@@ -275,6 +290,19 @@ public class MainFrameController implements Initializable, Observer {
         stage.show();
     }
 
+    public void editKurs(Kurs kurs) throws IOException {
+        Stage stage = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("editkurs.fxml"));
+        EditCourseController controller = new EditCourseController(kurs,dbConnection);
+        fxmlLoader.setController(controller);
+        Scene scene = new Scene(fxmlLoader.load(), 470, 350);
+        scene.getStylesheets().add(getClass().getResource("editkurs.css").toExternalForm());
+        stage.setTitle("Kurs bearbeiten");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+
     private void editUnternehmen(Unternehmen unternehmen) throws IOException {
         Stage stage = new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("editunternehmen.fxml"));
@@ -282,7 +310,7 @@ public class MainFrameController implements Initializable, Observer {
         fxmlLoader.setController(controller);
         Scene scene = new Scene(fxmlLoader.load(), 470, 350);
         scene.getStylesheets().add(getClass().getResource("editunternehmen.css").toExternalForm());
-        stage.setTitle("Student bearbeiten");
+        stage.setTitle("Unternehmen bearbeiten");
         stage.setScene(scene);
         stage.show();
     }

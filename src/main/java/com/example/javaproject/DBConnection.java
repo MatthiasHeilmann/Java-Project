@@ -82,6 +82,7 @@ public class DBConnection extends Observable {
         }catch (Exception ex){
             ex.printStackTrace();
         }
+
         return arrayList;
     }
 
@@ -201,6 +202,25 @@ public class DBConnection extends Observable {
         }
     }
 
+    public void updateKurs(Kurs kurs){
+        try{
+            PreparedStatement preparedStatement;
+            preparedStatement = connection.prepareStatement(
+                    "UPDATE kurs SET bezeichnung = ?,raum = ?"+
+                            "WHERE kId = "+kurs.getkId()+";"
+            );
+            preparedStatement.setString(1,kurs.getBezeichnung());
+            preparedStatement.setString(2,kurs.getRaum());
+            preparedStatement.execute();
+        }catch (SQLException ex){
+            ex.printStackTrace();
+        }
+    }
+
+
+
+
+
     /**
      * inserts new unternehmen into database using prepared statement
      *
@@ -219,6 +239,55 @@ public class DBConnection extends Observable {
             ex.printStackTrace();
         }
     }
+
+    public void updateKursArrayList(Kurs kurs) {
+        kursArrayList.forEach(kurs1 -> {
+            if (kurs1.getkId()==kurs.getkId()){
+                kurs.update(kurs1);
+                this.setChanged();
+                notifyObservers();
+            }
+        });
+    }
+
+    public void deleteKurs(Kurs kurs){
+        try{
+            PreparedStatement preparedStatement;
+            preparedStatement = connection.prepareStatement(
+                    "UPDATE schueler SET kId = 1 "+
+                            "WHERE kId = ?;"
+            );
+            preparedStatement.setInt(1,kurs.getkId());
+            preparedStatement.execute();
+            PreparedStatement preparedStatement1;
+            preparedStatement1 = connection.prepareStatement(
+                    "DELETE FROM unternehmen "+
+                            "WHERE kId = ?;"
+            );
+            preparedStatement.setInt(1,kurs.getkId());
+            preparedStatement.execute();
+        }catch (SQLException ex){
+            ex.printStackTrace();
+        }
+    }
+
+    public void deleteKursArrayList(Kurs kurs){
+        kursArrayList.forEach(kurs1 -> {
+            if (kurs1.getkId()==kurs.getkId()){
+                kurs.update(new Kurs(1000,"kurslos", "NA"));
+                studentArrayList.forEach(student -> {
+                    if(student.getkId()==kurs.getkId()){
+                        student.setuId(3);
+                        student.setKurs("kurslos");
+                    }
+                });
+                this.setChanged();
+                notifyObservers();
+            }
+        });
+    }
+
+
     /**
      * updates an unternehmen in database
      *

@@ -37,4 +37,10 @@ public class Kurs {
     public void setRaum(String raum) {
         this.raum = raum;
     }
+
+    public void update(Kurs kurs) {
+        this.kId=kurs.getkId();
+        this.bezeichnung=kurs.getBezeichnung();
+        this.raum=kurs.getRaum();
+    }
 }
