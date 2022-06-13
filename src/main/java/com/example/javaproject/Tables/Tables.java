@@ -15,7 +15,7 @@ public class Tables {
 
 	public static Tables getInstance(){
 		if(tablesSingelton == null){
-			synchronized (tablesSingelton){
+			synchronized (Tables.class){
 				if(tablesSingelton == null){
 					tablesSingelton = new Tables();
 				}
@@ -64,56 +64,86 @@ public class Tables {
 		return retList;
 	}
 
-	public void insertSchueler(ResultSet schuelerSet) throws SQLException {
+	public void updateSchueler(int id, Schueler s){
+		// TODO maybe unsafe
+		tables.get(TableName.Schueler).put(id, s);
+	}
+
+	public void updateKurs(int id, Kurs k){
+		tables.get(TableName.Kurs).put(id, k);
+	}
+
+	public void updateUnternehmen(int id, Unternehmen u){
+		tables.get(TableName.Unternehmen).put(id, u);
+	}
+
+	public void removeSchueler(int id){
+		tables.get(TableName.Schueler).remove(id);
+	}
+
+	public void removeKurs(int id){
+		tables.get(TableName.Kurs).remove(id);
+	}
+
+	public void removeUnternehmen(int id){
+		tables.get(TableName.Unternehmen).remove(id);
+	}
+
+	public void insertSchueler(ArrayList<String> schuelerSet) throws SQLException {
 		tables.computeIfAbsent(TableName.Schueler, k -> new HashMap<>());
 
-		while(schuelerSet.next()){
-			Schueler s = createSchueler(schuelerSet);
+		for(String schueler: schuelerSet){
+			Schueler s = createSchueler(schueler);
 			tables.get(TableName.Schueler).put(s.getSId(), s);
 		}
 	}
 
-	public void insertKurs(ResultSet kursSet) throws SQLException {
+	public void insertKurs(ArrayList<String> kursSet) throws SQLException {
 		tables.computeIfAbsent(TableName.Kurs, k -> new HashMap<>());
 
-		while(kursSet.next()){
-			Kurs k = createKurs(kursSet);
+		for(String kurs : kursSet){
+			Kurs k = createKurs(kurs);
 			tables.get(TableName.Kurs).put(k.getKId(), k);
-		}
+		};
 	}
 
-	public void insertUnternehmen(ResultSet unternehmenSet) throws SQLException {
+	public void insertUnternehmen(ArrayList<String> unternehmenSet) throws SQLException {
 		tables.computeIfAbsent(TableName.Unternehmen, k -> new HashMap<>());
 
-		while(unternehmenSet.next()){
-			Unternehmen u = createUnternehmen(unternehmenSet);
+		for(String unternehmen : unternehmenSet){
+			Unternehmen u = createUnternehmen(unternehmen);
 			tables.get(TableName.Unternehmen).put(u.getUId(), u);
 		}
 	}
 
-	private Schueler createSchueler(ResultSet set) throws SQLException {
-		SimpleIntegerProperty sId = new SimpleIntegerProperty(set.getInt("sId"));
-		SimpleIntegerProperty uId = new SimpleIntegerProperty(set.getInt("uId"));
-		SimpleIntegerProperty kId = new SimpleIntegerProperty(set.getInt("kId"));
-		SimpleStringProperty vorname = new SimpleStringProperty(set.getString("vorname"));
-		SimpleStringProperty nachname = new SimpleStringProperty(set.getString("nachname"));
-		SimpleStringProperty geschlecht = new SimpleStringProperty(set.getString("geschlecht"));
-		SimpleIntegerProperty vorkenntnisse = new SimpleIntegerProperty(set.getInt("vorkenntnisse"));
+	private Schueler createSchueler(String schuelerSet) throws SQLException {
+		String[] values = schuelerSet.split(",");
+
+		SimpleIntegerProperty sId = new SimpleIntegerProperty(Integer.parseInt(values[0]));
+		SimpleIntegerProperty uId = new SimpleIntegerProperty(Integer.parseInt(values[1]));
+		SimpleIntegerProperty kId = new SimpleIntegerProperty(Integer.parseInt(values[2]));
+		SimpleStringProperty vorname = new SimpleStringProperty(values[3]);
+		SimpleStringProperty nachname = new SimpleStringProperty(values[4]);
+		SimpleStringProperty geschlecht = new SimpleStringProperty(values[5]);
+		SimpleIntegerProperty vorkenntnisse = new SimpleIntegerProperty(Integer.parseInt(values[6]));
 
 		return new Schueler(sId, uId, kId, vorname, nachname, geschlecht, vorkenntnisse);
 	}
 
-	private Unternehmen createUnternehmen(ResultSet set) throws SQLException {
-		SimpleIntegerProperty uId = new SimpleIntegerProperty(set.getInt("uId"));
-		SimpleStringProperty name = new SimpleStringProperty(set.getString("name"));
+	private Unternehmen createUnternehmen(String unternehmenSet) throws SQLException {
+		String[] values = unternehmenSet.split(",");
+		SimpleIntegerProperty uId = new SimpleIntegerProperty(Integer.parseInt(values[0]));
+		SimpleStringProperty name = new SimpleStringProperty(values[1]);
 
 		return new Unternehmen(uId, name);
 	}
 
-	private Kurs createKurs(ResultSet set) throws SQLException {
-		SimpleIntegerProperty kId = new SimpleIntegerProperty(set.getInt("kId"));
-		SimpleStringProperty bezeichnung = new SimpleStringProperty(set.getString("bezeichnung"));
-		SimpleStringProperty raum = new SimpleStringProperty(set.getString("raum"));
+	private Kurs createKurs(String kursSet) throws SQLException {
+		String[] values = kursSet.split(",");
+
+		SimpleIntegerProperty kId = new SimpleIntegerProperty(Integer.parseInt(values[0]));
+		SimpleStringProperty bezeichnung = new SimpleStringProperty(values[1]);
+		SimpleStringProperty raum = new SimpleStringProperty(values[2]);
 
 		return new Kurs(kId, bezeichnung, raum);
 	}

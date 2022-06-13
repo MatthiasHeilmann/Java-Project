@@ -1,0 +1,6 @@
+.root{
+    font-family: Calibri;
+}
+Button:hover{
+    -fx-background-color: black;
+}
