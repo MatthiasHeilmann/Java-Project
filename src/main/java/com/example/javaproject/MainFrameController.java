@@ -1,7 +1,11 @@
 package com.example.javaproject;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import com.example.javaproject.Tables.Tables;
+import com.example.javaproject.Tables.Kurs;
+import com.example.javaproject.Tables.Unternehmen;
+import com.example.javaproject.Tables.Schueler;
+
+import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -29,19 +33,19 @@ public class MainFrameController implements Initializable, Observer {
     @FXML
     private TableColumn<Unternehmen,String> table_unternehmen_column_unternehmen;
     @FXML
-    private TableView<Student> table_student;
+    private TableView<Schueler> table_student;
     @FXML
-    private TableColumn<Student,String> table_student_column_geschlecht;
+    private TableColumn<Schueler,String> table_student_column_geschlecht;
     @FXML
-    private TableColumn<Student,Integer> table_student_column_java;
+    private TableColumn<Schueler,Integer> table_student_column_java;
     @FXML
-    private TableColumn<Student,String> table_student_column_kurs;
+    private TableColumn<Schueler,String> table_student_column_kurs;
     @FXML
-    private TableColumn<Student,String> table_student_column_nachname;
+    private TableColumn<Schueler,String> table_student_column_nachname;
     @FXML
-    private TableColumn<Student,String> table_student_column_unternehmen;
+    private TableColumn<Schueler,String> table_student_column_unternehmen;
     @FXML
-    private TableColumn<Student, String> table_student_column_vorname;
+    private TableColumn<Schueler, String> table_student_column_vorname;
     @FXML
     private Label table_student_header;
     @FXML
@@ -88,9 +92,11 @@ public class MainFrameController implements Initializable, Observer {
     }
 
     private DBConnection dbConnection;
+    private Tables tables;
 
-    public MainFrameController(DBConnection dbConnection){
-        this.dbConnection=dbConnection;
+    public MainFrameController(){
+        dbConnection= DBConnection.getInstance();
+        tables = Tables.getInstance();
         dbConnection.addObserver(this);
     }
 
@@ -152,30 +158,23 @@ public class MainFrameController implements Initializable, Observer {
             return row ;
         });
         table_student.setRowFactory(tv -> {
-            TableRow<Student> row = new TableRow<>();
-            row.setOnMouseClicked(event -> {
-                if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
-                    Student rowData = row.getItem();
-                    System.out.println(rowData.getVorname()+" "+rowData.getNachname()+" clicked");
-                    try {
-                    editStudent(rowData);
-                    }catch (IOException e){
-                        e.printStackTrace();
-                    }
-                }
-            });
-            return row ;
+                    TableRow<Schueler> row = new TableRow<>();
+
+                    row.setOnMouseClicked(event -> {
+                        if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
+                            Schueler rowData = row.getItem();
+                            System.out.println(rowData.getVorname()+" "+rowData.getNachname()+" clicked");
+                            try {
+                            editStudent(rowData);
+                            }catch (IOException e){
+                                e.printStackTrace();
+                            }
+                        }
+                    });
+                    return row ;
         });
-    }
 
-
-
-
-    /**
-     * fills student table with all students
-     */
-    public void fillStudentTable(){
-        table_student.getItems().clear();
+        // table_student setup
         table_student_header.setText("Alle Studenten");
         button_show_all.setVisible(false);
         table_student_header_raum.setVisible(false);
@@ -183,105 +182,90 @@ public class MainFrameController implements Initializable, Observer {
         table_student_column_nachname.setCellValueFactory(new PropertyValueFactory<>("nachname"));
         table_student_column_geschlecht.setCellValueFactory(new PropertyValueFactory<>("geschlecht"));
         table_student_column_java.setCellValueFactory(new PropertyValueFactory<>("vorkenntnisse"));
-        table_student_column_kurs.setCellValueFactory(new PropertyValueFactory<>("kurs"));
-        table_student_column_unternehmen.setCellValueFactory(new PropertyValueFactory<>("unternehmen"));
+        table_student_column_kurs.setCellValueFactory(studentData -> {
+            Kurs sKurs = tables.getKurs(studentData.getValue().getKId());
+            return new ReadOnlyStringWrapper(sKurs.getBezeichnung());
+        });
+        table_student_column_unternehmen.setCellValueFactory(studentData -> {
+            Unternehmen sUnternehmen = tables.getUnternehmen(studentData.getValue().getUId());
+            return new ReadOnlyStringWrapper(sUnternehmen.getName());
+        });
 
-        ArrayList<Student> studentArrayList = dbConnection.getStudentArrayList();
-        ArrayList<Unternehmen> unternehmenArrayList = dbConnection.getUnternehmenArrayList();
-        ArrayList<Kurs> kursArrayList = dbConnection.getKursArrayList();
+        // table_kurs setup
+        table_kurs_column_kurs.setCellValueFactory(new PropertyValueFactory<>("bezeichnung"));
 
-        for (Student student : studentArrayList){
-            for(Kurs kurs : kursArrayList) {
-                if (kurs.getkId() == student.getkId()) {
-                    student.setKurs(kurs.getBezeichnung());
-                }
-            }
-            for(Unternehmen unternehmen : unternehmenArrayList){
-                if(unternehmen.getuId()==student.getuId()){
-                    student.setUnternehmen(unternehmen.getName());
-                }
-            }
-            table_student.getItems().add(student);
+        // table_unternehmen setup
+        table_unternehmen_column_unternehmen.setCellValueFactory(new PropertyValueFactory<>("name"));
+    }
+
+    /**
+     * fills student table with all students
+     */
+    public void fillStudentTable(){
+        table_student.getItems().clear();
+
+        ArrayList<Schueler> schuelerArrayList = tables.getAllSchueler();
+
+        for (Schueler schueler : schuelerArrayList){
+            table_student.getItems().add(schueler);
             table_student.refresh();
         }
     }
+
+    private void insertStudent(Schueler schueler){
+        table_student.getItems().add(schueler);
+    }
+
+    private void insertStudents(ArrayList<Schueler> schuelerList){
+        table_student.getItems().addAll(schuelerList);
+    }
+
     /**
      * fills student table with all students
      */
     public void fillStudentTableOnKurs(Kurs kurs){
         table_student.getItems().clear();
-        table_student_column_vorname.setCellValueFactory(new PropertyValueFactory<>("vorname"));
-        table_student_column_nachname.setCellValueFactory(new PropertyValueFactory<>("nachname"));
-        table_student_column_geschlecht.setCellValueFactory(new PropertyValueFactory<>("geschlecht"));
-        table_student_column_java.setCellValueFactory(new PropertyValueFactory<>("vorkenntnisse"));
-        table_student_column_kurs.setCellValueFactory(new PropertyValueFactory<>("kurs"));
-        table_student_column_unternehmen.setCellValueFactory(new PropertyValueFactory<>("unternehmen"));
 
-        ArrayList<Student> studentArrayList = dbConnection.getStudentArrayList();
-        ArrayList<Unternehmen> unternehmenArrayList = dbConnection.getUnternehmenArrayList();
+        ArrayList<Schueler> insertList = new ArrayList<>();
+        ArrayList<Schueler> schuelerArrayList = tables.getAllSchueler();
 
-        for (Student student : studentArrayList){
-            if(student.getkId()==kurs.getkId()){
-                student.setKurs(kurs.getBezeichnung());
-                for(Unternehmen unternehmen : unternehmenArrayList){
-                    if(unternehmen.getuId()==student.getuId()){
-                        student.setUnternehmen(unternehmen.getName());
-                    }
-                }
-                table_student.getItems().add(student);
+        for (Schueler schueler : schuelerArrayList){
+            if(schueler.getKId()==kurs.getKId()){
+                insertList.add(schueler);
             }
         }
+
+        insertStudents(insertList);
     }
     public void fillStudentTableOnUnternehmen(Unternehmen unternehmen){
         table_student.getItems().clear();
-        table_student_column_vorname.setCellValueFactory(new PropertyValueFactory<>("vorname"));
-        table_student_column_nachname.setCellValueFactory(new PropertyValueFactory<>("nachname"));
-        table_student_column_geschlecht.setCellValueFactory(new PropertyValueFactory<>("geschlecht"));
-        table_student_column_java.setCellValueFactory(new PropertyValueFactory<>("vorkenntnisse"));
-        table_student_column_kurs.setCellValueFactory(new PropertyValueFactory<>("kurs"));
-        table_student_column_unternehmen.setCellValueFactory(new PropertyValueFactory<>("unternehmen"));
 
-        ArrayList<Student> studentArrayList = dbConnection.getStudentArrayList();
-        ArrayList<Kurs> kursArrayList = dbConnection.getKursArrayList();
+        ArrayList<Schueler> insertList = new ArrayList<>();
+        ArrayList<Schueler> schuelerArrayList = tables.getAllSchueler();
 
-        for (Student student : studentArrayList){
-            if(student.getuId()==unternehmen.getuId()){
-                student.setUnternehmen(unternehmen.getName());
-                for(Kurs kurs : kursArrayList){
-                    if(kurs.getkId()==student.getkId()){
-                        student.setKurs(kurs.getBezeichnung());
-                    }
-                }
-                table_student.getItems().add(student);
+        for (Schueler schueler : schuelerArrayList){
+            if(schueler.getUId()==unternehmen.getUId()){
+                insertList.add(schueler);
             }
         }
+
+        insertStudents(insertList);
     }
 
-    /**
-     * fills kurs table with alle kurse in database
-     */
     public void fillKursTable(){
         table_kurs.getItems().clear();
-        ObservableList<Kurs> observableList = FXCollections.observableArrayList(dbConnection.getKursArrayList());
-        table_kurs_column_kurs.setCellValueFactory(new PropertyValueFactory<>("bezeichnung"));
-        for (Kurs k : observableList){
-            table_kurs.getItems().add(k);
-        }
+        table_kurs.getItems().addAll(tables.getAllKurse());
     }
 
     public void fillUnternehmenTable(){
         table_unternehmen.getItems().clear();
-        ObservableList<Unternehmen> observableList = FXCollections.observableArrayList(dbConnection.getUnternehmenArrayList());
-        table_unternehmen_column_unternehmen.setCellValueFactory(new PropertyValueFactory<>("name"));
-        for (Unternehmen u : observableList){
-            table_unternehmen.getItems().add(u);
-        }
+        table_unternehmen.getItems().addAll(tables.getAllUnternehmen());
     }
 
-    public void editStudent(Student student) throws IOException {
+    public void editStudent(Schueler schueler) throws IOException {
         Stage stage = new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("editstudent.fxml"));
-        EditStudentController controller = new EditStudentController(student,dbConnection);
+        EditStudentController controller = new EditStudentController(schueler);
         fxmlLoader.setController(controller);
         Scene scene = new Scene(fxmlLoader.load(), 470, 350);
         scene.getStylesheets().add(getClass().getResource("editstudent.css").toExternalForm());
@@ -313,10 +297,6 @@ public class MainFrameController implements Initializable, Observer {
         stage.setTitle("Unternehmen bearbeiten");
         stage.setScene(scene);
         stage.show();
-    }
-
-    public MainFrameController(){
-//        fillKursTable();
     }
 
     @Override

@@ -6,4 +6,7 @@ module com.example.javaproject {
 
     opens com.example.javaproject to javafx.fxml;
     exports com.example.javaproject;
+
+    opens com.example.javaproject.Tables to javafx.fxml;
+    exports com.example.javaproject.Tables;
 }
