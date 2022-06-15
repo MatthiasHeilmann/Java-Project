@@ -1,12 +1,25 @@
 package com.example.javaproject.Tables;
 
 import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 public record Schueler(IntegerProperty sId, IntegerProperty uId, IntegerProperty kId, StringProperty vorname,
                        StringProperty nachname, StringProperty geschlecht,
                        IntegerProperty vorkenntnisse) implements DataSet {
+
+
+	/**
+	 * For creating a "deep" copy of the given schueler
+	 * @param s schueler to be copied
+	 */
+	public Schueler(Schueler s){
+		this(new SimpleIntegerProperty(s.getSId()), new SimpleIntegerProperty(s.getUId())
+				, new SimpleIntegerProperty(s.getKId()), new SimpleStringProperty(s.getVorname())
+				, new SimpleStringProperty(s.getNachname()), new SimpleStringProperty(s.getGeschlecht())
+				, new SimpleIntegerProperty(s.getVorkenntnisse()));
+	}
 
 	public IntegerProperty sIdProperty() {
 		return sId;

@@ -28,7 +28,7 @@ public class EditUnternehmenController implements Initializable {
     Tables tables;
 
     public EditUnternehmenController(Unternehmen unternehmen){
-        this.unternehmen=unternehmen;
+        this.unternehmen = new Unternehmen(unternehmen);
         this.dbConnection=DBConnection.getInstance();
         this.tables = Tables.getInstance();
     }

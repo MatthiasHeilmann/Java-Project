@@ -8,6 +8,7 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class EditCourseController implements Initializable {
@@ -32,7 +33,7 @@ public class EditCourseController implements Initializable {
 
 	public EditCourseController(Kurs kurs) {
 		this.kurs = kurs;
-		this.changedkurs = new Kurs(kurs.kId(), kurs.bezeichnung(), kurs.raum());
+		this.changedkurs = new Kurs(kurs);
 		this.dbConnection = DBConnection.getInstance();
 		tables = Tables.getInstance();
 		this.changed = false;
@@ -81,10 +82,10 @@ public class EditCourseController implements Initializable {
 	private void button_speichern_click() {
 		if (changed) {
 			String check = "Sie haben folgende Angaben geändert:\n";
-			if (!(kurs.getBezeichnung() == changedkurs.getBezeichnung())) {
+			if (!(kurs.getBezeichnung().equals(changedkurs.getBezeichnung()))) {
 				check = check + "Kursname: " + kurs.getBezeichnung() + " -> " + changedkurs.getBezeichnung() + "\n";
 			}
-			if (!(kurs.getRaum() == changedkurs.getRaum())) {
+			if (!(kurs.getRaum().equals(changedkurs.getRaum()))) {
 				check = check + "Kursraum: " + kurs.getRaum() + " -> " + changedkurs.getRaum() + "\n";
 			}
 

@@ -1,9 +1,18 @@
 package com.example.javaproject.Tables;
 
 import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 public record Kurs(IntegerProperty kId, StringProperty bezeichnung, StringProperty raum) implements DataSet {
+
+	public Kurs(Kurs k) {
+		this(new SimpleIntegerProperty(k.getKId())
+			, new SimpleStringProperty(k.getBezeichnung())
+			, new SimpleStringProperty(k.getRaum()));
+	}
+
 	public int getKId() {
 		return kId.get();
 	}

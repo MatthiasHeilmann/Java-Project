@@ -52,8 +52,7 @@ public class EditStudentController implements Initializable {
 
 	public EditStudentController(Schueler schueler) {
 		this.schueler = schueler;
-		this.changedSchueler = new Schueler(schueler.sId(), schueler.uId(), schueler.kId(), schueler.vorname()
-				, schueler.nachname(), schueler.geschlecht(), schueler.vorkenntnisse());
+		this.changedSchueler = new Schueler(schueler);
 		this.tables = Tables.getInstance();
 		dbConnection = DBConnection.getInstance();
 	}
@@ -146,6 +145,10 @@ public class EditStudentController implements Initializable {
 	private void button_speichern_click() {
 		String sUnternehmen = tables.getUnternehmen(schueler.getUId()).getName();
 		String sKurs = tables.getKurs(schueler.getKId()).getBezeichnung();
+
+		System.out.println(changed);
+		System.out.println(schueler);
+		System.out.println(changedSchueler);
 
 		if (changed) {
 			String check = "Sie haben folgende Angaben geändert:\n";
