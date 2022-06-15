@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5d60d861-2ed3-4aed-a2a3-7ccca09202bd" name="Changes" comment="unternehmen add">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javaproject/EditStudentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javaproject/EditStudentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javaproject/MainFrameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javaproject/MainFrameController.java" afterDir="false" />
+    <list default="true" id="5d60d861-2ed3-4aed-a2a3-7ccca09202bd" name="Changes" comment="IntelliJ kinda dumb rn">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javaproject/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javaproject/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/javaproject/EditStudentController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/javaproject/EditStudentController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/javaproject/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/javaproject/Main.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,8 +51,12 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="TODO_SCOPE" value="All Places" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -98,7 +104,6 @@
       <workItem from="1655282548164" duration="1263000" />
       <workItem from="1655283871802" duration="2553000" />
       <workItem from="1655286495459" duration="610000" />
-      <workItem from="1655293419585" duration="641000" />
     </task>
     <task id="LOCAL-00001" summary="Add Tables Classes">
       <created>1655052960523</created>
@@ -177,28 +182,7 @@
       <option name="project" value="LOCAL" />
       <updated>1655291738660</updated>
     </task>
-    <task id="LOCAL-00012" summary="Kurs löschen funktioniert!">
-      <created>1655292124192</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1655292124193</updated>
-    </task>
-    <task id="LOCAL-00013" summary="anpassung löschen">
-      <created>1655292877738</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1655292877738</updated>
-    </task>
-    <task id="LOCAL-00014" summary="unternehmen add">
-      <created>1655294424495</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1655294424495</updated>
-    </task>
-    <option name="localTasksCounter" value="15" />
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -238,9 +222,6 @@
     <MESSAGE value="update frame" />
     <MESSAGE value="TODO" />
     <MESSAGE value="Unternehmen löschen funktioniert!" />
-    <MESSAGE value="Kurs löschen funktioniert!" />
-    <MESSAGE value="anpassung löschen" />
-    <MESSAGE value="unternehmen add" />
-    <option name="LAST_COMMIT_MESSAGE" value="unternehmen add" />
+    <option name="LAST_COMMIT_MESSAGE" value="Unternehmen löschen funktioniert!" />
   </component>
 </project>

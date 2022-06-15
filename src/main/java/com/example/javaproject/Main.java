@@ -34,7 +34,6 @@ public class Main extends Application {
         stage.setTitle("DHBW Datenbank");
         stage.setOnCloseRequest(e -> {
             stage.close();
-            dbc.closeConnection();
             e.consume();
         });
         stage.setScene(scene);
@@ -55,6 +54,10 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
+        Runtime.getRuntime().addShutdownHook(new Thread(()->{
+            DBConnection.getInstance().closeConnection();
+            System.out.println("Closing the Connection");
+        }));
         launch();
     }
 }
