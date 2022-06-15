@@ -76,6 +76,7 @@ public class MainFrameController implements Initializable, Observer {
      */
     @FXML
     protected void button_add_kurs_click() throws IOException {
+        // TODO Header -> Neuer Kurs
         ArrayList<Kurs> kursArrayList = tables.getAllKurse();
         int max=0;
         for (Kurs kurs:
@@ -109,6 +110,7 @@ public class MainFrameController implements Initializable, Observer {
     @FXML
     protected void button_show_all_click(){
         fillStudentTable();
+        button_show_all.setVisible(false);
     }
 
     private DBConnection dbConnection;

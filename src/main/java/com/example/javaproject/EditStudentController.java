@@ -137,8 +137,6 @@ public class EditStudentController implements Initializable {
 		label_java.setText(Integer.toString(schueler.getVorkenntnisse()));
 		//bind label to value of slider
 		label_java.textProperty().bind(Bindings.format("%.2f", slider_java.valueProperty()));
-		// TODO @Sean Converter funktioniert nicht, wenn schueler keinen validen Kurs/Unternehmen hat!
-		// TODO Boxen sind deswegen noch leer
 		//fill box_kurs with all kurse and select kurs of student
 		this.kursArrayList = tables.getAllKurse();
 		for (Kurs kurs : kursArrayList) {
