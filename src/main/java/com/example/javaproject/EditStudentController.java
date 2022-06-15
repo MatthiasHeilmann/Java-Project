@@ -45,6 +45,8 @@ public class EditStudentController implements Initializable {
 	private TextField text_nachname;
 	@FXML
 	private TextField text_vorname;
+	@FXML
+	private Label label_header;
 
 	Schueler schueler;
 	Schueler changedSchueler;
@@ -85,7 +87,7 @@ public class EditStudentController implements Initializable {
 			radio_m.setSelected(true);
 		}else if(schueler.getGeschlecht().equals("w")){
 			radio_w.setSelected(true);
-		}else{
+		}else if(schueler.getGeschlecht().equals("d")){
 			radio_d.setSelected(true);
 		}
 		radio_m.selectedProperty().addListener((obs, oldval, newVal) -> {
@@ -138,30 +140,38 @@ public class EditStudentController implements Initializable {
 		label_java.setText(Integer.toString(schueler.getVorkenntnisse()));
 		//bind label to value of slider
 		label_java.textProperty().bind(Bindings.format("%.2f", slider_java.valueProperty()));
-		//fill box_kurs with all kurse and select kurs of student
-		this.kursArrayList = tables.getAllKurse();
-		for (Kurs kurs : kursArrayList) {
-			box_kurs.getItems().add(kurs);
-			if (kurs.getKId() == schueler.getKId()) {
-				box_kurs.setValue(kurs);
+		// TODO @Sean Converter funktioniert nicht, wenn schueler keinen validen Kurs/Unternehmen hat!
+		// TODO Boxen sind deswegen noch leer
+		if(schueler.getSId()!=0) {
+			//fill box_kurs with all kurse and select kurs of student
+			this.kursArrayList = tables.getAllKurse();
+			for (Kurs kurs : kursArrayList) {
+				box_kurs.getItems().add(kurs);
+				if (kurs.getKId() == schueler.getKId()) {
+					box_kurs.setValue(kurs);
+				}
 			}
-		}
-		box_kurs.setConverter(new KursConverter());
-		box_kurs.valueProperty().addListener((obs, oldval, newVal) -> {
-			changed = (box_kurs.getValue().getKId() != schueler.getKId());
-		});
-		//fill box_unternehmen with all unternehmen and select unternehmen of student
-		this.unternehmenArrayList = tables.getAllUnternehmen();
-		for (Unternehmen unternehmen : unternehmenArrayList) {
-			box_unternehmen.getItems().add(unternehmen);
-			if (unternehmen.getUId() == schueler.getUId()) {
-				box_unternehmen.setValue(unternehmen);
+			box_kurs.setConverter(new KursConverter());
+			box_kurs.valueProperty().addListener((obs, oldval, newVal) -> {
+				changed = (box_kurs.getValue().getKId() != schueler.getKId());
+			});
+			//fill box_unternehmen with all unternehmen and select unternehmen of student
+			this.unternehmenArrayList = tables.getAllUnternehmen();
+			for (Unternehmen unternehmen : unternehmenArrayList) {
+				box_unternehmen.getItems().add(unternehmen);
+				if (unternehmen.getUId() == schueler.getUId()) {
+					box_unternehmen.setValue(unternehmen);
+				}
 			}
+			box_unternehmen.setConverter(new UnternehmenConverter());
+			box_unternehmen.valueProperty().addListener((obs, oldval, newVal) -> {
+				changed = (box_unternehmen.getValue().getUId() != schueler.getUId());
+			});
+		}else{
+			label_header.setText("Neuer Student");
+			button_delete.setVisible(false);
 		}
-		box_unternehmen.setConverter(new UnternehmenConverter());
-		box_unternehmen.valueProperty().addListener((obs, oldval, newVal) -> {
-			changed = (box_unternehmen.getValue().getUId() != schueler.getUId());
-		});
+
 	}
 
 	@FXML
@@ -193,44 +203,61 @@ public class EditStudentController implements Initializable {
 	 */
 	@FXML
 	private void button_speichern_click() {
-		String sUnternehmen = tables.getUnternehmen(schueler.getUId()).getName();
-		String sKurs = tables.getKurs(schueler.getKId()).getBezeichnung();
+		if(schueler.getSId()!=0) {
+			String sUnternehmen = tables.getUnternehmen(schueler.getUId()).getName();
+			String sKurs = tables.getKurs(schueler.getKId()).getBezeichnung();
 
-		if (changed) {
-			String check = "Sie haben folgende Angaben geändert:\n";
-			if (!(schueler.getVorname().equals(changedSchueler.getVorname()))) {
-				check = check + "Vorname: " + schueler.getVorname() + " -> " + changedSchueler.getVorname() + "\n";
-			}
-			if (!(schueler.getNachname().equals(changedSchueler.getNachname()))) {
-				check = check + "Nachname: " + schueler.getNachname() + " -> " + changedSchueler.getNachname() + "\n";
-			}
-			if (!(schueler.getGeschlecht().equals(changedSchueler.getGeschlecht()))) {
-				check = check + "Geschlecht: " + schueler.getGeschlecht() + " -> " + changedSchueler.getGeschlecht() + "\n";
-			}
-			if (!(schueler.getVorkenntnisse() == changedSchueler.getVorkenntnisse())) {
-				check = check + "Java-Skills: " + schueler.getVorkenntnisse() + " -> " + changedSchueler.getVorkenntnisse() + "\n";
-			}
-			if (box_unternehmen.getValue().getUId() != schueler.getUId()) {
-				changedSchueler.setUId(box_unternehmen.getValue().getUId());
-				check = check + "Unternehmen: " + sUnternehmen + " -> " + box_unternehmen.getValue().getName() + "\n";
-			}
-			if (box_kurs.getValue().getKId() != schueler.getKId()) {
-				changedSchueler.setKId(box_kurs.getValue().getKId());
-				check = check + "Kurs: " + sKurs + " -> " + box_kurs.getValue().getBezeichnung() + "\n";
-			}
-			check = check + "Trotzdem fortfahren?";
-			Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-			alert.setTitle("Bestätigung");
-			alert.setContentText(check);
-			alert.showAndWait().ifPresent(rs -> {
-				if (rs == ButtonType.OK) {
-					tables.updateSchueler(changedSchueler);
-					dbConnection.updateStudent(changedSchueler);
-					button_abbrechen_click();
+			if (changed) {
+				String check = "Sie haben folgende Angaben geändert:\n";
+				if (!(schueler.getVorname().equals(changedSchueler.getVorname()))) {
+					check = check + "Vorname: " + schueler.getVorname() + " -> " + changedSchueler.getVorname() + "\n";
 				}
-			});
-		} else {
-			button_abbrechen_click();
+				if (!(schueler.getNachname().equals(changedSchueler.getNachname()))) {
+					check = check + "Nachname: " + schueler.getNachname() + " -> " + changedSchueler.getNachname() + "\n";
+				}
+				if (!(schueler.getGeschlecht().equals(changedSchueler.getGeschlecht()))) {
+					check = check + "Geschlecht: " + schueler.getGeschlecht() + " -> " + changedSchueler.getGeschlecht() + "\n";
+				}
+				if (!(schueler.getVorkenntnisse() == changedSchueler.getVorkenntnisse())) {
+					check = check + "Java-Skills: " + schueler.getVorkenntnisse() + " -> " + changedSchueler.getVorkenntnisse() + "\n";
+				}
+				if (box_unternehmen.getValue().getUId() != schueler.getUId()) {
+					changedSchueler.setUId(box_unternehmen.getValue().getUId());
+					check = check + "Unternehmen: " + sUnternehmen + " -> " + box_unternehmen.getValue().getName() + "\n";
+				}
+				if (box_kurs.getValue().getKId() != schueler.getKId()) {
+					changedSchueler.setKId(box_kurs.getValue().getKId());
+					check = check + "Kurs: " + sKurs + " -> " + box_kurs.getValue().getBezeichnung() + "\n";
+				}
+				check = check + "Trotzdem fortfahren?";
+				Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+				alert.setTitle("Bestätigung");
+				alert.setContentText(check);
+				alert.showAndWait().ifPresent(rs -> {
+					if (rs == ButtonType.OK) {
+						tables.updateSchueler(changedSchueler);
+						dbConnection.updateStudent(changedSchueler);
+						button_abbrechen_click();
+					}
+				});
+			} else {
+				button_abbrechen_click();
+			}
+		}else{
+			if(text_vorname.getText().equals("")
+					||text_nachname.getText().equals("")
+					||box_unternehmen.getValue()==null
+					||box_kurs==null
+					||!(radio_d.isSelected()||radio_m.isSelected()||radio_w.isSelected())){
+				Alert alert1= new Alert(Alert.AlertType.ERROR);
+				alert1.setTitle("Fehler");
+				alert1.setContentText("Es fehlen Informationen.");
+				alert1.show();
+			}else{
+			   	changedSchueler.setSId(dbConnection.insertStudent(changedSchueler));
+				tables.updateSchueler(changedSchueler);
+				button_abbrechen_click();
+			}
 		}
 	}
 }

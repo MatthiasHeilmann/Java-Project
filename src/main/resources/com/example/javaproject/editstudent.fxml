@@ -156,7 +156,7 @@
    <top>
       <Pane prefHeight="53.0" prefWidth="451.0" style="-fx-background-color: lightgrey;" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="6.0" layoutY="9.0" text="Student bearbeiten">
+            <Label fx:id="label_header" layoutX="6.0" layoutY="9.0" prefHeight="35.0" prefWidth="305.0" text="Student bearbeiten">
                <font>
                   <Font size="24.0" />
                </font>

@@ -61,15 +61,15 @@ public class MainFrameController implements Initializable, Observer {
      */
     @FXML
     public void button_add_student_click(ActionEvent event) throws Exception {
-        Stage stage = new Stage();
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("addStudent.fxml"));
-        AddStudentController controller = new AddStudentController();
-        fxmlLoader.setController(controller);
-        Scene scene = new Scene(fxmlLoader.load(), 470, 350);
-        /*      scene.getStylesheets().add(getClass().getResource("editstudent.css").toExternalForm());*/
-        stage.setTitle("Student hinzufügen");
-        stage.setScene(scene);
-        stage.show();
+        editStudent(new Schueler(
+                new SimpleIntegerProperty(0),
+                new SimpleIntegerProperty(0),
+                new SimpleIntegerProperty(0),
+                new SimpleStringProperty(""),
+                new SimpleStringProperty(""),
+                new SimpleStringProperty(""),
+                new SimpleIntegerProperty(0)
+        ));
     }
     /**
      * Opens a Window where a new kurs can be added

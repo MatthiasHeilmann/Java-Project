@@ -127,12 +127,12 @@ public class DBConnection{
      *
      * @param schueler
      */
-    public void insertStudent(Schueler schueler){
+    public int insertStudent(Schueler schueler){
         try{
             PreparedStatement preparedStatement;
             preparedStatement = connection.prepareStatement(
                     "INSERT INTO schueler (uId,kId,nachname,vorname,geschlecht,vorkenntnisse) "+
-                            "Values(?,?,?,?,?,?);");
+                            "Values(?,?,?,?,?,?);",Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setInt(1, schueler.getUId());
             preparedStatement.setInt(2, schueler.getKId());
             preparedStatement.setString(3, schueler.getNachname());
@@ -140,9 +140,18 @@ public class DBConnection{
             preparedStatement.setString(5, schueler.getGeschlecht());
             preparedStatement.setInt(6, schueler.getVorkenntnisse());
             preparedStatement.execute();
+            try (ResultSet generatedKeys = preparedStatement.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    return generatedKeys.getInt(1);
+                }
+                else {
+                    throw new SQLException("Creating user failed, no ID obtained.");
+                }
+            }
         }catch (SQLException ex){
             ex.printStackTrace();
         }
+        return 0;
     }
 
     /**
@@ -164,6 +173,7 @@ public class DBConnection{
             preparedStatement.setString(5, schueler.getGeschlecht());
             preparedStatement.setInt(6, schueler.getVorkenntnisse());
             preparedStatement.execute();
+
         }catch (SQLException ex){
             ex.printStackTrace();
         }
