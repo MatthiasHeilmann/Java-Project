@@ -174,7 +174,7 @@ public class EditStudentController implements Initializable {
 			alert.setContentText(check);
 			alert.showAndWait().ifPresent(rs -> {
 				if (rs == ButtonType.OK) {
-					tables.updateSchueler(schueler.getSId(), changedSchueler);
+					tables.updateSchueler(changedSchueler);
 					dbConnection.updateStudent(changedSchueler);
 					button_abbrechen_click();
 				}

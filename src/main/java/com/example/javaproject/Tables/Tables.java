@@ -64,17 +64,17 @@ public class Tables {
 		return retList;
 	}
 
-	public void updateSchueler(int id, Schueler s){
+	public void updateSchueler(Schueler s){
 		// TODO maybe unsafe
-		tables.get(TableName.Schueler).put(id, s);
+		tables.get(TableName.Schueler).put(s.getSId(), s);
 	}
 
-	public void updateKurs(int id, Kurs k){
-		tables.get(TableName.Kurs).put(id, k);
+	public void updateKurs(Kurs k){
+		tables.get(TableName.Kurs).put(k.getKId(), k);
 	}
 
-	public void updateUnternehmen(int id, Unternehmen u){
-		tables.get(TableName.Unternehmen).put(id, u);
+	public void updateUnternehmen(Unternehmen u){
+		tables.get(TableName.Unternehmen).put(u.getUId(), u);
 	}
 
 	public void removeSchueler(int id){

@@ -71,7 +71,7 @@ public class EditUnternehmenController implements Initializable {
                 if (rs == ButtonType.OK) {
                     unternehmen.setName(text_name.getText());
                     dbConnection.updateUnternehmen(unternehmen);
-                    tables.updateUnternehmen(unternehmen.getUId(), unternehmen);
+                    tables.updateUnternehmen(unternehmen);
                     button_abbrechen_click();
                 }
             });

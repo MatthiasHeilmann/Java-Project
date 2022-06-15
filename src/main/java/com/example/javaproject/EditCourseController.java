@@ -100,7 +100,7 @@ public class EditCourseController implements Initializable {
 					} else if (!kurs.getRaum().equals(changedkurs.getRaum()) && !kurs.getBezeichnung().equals(changedkurs.getBezeichnung())) {
 						dbConnection.insertKurs(changedkurs);
 					}
-					tables.updateKurs(kurs.getKId(), changedkurs);
+					tables.updateKurs(changedkurs);
 					button_abbrechen_kurs_click();
 				}
 			});
