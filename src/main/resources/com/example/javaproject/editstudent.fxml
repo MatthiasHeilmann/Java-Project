@@ -4,12 +4,15 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
@@ -87,10 +90,6 @@
                <GridPane.margin>
                   <Insets right="10.0" />
                </GridPane.margin></TextField>
-            <TextField fx:id="text_geschlecht" GridPane.columnIndex="1" GridPane.rowIndex="2">
-               <GridPane.margin>
-                  <Insets right="10.0" />
-               </GridPane.margin></TextField>
             <FlowPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <children>
                   <ChoiceBox fx:id="box_unternehmen" prefHeight="25.0" prefWidth="200.0" />
@@ -137,6 +136,17 @@
                   </Label>
                </children>
             </GridPane>
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="20.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <children>
+                  <RadioButton fx:id="radio_m" mnemonicParsing="false" text="m">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="geschlecht" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <RadioButton fx:id="radio_w" mnemonicParsing="false" text="w" toggleGroup="$geschlecht" />
+                  <RadioButton fx:id="radio_d" mnemonicParsing="false" text="d" toggleGroup="$geschlecht" />
+               </children>
+            </HBox>
          </children>
          <BorderPane.margin>
             <Insets top="10.0" />
