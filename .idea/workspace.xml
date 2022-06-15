@@ -4,30 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5d60d861-2ed3-4aed-a2a3-7ccca09202bd" name="Changes" comment="IntelliJ stuff idk">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/mysql_connector_java_8_0_291.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apiguardian_apiguardian_api_1_1_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_api_5_8_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_engine_5_8_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_platform_junit_platform_commons_1_8_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_platform_junit_platform_engine_1_8_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_base_17_0_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_base_win_17_0_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_controls_17_0_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_controls_win_17_0_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_fxml_17_0_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_fxml_win_17_0_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_graphics_17_0_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_graphics_win_17_0_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_opentest4j_opentest4j_1_2_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javaproject/DBConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javaproject/DBConnection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javaproject/EditUnternehmenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javaproject/EditUnternehmenController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javaproject/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javaproject/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javaproject/MainFrameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javaproject/MainFrameController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/javaproject/DBConnection.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/javaproject/DBConnection.class" afterDir="false" />
-    </list>
+    <list default="true" id="5d60d861-2ed3-4aed-a2a3-7ccca09202bd" name="Changes" comment="Connection close" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -105,7 +82,7 @@
       <workItem from="1655058415392" duration="9653000" />
       <workItem from="1655124902932" duration="57000" />
       <workItem from="1655124991605" duration="4744000" />
-      <workItem from="1655132638187" duration="2019000" />
+      <workItem from="1655132638187" duration="2126000" />
     </task>
     <task id="LOCAL-00001" summary="Add Tables Classes">
       <created>1655052960523</created>
@@ -135,7 +112,14 @@
       <option name="project" value="LOCAL" />
       <updated>1655125026004</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Connection close">
+      <created>1655143396921</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1655143396921</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -170,6 +154,7 @@
     <MESSAGE value="implementin tables" />
     <MESSAGE value="implementing tables" />
     <MESSAGE value="IntelliJ stuff idk" />
-    <option name="LAST_COMMIT_MESSAGE" value="IntelliJ stuff idk" />
+    <MESSAGE value="Connection close" />
+    <option name="LAST_COMMIT_MESSAGE" value="Connection close" />
   </component>
 </project>
