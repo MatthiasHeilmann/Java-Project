@@ -15,7 +15,7 @@
    <top>
       <Pane prefHeight="76.0" prefWidth="600.0" style="-fx-background-color: lightgrey;" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="14.0" layoutY="19.0" prefHeight="39.0" prefWidth="248.0" text="Kurs bearbeiten">
+            <Label fx:id="label_header" layoutX="14.0" layoutY="19.0" prefHeight="39.0" prefWidth="248.0" text="Kurs bearbeiten">
                <font>
                   <Font size="24.0" />
                </font>
