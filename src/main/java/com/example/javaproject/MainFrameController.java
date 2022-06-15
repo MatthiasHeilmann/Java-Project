@@ -63,6 +63,8 @@ public class MainFrameController implements Initializable, Observer {
     public void button_add_student_click(ActionEvent event) throws Exception {
         Stage stage = new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("addStudent.fxml"));
+        AddStudentController controller = new AddStudentController();
+        fxmlLoader.setController(controller);
         Scene scene = new Scene(fxmlLoader.load(), 470, 350);
         /*      scene.getStylesheets().add(getClass().getResource("editstudent.css").toExternalForm());*/
         stage.setTitle("Student hinzufügen");
