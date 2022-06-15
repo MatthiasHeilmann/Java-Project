@@ -26,6 +26,8 @@ public class EditCourseController implements Initializable {
 	private Button button_speichern_kurs;
 	@FXML
 	private Label label_java;
+	@FXML
+	private Label label_header;
 
 	Kurs kurs;
 	Kurs changedkurs;
@@ -61,6 +63,10 @@ public class EditCourseController implements Initializable {
 				changed = false;
 			}
 		});
+		if (kurs.getKId() == 0) {
+			label_header.setText("Neuer Kurs");
+			button_delete_kurs.setVisible(false);
+		}
 	}
 
 	@FXML
@@ -154,3 +160,4 @@ public class EditCourseController implements Initializable {
 
 	}
 }
+

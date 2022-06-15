@@ -15,6 +15,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -68,6 +69,7 @@ public class MainFrameController implements Initializable, Observer {
         Scene scene = new Scene(fxmlLoader.load(), 470, 350);
         /*      scene.getStylesheets().add(getClass().getResource("editstudent.css").toExternalForm());*/
         stage.setTitle("Student hinzufügen");
+        stage.getIcons().add(new Image("file:dhbwlogo.png"));
         stage.setScene(scene);
         stage.show();
     }
@@ -77,15 +79,7 @@ public class MainFrameController implements Initializable, Observer {
     @FXML
     protected void button_add_kurs_click() throws IOException {
         ArrayList<Kurs> kursArrayList = tables.getAllKurse();
-        int max=0;
-        for (Kurs kurs:
-             kursArrayList) {
-            if(kurs.getKId()>max){
-                max=kurs.getKId();
-            }
-        }
-
-        editKurs(new Kurs(new SimpleIntegerProperty(max+1)
+        editKurs(new Kurs(new SimpleIntegerProperty(0)
                         , new SimpleStringProperty("")
                         , new SimpleStringProperty("")));
     }
@@ -290,6 +284,7 @@ public class MainFrameController implements Initializable, Observer {
         Scene scene = new Scene(fxmlLoader.load(), 470, 350);
         scene.getStylesheets().add(getClass().getResource("editstudent.css").toExternalForm());
         stage.setTitle("Student bearbeiten");
+        stage.getIcons().add(new Image("file:dhbwlogo.png"));
         stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
@@ -303,6 +298,10 @@ public class MainFrameController implements Initializable, Observer {
         Scene scene = new Scene(fxmlLoader.load(), 470, 350);
         scene.getStylesheets().add(getClass().getResource("editkurs.css").toExternalForm());
         stage.setTitle("Kurs bearbeiten");
+        stage.getIcons().add(new Image("file:dhbwlogo.png"));
+        if(kurs.getKId()==0){
+            stage.setTitle("Neuer Kurs");
+        }
         stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
@@ -317,6 +316,10 @@ public class MainFrameController implements Initializable, Observer {
         Scene scene = new Scene(fxmlLoader.load(), 470, 350);
         scene.getStylesheets().add(getClass().getResource("editunternehmen.css").toExternalForm());
         stage.setTitle("Unternehmen bearbeiten");
+        stage.getIcons().add(new Image("file:dhbwlogo.png"));
+        if(unternehmen.getUId()==0){
+            stage.setTitle("Neues Unternehmen");
+        }
         stage.setScene(scene);
         stage.show();
     }
