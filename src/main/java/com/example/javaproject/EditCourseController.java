@@ -63,9 +63,10 @@ public class EditCourseController implements Initializable {
 
 	@FXML
 	private void button_delete_kurs_click() {
-		dbConnection.deleteKurs(kurs);
-		tables.removeKurs(kurs.getKId());
-		button_abbrechen_kurs_click();
+		// TODO Kurs löschen
+//		dbConnection.deleteKurs(kurs);
+//		tables.removeKurs(kurs.getKId());
+//		button_abbrechen_kurs_click();
 	}
 
 	@FXML

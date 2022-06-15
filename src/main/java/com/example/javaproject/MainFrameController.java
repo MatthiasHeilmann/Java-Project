@@ -92,6 +92,7 @@ public class MainFrameController implements Initializable, Observer {
      */
     @FXML
     protected void button_add_unternehmen_click() {
+        // TODO Neues Unternehmen
         System.out.println("Neues Unternehmen!");
     }
 

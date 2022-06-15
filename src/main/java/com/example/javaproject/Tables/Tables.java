@@ -66,7 +66,6 @@ public class Tables extends Observable {
 	}
 
 	public void updateSchueler(Schueler s){
-		// TODO maybe unsafe
 		tables.get(TableName.Schueler).put(s.getSId(), s);
 		setChanged();
 		notifyObservers();

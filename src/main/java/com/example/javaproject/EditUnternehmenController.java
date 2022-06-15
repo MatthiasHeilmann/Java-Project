@@ -48,16 +48,17 @@ public class EditUnternehmenController implements Initializable {
 
     @FXML
     private void button_delete_click() {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Bestätigung");
-        alert.setContentText("Wollen Sie wirklich das Unternehmen unwiderruflich löschen?");
-        alert.showAndWait().ifPresent(rs -> {
-            if (rs == ButtonType.OK) {
-                dbConnection.deleteUnternehmen(this.unternehmen);
-                tables.removeUnternehmen(unternehmen.getUId());
-                button_abbrechen_click();
-            }
-        });
+        // TODO Löschen funktioniert nicht
+//        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+//        alert.setTitle("Bestätigung");
+//        alert.setContentText("Wollen Sie wirklich das Unternehmen unwiderruflich löschen?");
+//        alert.showAndWait().ifPresent(rs -> {
+//            if (rs == ButtonType.OK) {
+//                dbConnection.deleteUnternehmen(this.unternehmen);
+//                tables.removeUnternehmen(unternehmen.getUId());
+//                button_abbrechen_click();
+//            }
+//        });
     }
 
     @FXML

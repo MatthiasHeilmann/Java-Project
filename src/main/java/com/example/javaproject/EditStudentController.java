@@ -128,6 +128,7 @@ public class EditStudentController implements Initializable {
 
 	@FXML
 	private void button_delete_click() {
+		// TODO exmatrikulieren
 		System.out.println("Exmatrikulieren!");
 	}
 
