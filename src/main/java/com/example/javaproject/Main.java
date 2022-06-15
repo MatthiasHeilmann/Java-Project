@@ -4,6 +4,7 @@ import com.example.javaproject.Tables.Tables;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -31,6 +32,7 @@ public class Main extends Application {
         fxmlLoader.setController(new MainFrameController());
         Scene scene = new Scene(fxmlLoader.load(), 800, 600);
         scene.getStylesheets().add(getClass().getResource("mainframe.css").toExternalForm());
+        stage.getIcons().add(new Image("file:dhbwlogo.png"));
         stage.setTitle("DHBW Datenbank");
         stage.setOnCloseRequest(e -> {
             stage.close();
