@@ -1,5 +1,7 @@
 package com.example.javaproject;
 
+import com.example.javaproject.Converter.KursConverter;
+import com.example.javaproject.Converter.UnternehmenConverter;
 import com.example.javaproject.Tables.Kurs;
 import com.example.javaproject.Tables.Schueler;
 import com.example.javaproject.Tables.Tables;
@@ -16,9 +18,9 @@ import java.util.ResourceBundle;
 
 public class EditStudentController implements Initializable {
 	@FXML
-	private ChoiceBox<String> box_kurs;
+	private ChoiceBox<Kurs> box_kurs;
 	@FXML
-	private ChoiceBox<String> box_unternehmen;
+	private ChoiceBox<Unternehmen> box_unternehmen;
 	@FXML
 	private Button button_abbrechen;
 	@FXML
@@ -102,25 +104,26 @@ public class EditStudentController implements Initializable {
 		//fill box_kurs with all kurse and select kurs of student
 		this.kursArrayList = tables.getAllKurse();
 		for (Kurs kurs : kursArrayList) {
-			box_kurs.getItems().add(kurs.getBezeichnung());
+			box_kurs.getItems().add(kurs);
 			if (kurs.getKId() == schueler.getKId()) {
-				box_kurs.setValue(kurs.getBezeichnung());
+				box_kurs.setValue(kurs);
 			}
 		}
+		box_kurs.setConverter(new KursConverter());
 		box_kurs.valueProperty().addListener((obs, oldval, newVal) -> {
-			// TODO solve with custom fxml attributes
-			changed = !(box_kurs.getValue().equals(tables.getKurs(schueler.getKId()).getBezeichnung()));
+			changed = (box_kurs.getValue().getKId() != schueler.getKId());
 		});
 		//fill box_unternehmen with all unternehmen and select unternehmen of student
 		this.unternehmenArrayList = tables.getAllUnternehmen();
 		for (Unternehmen unternehmen : unternehmenArrayList) {
-			box_unternehmen.getItems().add(unternehmen.getName());
+			box_unternehmen.getItems().add(unternehmen);
 			if (unternehmen.getUId() == schueler.getUId()) {
-				box_unternehmen.setValue(unternehmen.getName());
+				box_unternehmen.setValue(unternehmen);
 			}
 		}
+		box_unternehmen.setConverter(new UnternehmenConverter());
 		box_unternehmen.valueProperty().addListener((obs, oldval, newVal) -> {
-			changed = !(box_unternehmen.getValue().equals(tables.getUnternehmen(schueler.getUId()).getName()));
+			changed = (box_unternehmen.getValue().getUId() != schueler.getUId());
 		});
 	}
 
@@ -143,8 +146,6 @@ public class EditStudentController implements Initializable {
 	private void button_speichern_click() {
 		String sUnternehmen = tables.getUnternehmen(schueler.getUId()).getName();
 		String sKurs = tables.getKurs(schueler.getKId()).getBezeichnung();
-		String cUnternehmen= "";
-		String cKurs= "";
 
 		if (changed) {
 			String check = "Sie haben folgende Angaben geändert:\n";
@@ -160,23 +161,13 @@ public class EditStudentController implements Initializable {
 			if (!(schueler.getVorkenntnisse() == changedSchueler.getVorkenntnisse())) {
 				check = check + "Java-Skills: " + schueler.getVorkenntnisse() + " -> " + changedSchueler.getVorkenntnisse() + "\n";
 			}
-			if (!(sUnternehmen.equals(box_unternehmen.getValue()))) {
-				for (Unternehmen unternehmen : unternehmenArrayList) {
-					if (unternehmen.getName().equals(box_unternehmen.getValue())) {
-						changedSchueler.setUId(unternehmen.getUId());
-						cUnternehmen = unternehmen.getName();
-					}
-				}
-				check = check + "Unternehmen: " + sUnternehmen + " -> " + cUnternehmen + "\n";
+			if (box_unternehmen.getValue().getUId() != schueler.getUId()) {
+				changedSchueler.setUId(box_unternehmen.getValue().getUId());
+				check = check + "Unternehmen: " + sUnternehmen + " -> " + box_unternehmen.getValue().getName() + "\n";
 			}
-			if (!(sKurs.equals(box_kurs.getValue()))) {
-				for (Kurs kurs : kursArrayList) {
-					if (kurs.getBezeichnung().equals(box_kurs.getValue())) {
-						changedSchueler.setKId(kurs.getKId());
-						cKurs = kurs.getBezeichnung();
-					}
-				}
-				check = check + "Kurs: " + sKurs + " -> " + cKurs + "\n";
+			if (box_kurs.getValue().getKId() != schueler.getKId()) {
+				changedSchueler.setKId(box_kurs.getValue().getKId());
+				check = check + "Kurs: " + sKurs + " -> " + box_kurs.getValue().getBezeichnung() + "\n";
 			}
 			check = check + "Trotzdem fortfahren?";
 			Alert alert = new Alert(Alert.AlertType.CONFIRMATION);

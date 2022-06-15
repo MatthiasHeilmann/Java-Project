@@ -33,9 +33,9 @@ public class Main extends Application {
         scene.getStylesheets().add(getClass().getResource("mainframe.css").toExternalForm());
         stage.setTitle("DHBW Datenbank");
         stage.setOnCloseRequest(e -> {
-            e.consume();
             stage.close();
             dbc.closeConnection();
+            e.consume();
         });
         stage.setScene(scene);
         stage.show();
