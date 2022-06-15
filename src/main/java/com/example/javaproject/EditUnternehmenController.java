@@ -40,6 +40,10 @@ public class EditUnternehmenController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         text_name.setText(unternehmen.getName());
+        if(unternehmen.getUId()==0){
+            label_header.setText("Neues Unternehmen");
+            button_delete.setVisible(false);
+        }
     }
 
     @FXML
@@ -100,21 +104,36 @@ public class EditUnternehmenController implements Initializable {
 
     @FXML
     private void button_speichern_click() {
-        if (!(text_name.getText().equals(unternehmen.getName()))){
-            String check = "Sie haben folgende Angaben geändert:\n"+
-                    "Name: "+unternehmen.getName()+" -> "+text_name.getText()+
-                    "\nTrotzdem fortfahren?";
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Bestätigung");
-            alert.setContentText(check);
-            alert.showAndWait().ifPresent(rs -> {
-                if (rs == ButtonType.OK) {
-                    unternehmen.setName(text_name.getText());
-                    dbConnection.updateUnternehmen(unternehmen);
-                    tables.updateUnternehmen(unternehmen);
-                    button_abbrechen_click();
-                }
-            });
+        if(unternehmen.getUId()==0){
+            if(!text_name.getText().equals("")){
+                unternehmen.setName(text_name.getText());
+                unternehmen.setUId(dbConnection.insertUnternehmen(unternehmen));
+                tables.updateUnternehmen(unternehmen);
+                System.out.println(unternehmen.getUId()+ unternehmen.getName());
+                button_abbrechen_click();
+            }else{
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Fehler");
+                alert.setContentText("Bitte geben Sie einen Namen an.");
+                alert.show();
+            }
+        }else {
+            if (!(text_name.getText().equals(unternehmen.getName()))) {
+                String check = "Sie haben folgende Angaben geändert:\n" +
+                        "Name: " + unternehmen.getName() + " -> " + text_name.getText() +
+                        "\nTrotzdem fortfahren?";
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Bestätigung");
+                alert.setContentText(check);
+                alert.showAndWait().ifPresent(rs -> {
+                    if (rs == ButtonType.OK) {
+                        unternehmen.setName(text_name.getText());
+                        dbConnection.updateUnternehmen(unternehmen);
+                        tables.updateUnternehmen(unternehmen);
+                        button_abbrechen_click();
+                    }
+                });
+            }
         }
     }
 

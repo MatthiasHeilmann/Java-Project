@@ -242,18 +242,27 @@ public class DBConnection{
      *
      * @param unternehmen
      */
-    public void insertUnternehmen(Unternehmen unternehmen){
+    public int insertUnternehmen(Unternehmen unternehmen){
         try{
             PreparedStatement preparedStatement;
             preparedStatement = connection.prepareStatement(
                     "INSERT INTO unternehmen (uId,name) "+
-                            "Values(?,?);");
+                            "Values(?,?);",Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setInt(1,unternehmen.getUId());
             preparedStatement.setString(2,unternehmen.getName());
             preparedStatement.execute();
+            try (ResultSet generatedKeys = preparedStatement.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    return generatedKeys.getInt(1);
+                }
+                else {
+                    throw new SQLException("Creating user failed, no ID obtained.");
+                }
+            }
         }catch (SQLException ex){
             ex.printStackTrace();
         }
+        return 0;
     }
 
 
