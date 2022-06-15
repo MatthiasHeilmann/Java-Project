@@ -8,6 +8,7 @@ import com.example.javaproject.Tables.Schueler;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -59,8 +60,16 @@ public class MainFrameController implements Initializable, Observer {
      * Opens a Window where a new student can be added
      */
     @FXML
-    protected void button_add_student_click() {
-        System.out.println("Neuer Student!");
+    public void button_add_student_click(ActionEvent event) throws Exception {
+        Stage stage = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("addStudent.fxml"));
+        addStudentController controller = new addStudentController();
+        fxmlLoader.setController(controller);
+        Scene scene = new Scene(fxmlLoader.load(), 470, 350);
+        /*      scene.getStylesheets().add(getClass().getResource("editstudent.css").toExternalForm());*/
+        stage.setTitle("Student hinzufügen");
+        stage.setScene(scene);
+        stage.show();
     }
     /**
      * Opens a Window where a new kurs can be added
