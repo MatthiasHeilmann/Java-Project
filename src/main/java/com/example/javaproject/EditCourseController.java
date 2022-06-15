@@ -86,7 +86,6 @@ public class EditCourseController implements Initializable {
 			});
 		}else{
 			alert.setContentText("Es befinden sich "+toDeleteList.size()+" Studenten in diesem Kurs.\n"
-					+"Der Kurs kann nur gelöscht werden, wenn alle Studenten exmatrikuliert werden.\n"
 					+"Möchten Sie alle betroffenen Studenten löschen?");
 			ButtonType okButton = new ButtonType("Ja", ButtonBar.ButtonData.YES);
 			ButtonType noButton = new ButtonType("Nein", ButtonBar.ButtonData.NO);
