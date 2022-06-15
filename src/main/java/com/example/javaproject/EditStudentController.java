@@ -36,7 +36,11 @@ public class EditStudentController implements Initializable {
 	@FXML
 	private Slider slider_java;
 	@FXML
-	private TextField text_geschlecht;
+	private RadioButton radio_d;
+	@FXML
+	private RadioButton radio_m;
+	@FXML
+	private RadioButton radio_w;
 	@FXML
 	private TextField text_nachname;
 	@FXML
@@ -77,13 +81,47 @@ public class EditStudentController implements Initializable {
 				changed = false;
 			}
 		});
-		text_geschlecht.setText(schueler.getGeschlecht());
-		text_geschlecht.textProperty().addListener((observable, oldValue, newValue) -> {
-			if (!newValue.equals(schueler.getGeschlecht())) {
-				changed = true;
-				changedSchueler.setGeschlecht(newValue);
-			} else {
-				changed = false;
+		if(schueler.getGeschlecht().equals("m")){
+			radio_m.setSelected(true);
+		}else if(schueler.getGeschlecht().equals("w")){
+			radio_w.setSelected(true);
+		}else{
+			radio_d.setSelected(true);
+		}
+		radio_m.selectedProperty().addListener((obs, oldval, newVal) -> {
+			if(radio_m.isSelected()){
+				if(!(schueler.getGeschlecht().equals("m"))){
+					changedSchueler.setGeschlecht("m");
+					changed=true;
+					System.out.println(changedSchueler.getGeschlecht());
+				}else{
+					changed=false;
+					changedSchueler.setGeschlecht(schueler.getGeschlecht());
+				}
+			}
+		});
+		radio_w.selectedProperty().addListener((obs, oldval, newVal) -> {
+			if(radio_w.isSelected()){
+				if(!(schueler.getGeschlecht().equals("w"))){
+					changedSchueler.setGeschlecht("w");
+					changed=true;
+					System.out.println(changedSchueler.getGeschlecht());
+				}else{
+					changed=false;
+					changedSchueler.setGeschlecht(schueler.getGeschlecht());
+				}
+			}
+		});
+		radio_d.selectedProperty().addListener((obs, oldval, newVal) -> {
+			if(radio_d.isSelected()){
+				if(!(schueler.getGeschlecht().equals("d"))){
+					changedSchueler.setGeschlecht("d");
+					changed=true;
+					System.out.println(changedSchueler.getGeschlecht());
+				}else{
+					changed=false;
+					changedSchueler.setGeschlecht(schueler.getGeschlecht());
+				}
 			}
 		});
 		slider_java.setValue(schueler.getVorkenntnisse());
