@@ -146,10 +146,6 @@ public class EditStudentController implements Initializable {
 		String sUnternehmen = tables.getUnternehmen(schueler.getUId()).getName();
 		String sKurs = tables.getKurs(schueler.getKId()).getBezeichnung();
 
-		System.out.println(changed);
-		System.out.println(schueler);
-		System.out.println(changedSchueler);
-
 		if (changed) {
 			String check = "Sie haben folgende Angaben geändert:\n";
 			if (!(schueler.getVorname().equals(changedSchueler.getVorname()))) {

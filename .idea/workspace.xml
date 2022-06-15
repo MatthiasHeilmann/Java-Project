@@ -4,22 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5d60d861-2ed3-4aed-a2a3-7ccca09202bd" name="Changes" comment="Edit Kurs/Unternehmen via UID">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javaproject/EditCourseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javaproject/EditCourseController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javaproject/EditStudentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javaproject/EditStudentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javaproject/EditUnternehmenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javaproject/EditUnternehmenController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javaproject/Tables/Kurs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javaproject/Tables/Kurs.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javaproject/Tables/Schueler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javaproject/Tables/Schueler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javaproject/Tables/Unternehmen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javaproject/Tables/Unternehmen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/javaproject/EditCourseController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/javaproject/EditCourseController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/javaproject/EditStudentController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/javaproject/EditStudentController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/javaproject/EditUnternehmenController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/javaproject/EditUnternehmenController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/javaproject/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/javaproject/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/javaproject/Tables/Kurs.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/javaproject/Tables/Kurs.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/javaproject/Tables/Schueler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/javaproject/Tables/Schueler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/javaproject/Tables/Unternehmen.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/javaproject/Tables/Unternehmen.class" afterDir="false" />
-    </list>
+    <list default="true" id="5d60d861-2ed3-4aed-a2a3-7ccca09202bd" name="Changes" comment="Deep copies for changed variables" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -113,7 +98,7 @@
       <workItem from="1655204563549" duration="313000" />
       <workItem from="1655282548164" duration="1263000" />
       <workItem from="1655283871802" duration="2553000" />
-      <workItem from="1655286495459" duration="138000" />
+      <workItem from="1655286495459" duration="302000" />
     </task>
     <task id="LOCAL-00001" summary="Add Tables Classes">
       <created>1655052960523</created>
@@ -150,7 +135,21 @@
       <option name="project" value="LOCAL" />
       <updated>1655285426860</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Deep copies for changed variables">
+      <created>1655286666140</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1655286666140</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Deep copies for changed variables">
+      <created>1655286686444</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1655286686444</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -186,6 +185,7 @@
     <MESSAGE value="implementing tables" />
     <MESSAGE value="IntelliJ stuff idk" />
     <MESSAGE value="Edit Kurs/Unternehmen via UID" />
-    <option name="LAST_COMMIT_MESSAGE" value="Edit Kurs/Unternehmen via UID" />
+    <MESSAGE value="Deep copies for changed variables" />
+    <option name="LAST_COMMIT_MESSAGE" value="Deep copies for changed variables" />
   </component>
 </project>
