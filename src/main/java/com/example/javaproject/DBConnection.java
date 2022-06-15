@@ -227,13 +227,6 @@ public class DBConnection{
         try{
             PreparedStatement preparedStatement;
             preparedStatement = connection.prepareStatement(
-                    "UPDATE schueler SET kId = 1000 "+
-                            "WHERE kId = ?;"
-            );
-            preparedStatement.setInt(1,kurs.getKId());
-            preparedStatement.execute();
-            PreparedStatement preparedStatement1;
-            preparedStatement1 = connection.prepareStatement(
                     "DELETE FROM kurs "+
                             "WHERE kId = ?;"
             );

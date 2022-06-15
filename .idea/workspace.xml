@@ -4,15 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5d60d861-2ed3-4aed-a2a3-7ccca09202bd" name="Changes" comment="TODO">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javaproject/DBConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javaproject/DBConnection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javaproject/EditUnternehmenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javaproject/EditUnternehmenController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javaproject/Tables/Tables.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javaproject/Tables/Tables.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/javaproject/DBConnection.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/javaproject/DBConnection.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/javaproject/EditCourseController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/javaproject/EditCourseController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/javaproject/EditUnternehmenController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/javaproject/EditUnternehmenController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/javaproject/Tables/Tables.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/javaproject/Tables/Tables.class" afterDir="false" />
+    <list default="true" id="5d60d861-2ed3-4aed-a2a3-7ccca09202bd" name="Changes" comment="Unternehmen löschen funktioniert!">
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javaproject/EditCourseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javaproject/EditCourseController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -179,7 +172,14 @@
       <option name="project" value="LOCAL" />
       <updated>1655289020410</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Unternehmen löschen funktioniert!">
+      <created>1655291738660</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1655291738660</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -218,6 +218,7 @@
     <MESSAGE value="Deep copies for changed variables" />
     <MESSAGE value="update frame" />
     <MESSAGE value="TODO" />
-    <option name="LAST_COMMIT_MESSAGE" value="TODO" />
+    <MESSAGE value="Unternehmen löschen funktioniert!" />
+    <option name="LAST_COMMIT_MESSAGE" value="Unternehmen löschen funktioniert!" />
   </component>
 </project>

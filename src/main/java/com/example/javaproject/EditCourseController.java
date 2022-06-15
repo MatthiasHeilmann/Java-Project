@@ -1,6 +1,7 @@
 package com.example.javaproject;
 
 import com.example.javaproject.Tables.Kurs;
+import com.example.javaproject.Tables.Schueler;
 import com.example.javaproject.Tables.Tables;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -8,6 +9,7 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
@@ -63,10 +65,52 @@ public class EditCourseController implements Initializable {
 
 	@FXML
 	private void button_delete_kurs_click() {
-		// TODO Kurs löschen
-//		dbConnection.deleteKurs(kurs);
-//		tables.removeKurs(kurs.getKId());
-//		button_abbrechen_kurs_click();
+		ArrayList<Schueler> schuelerArrayList = tables.getAllSchueler();
+		ArrayList<Schueler> toDeleteList = new ArrayList<Schueler>();
+		for(Schueler schueler : schuelerArrayList){
+			if(schueler.getKId()== kurs.getKId()){
+				toDeleteList.add(schueler);
+			}
+		}
+		Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+		alert.setTitle("Bestätigung");
+		if(toDeleteList.isEmpty()){
+			alert.setContentText("Wollen Sie den Kurs wirklich unwiderruflich löschen?");
+			alert.showAndWait().ifPresent(rs -> {
+				if (rs == ButtonType.OK) {
+					System.out.println("Kurs wird jetzt gelöscht.");
+					dbConnection.deleteKurs(this.kurs);
+					tables.removeKurs(kurs.getKId());
+					button_abbrechen_kurs_click();
+				}
+			});
+		}else{
+			alert.setContentText("Es befinden sich "+toDeleteList.size()+" Studenten in diesem Kurs.\n"
+					+"Der Kurs kann nur gelöscht werden, wenn alle Studenten exmatrikuliert werden.\n"
+					+"Möchten Sie alle betroffenen Studenten löschen?");
+			ButtonType okButton = new ButtonType("Ja", ButtonBar.ButtonData.YES);
+			ButtonType noButton = new ButtonType("Nein", ButtonBar.ButtonData.NO);
+			ButtonType cancelButton = new ButtonType("Abbrechen", ButtonBar.ButtonData.CANCEL_CLOSE);
+			alert.getButtonTypes().setAll(okButton, noButton, cancelButton);
+			alert.showAndWait().ifPresent(type -> {
+				if (type == okButton) {
+					dbConnection.deleteKurs(kurs);
+					tables.removeKurs(kurs.getKId());
+					for (Schueler schueler : toDeleteList){
+						dbConnection.deleteStudent(schueler);
+						tables.removeSchueler(schueler.getSId());
+					}
+					button_abbrechen_kurs_click();
+				} else if (type == noButton) {
+					Alert alert1= new Alert(Alert.AlertType.ERROR);
+					alert1.setTitle("Fehler");
+					alert1.setContentText("Der Kurs kann nicht gelöscht werden.");
+					alert1.show();
+				} else {
+					System.out.println("Abbruch!");
+				}
+			});
+		}
 	}
 
 	@FXML
