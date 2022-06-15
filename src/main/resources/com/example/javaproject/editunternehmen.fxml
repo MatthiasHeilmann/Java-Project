@@ -19,9 +19,9 @@
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="300.0" minWidth="300.0" prefWidth="300.0" />
          </columnConstraints>
          <rowConstraints>
-            <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="160.0" minHeight="40.0" prefHeight="140.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="30.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="117.0" minHeight="30.0" prefHeight="60.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="160.0" minHeight="40.0" prefHeight="143.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="30.0" minHeight="0.0" prefHeight="29.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
             <Label text="Name:">
@@ -32,7 +32,7 @@
                   <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                </GridPane.margin>
             </Label>
-            <TextField fx:id="text_name" GridPane.columnIndex="1">
+            <TextField fx:id="text_name" prefHeight="35.0" GridPane.columnIndex="1">
                <GridPane.margin>
                   <Insets right="10.0" />
                </GridPane.margin>
