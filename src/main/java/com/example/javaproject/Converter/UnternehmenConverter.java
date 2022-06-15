@@ -6,7 +6,7 @@ import javafx.util.StringConverter;
 public class UnternehmenConverter extends StringConverter<Unternehmen> {
 	@Override
 	public String toString(Unternehmen unternehmen) {
-		return unternehmen.getName();
+		return unternehmen != null? unternehmen.getName() : "N/A";
 	}
 
 	@Override

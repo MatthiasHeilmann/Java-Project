@@ -6,7 +6,7 @@ import javafx.util.StringConverter;
 public class KursConverter extends StringConverter<Kurs> {
 	@Override
 	public String toString(Kurs kurs) {
-		return kurs.getBezeichnung();
+		return kurs != null? kurs.getBezeichnung() : "N/A";
 	}
 
 	@Override

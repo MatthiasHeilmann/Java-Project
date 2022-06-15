@@ -95,7 +95,6 @@ public class EditStudentController implements Initializable {
 				if(!(schueler.getGeschlecht().equals("m"))){
 					changedSchueler.setGeschlecht("m");
 					changed=true;
-					System.out.println(changedSchueler.getGeschlecht());
 				}else{
 					changed=false;
 					changedSchueler.setGeschlecht(schueler.getGeschlecht());
@@ -107,7 +106,6 @@ public class EditStudentController implements Initializable {
 				if(!(schueler.getGeschlecht().equals("w"))){
 					changedSchueler.setGeschlecht("w");
 					changed=true;
-					System.out.println(changedSchueler.getGeschlecht());
 				}else{
 					changed=false;
 					changedSchueler.setGeschlecht(schueler.getGeschlecht());
@@ -119,7 +117,6 @@ public class EditStudentController implements Initializable {
 				if(!(schueler.getGeschlecht().equals("d"))){
 					changedSchueler.setGeschlecht("d");
 					changed=true;
-					System.out.println(changedSchueler.getGeschlecht());
 				}else{
 					changed=false;
 					changedSchueler.setGeschlecht(schueler.getGeschlecht());
@@ -142,32 +139,33 @@ public class EditStudentController implements Initializable {
 		label_java.textProperty().bind(Bindings.format("%.2f", slider_java.valueProperty()));
 		// TODO @Sean Converter funktioniert nicht, wenn schueler keinen validen Kurs/Unternehmen hat!
 		// TODO Boxen sind deswegen noch leer
-		if(schueler.getSId()!=0) {
-			//fill box_kurs with all kurse and select kurs of student
-			this.kursArrayList = tables.getAllKurse();
-			for (Kurs kurs : kursArrayList) {
-				box_kurs.getItems().add(kurs);
-				if (kurs.getKId() == schueler.getKId()) {
-					box_kurs.setValue(kurs);
-				}
+		//fill box_kurs with all kurse and select kurs of student
+		this.kursArrayList = tables.getAllKurse();
+		for (Kurs kurs : kursArrayList) {
+			box_kurs.getItems().add(kurs);
+			if (kurs.getKId() == schueler.getKId()) {
+				box_kurs.setValue(kurs);
 			}
-			box_kurs.setConverter(new KursConverter());
-			box_kurs.valueProperty().addListener((obs, oldval, newVal) -> {
-				changed = (box_kurs.getValue().getKId() != schueler.getKId());
-			});
-			//fill box_unternehmen with all unternehmen and select unternehmen of student
-			this.unternehmenArrayList = tables.getAllUnternehmen();
-			for (Unternehmen unternehmen : unternehmenArrayList) {
-				box_unternehmen.getItems().add(unternehmen);
-				if (unternehmen.getUId() == schueler.getUId()) {
-					box_unternehmen.setValue(unternehmen);
-				}
+		}
+		box_kurs.setConverter(new KursConverter());
+		box_kurs.valueProperty().addListener((obs, oldval, newVal) -> {
+			changedSchueler.setKId(box_kurs.getValue().getKId());
+			changed = (box_kurs.getValue().getKId() != schueler.getKId());
+		});
+		//fill box_unternehmen with all unternehmen and select unternehmen of student
+		this.unternehmenArrayList = tables.getAllUnternehmen();
+		for (Unternehmen unternehmen : unternehmenArrayList) {
+			box_unternehmen.getItems().add(unternehmen);
+			if (unternehmen.getUId() == schueler.getUId()) {
+				box_unternehmen.setValue(unternehmen);
 			}
-			box_unternehmen.setConverter(new UnternehmenConverter());
-			box_unternehmen.valueProperty().addListener((obs, oldval, newVal) -> {
-				changed = (box_unternehmen.getValue().getUId() != schueler.getUId());
-			});
-		}else{
+		}
+		box_unternehmen.setConverter(new UnternehmenConverter());
+		box_unternehmen.valueProperty().addListener((obs, oldval, newVal) -> {
+			changedSchueler.setUId(box_unternehmen.getValue().getUId());
+			changed = (box_unternehmen.getValue().getUId() != schueler.getUId());
+		});
+		if(schueler.getSId()==0){
 			label_header.setText("Neuer Student");
 			button_delete.setVisible(false);
 		}
@@ -176,7 +174,6 @@ public class EditStudentController implements Initializable {
 
 	@FXML
 	private void button_delete_click() {
-		System.out.println("Exmatrikulieren!");
 		Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
 		alert.setTitle("Bestätigung");
 		alert.setContentText("Sind Sie sicher, dass sie den Studenten " +schueler.getVorname()+" "
@@ -184,7 +181,7 @@ public class EditStudentController implements Initializable {
 		alert.showAndWait().ifPresent(rs -> {
 			if (rs == ButtonType.OK) {
 				System.out.println("Student wird exmatrikuliert...");
-				dbConnection.deleteStudent(this.schueler);
+				dbConnection.deleteStudent(schueler);
 				tables.removeSchueler(schueler.getSId());
 				button_abbrechen_click();
 			}
@@ -206,7 +203,6 @@ public class EditStudentController implements Initializable {
 		if(schueler.getSId()!=0) {
 			String sUnternehmen = tables.getUnternehmen(schueler.getUId()).getName();
 			String sKurs = tables.getKurs(schueler.getKId()).getBezeichnung();
-
 			if (changed) {
 				String check = "Sie haben folgende Angaben geändert:\n";
 				if (!(schueler.getVorname().equals(changedSchueler.getVorname()))) {
