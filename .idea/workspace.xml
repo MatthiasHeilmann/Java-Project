@@ -5,9 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5d60d861-2ed3-4aed-a2a3-7ccca09202bd" name="Changes" comment="IntelliJ kinda dumb rn">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javaproject/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javaproject/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/javaproject/EditStudentController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/javaproject/EditStudentController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/javaproject/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/javaproject/Main.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -61,6 +61,11 @@
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\schwas28\Documents\DHBW\Theorie 1\1.2\Java\Java-Project\src\main\java\com\example\javaproject" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\loren\OneDrive\Desktop\Javafrfr\Java-Project" />
+      <recent name="C:\Users\loren\OneDrive\Desktop\Javafrfr\Java-Project\src\main" />
+      <recent name="C:\Users\loren\OneDrive\Desktop\Javafrfr\Java-Project\src\main\resources\com\example\javaproject" />
     </key>
   </component>
   <component name="RunManager">
@@ -223,5 +228,10 @@
     <MESSAGE value="TODO" />
     <MESSAGE value="Unternehmen löschen funktioniert!" />
     <option name="LAST_COMMIT_MESSAGE" value="Unternehmen löschen funktioniert!" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Java_Project$Main.ic" NAME="Main Coverage Results" MODIFIED="1655296883445" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.example.javaproject.*</FILTER>
+    </SUITE>
   </component>
 </project>
