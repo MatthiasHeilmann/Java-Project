@@ -168,6 +168,20 @@ public class DBConnection{
             ex.printStackTrace();
         }
     }
+    public void deleteStudent(Schueler schueler){
+        try{
+            PreparedStatement preparedStatement;
+            preparedStatement = connection.prepareStatement(
+                    "DELETE FROM schueler "+
+                            "WHERE sId = ?;"
+            );
+            preparedStatement.setInt(1,schueler.getSId());
+            preparedStatement.execute();
+            System.out.println("Schueler "+schueler.getVorname()+" wurde vor der DHBW in Sicherheit gebracht.");
+        }catch (SQLException ex){
+            ex.printStackTrace();
+        }
+    }
 
     /**
      * inserts new kurs into database using prepared statement
@@ -278,18 +292,12 @@ public class DBConnection{
         try{
             PreparedStatement preparedStatement;
             preparedStatement = connection.prepareStatement(
-                    "UPDATE schueler SET uId = 3 "+
-                            "WHERE uId = ?;"
-            );
-            preparedStatement.setInt(1,unternehmen.getUId());
-            preparedStatement.execute();
-            PreparedStatement preparedStatement1;
-            preparedStatement1 = connection.prepareStatement(
                     "DELETE FROM unternehmen "+
                             "WHERE uId = ?;"
             );
             preparedStatement.setInt(1,unternehmen.getUId());
             preparedStatement.execute();
+            System.out.println("Unternehmen wurde aus db entfernt.");
         }catch (SQLException ex){
             ex.printStackTrace();
         }

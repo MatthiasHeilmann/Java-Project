@@ -85,14 +85,21 @@ public class Tables extends Observable {
 
 	public void removeSchueler(int id){
 		tables.get(TableName.Schueler).remove(id);
+		setChanged();
+		notifyObservers();
 	}
 
 	public void removeKurs(int id){
 		tables.get(TableName.Kurs).remove(id);
+		setChanged();
+		notifyObservers();
 	}
 
 	public void removeUnternehmen(int id){
 		tables.get(TableName.Unternehmen).remove(id);
+		System.out.println("Unternehmen wurde aus Liste entfernt.");
+		setChanged();
+		notifyObservers();
 	}
 
 	public void insertSchueler(ArrayList<String> schuelerSet) throws SQLException {
