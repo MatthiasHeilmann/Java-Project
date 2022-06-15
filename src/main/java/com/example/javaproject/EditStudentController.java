@@ -128,8 +128,19 @@ public class EditStudentController implements Initializable {
 
 	@FXML
 	private void button_delete_click() {
-		// TODO exmatrikulieren
 		System.out.println("Exmatrikulieren!");
+		Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+		alert.setTitle("Bestätigung");
+		alert.setContentText("Sind Sie sicher, dass sie den Studenten " +schueler.getVorname()+" "
+				+schueler.getNachname()+ " exmatrikulieren wollen?");
+		alert.showAndWait().ifPresent(rs -> {
+			if (rs == ButtonType.OK) {
+				System.out.println("Student wird exmatrikuliert...");
+				dbConnection.deleteStudent(this.schueler);
+				tables.removeSchueler(schueler.getSId());
+				button_abbrechen_click();
+			}
+		});
 	}
 
 	@FXML

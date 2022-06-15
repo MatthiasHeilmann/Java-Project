@@ -92,7 +92,6 @@ public class MainFrameController implements Initializable, Observer {
      */
     @FXML
     protected void button_add_unternehmen_click() {
-        // TODO Neues Unternehmen
         try {
             editUnternehmen(new Unternehmen(new SimpleIntegerProperty(0),
                                             new SimpleStringProperty("")));
