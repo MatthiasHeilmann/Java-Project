@@ -182,16 +182,5 @@ public class EditStudentController implements Initializable {
 		} else {
 			button_abbrechen_click();
 		}
-
-	}
-
-	@FXML
-	private void button_add_kurs_click() {
-		System.out.println("neuer Kurs");
-	}
-
-	@FXML
-	private void button_add_unternehmen_click() {
-		System.out.println("neues Unternehmen!");
 	}
 }

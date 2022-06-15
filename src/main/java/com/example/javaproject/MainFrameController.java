@@ -109,7 +109,7 @@ public class MainFrameController implements Initializable, Observer {
     public MainFrameController(){
         dbConnection= DBConnection.getInstance();
         tables = Tables.getInstance();
-        dbConnection.addObserver(this);
+        tables.addObserver(this);
     }
 
     /**

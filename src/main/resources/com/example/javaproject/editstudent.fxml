@@ -93,20 +93,12 @@
                </GridPane.margin></TextField>
             <FlowPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <children>
-                  <ChoiceBox fx:id="box_unternehmen" prefWidth="150.0" />
-                  <Button fx:id="button_add_unternehmen" mnemonicParsing="false" onAction="#button_add_unternehmen_click" text="+">
-                     <FlowPane.margin>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                     </FlowPane.margin></Button>
+                  <ChoiceBox fx:id="box_unternehmen" prefHeight="25.0" prefWidth="200.0" />
                </children>
             </FlowPane>
             <FlowPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <children>
-                  <ChoiceBox fx:id="box_kurs" prefWidth="150.0" />
-                  <Button fx:id="button_add_kurs" mnemonicParsing="false" onAction="#button_add_kurs_click" text="+">
-                     <FlowPane.margin>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                     </FlowPane.margin></Button>
+                  <ChoiceBox fx:id="box_kurs" prefHeight="25.0" prefWidth="200.0" />
                </children>
             </FlowPane>
             <GridPane GridPane.columnIndex="1" GridPane.rowIndex="6">

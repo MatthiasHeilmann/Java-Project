@@ -13,7 +13,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
  * Model class of project
  * DBConnection class creates a connection to database and communicates with it
  */
-public class DBConnection extends Observable {
+public class DBConnection{
     private Connection connection;
     private final String connectionUrl = "jdbc:mysql://sql11.freesqldatabase.com:3306/sql11495010";
     private final String userName = "sql11495010";

@@ -2,12 +2,14 @@ package com.example.javaproject;
 
 import com.example.javaproject.Tables.Tables;
 import com.example.javaproject.Tables.Unternehmen;
+import javafx.beans.Observable;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.net.URL;
+import java.util.Observer;
 import java.util.ResourceBundle;
 
 public class EditUnternehmenController implements Initializable {

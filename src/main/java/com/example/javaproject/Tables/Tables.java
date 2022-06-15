@@ -7,8 +7,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Observable;
 
-public class Tables {
+public class Tables extends Observable {
 	enum TableName{Schueler, Kurs, Unternehmen}
 	private final HashMap<TableName, HashMap<Integer, DataSet>> tables;
 	private static volatile Tables tablesSingelton = null;
@@ -67,14 +68,20 @@ public class Tables {
 	public void updateSchueler(Schueler s){
 		// TODO maybe unsafe
 		tables.get(TableName.Schueler).put(s.getSId(), s);
+		setChanged();
+		notifyObservers();
 	}
 
 	public void updateKurs(Kurs k){
 		tables.get(TableName.Kurs).put(k.getKId(), k);
+		setChanged();
+		notifyObservers();
 	}
 
 	public void updateUnternehmen(Unternehmen u){
 		tables.get(TableName.Unternehmen).put(u.getUId(), u);
+		setChanged();
+		notifyObservers();
 	}
 
 	public void removeSchueler(int id){
