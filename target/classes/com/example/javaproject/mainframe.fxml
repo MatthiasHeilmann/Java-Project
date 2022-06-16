@@ -5,6 +5,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.FlowPane?>
@@ -17,7 +19,15 @@
    <top>
       <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: lightgrey;" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="label_headline" prefHeight="100.0" prefWidth="482.0" text="DHBW Datenbank">
+            <ImageView fitHeight="85.0" fitWidth="99.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../dhbwlogo-removebg-preview.png" />
+               </image>
+               <HBox.margin>
+                  <Insets bottom="10.0" left="20.0" right="10.0" top="10.0" />
+               </HBox.margin>
+            </ImageView>
+            <Label fx:id="label_headline" prefHeight="100.0" prefWidth="580.0" text="DHBW Datenbank">
                <font>
                   <Font size="41.0" />
                </font>

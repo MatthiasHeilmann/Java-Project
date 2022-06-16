@@ -4,22 +4,33 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5d60d861-2ed3-4aed-a2a3-7ccca09202bd" name="Changes" comment="IntelliJ stuff idk">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="5d60d861-2ed3-4aed-a2a3-7ccca09202bd" name="Changes" comment="javafx version">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/javaproject/Converter/KursConverter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/javaproject/Converter/KursConverter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/javaproject/Converter/UnternehmenConverter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/javaproject/Converter/UnternehmenConverter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/javaproject/editkurs.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/javaproject/editkurs.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/javaproject/editstudent.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/javaproject/editstudent.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/javaproject/editunternehmen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/javaproject/editunternehmen.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/javaproject/mainframe.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/javaproject/mainframe.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/javaproject/EditStudentController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/javaproject/EditStudentController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/javaproject/MainFrameController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/javaproject/MainFrameController.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaFXApplication" />
+        <option value="FxmlFile" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="Tables" />
+        <entry key="$PROJECT_DIR$" value="insertion" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -35,21 +46,16 @@
     </option>
   </component>
   <component name="ProjectId" id="2AU8QVpujpJd2zIHpoLWDHmoE0e" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Matth/IdeaProjects/Java-Project/lib/mysql-connector-java-8.0.29.jar&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;
   }
 }</component>
   <component name="RecentsManager">
@@ -67,6 +73,17 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <option name="filePath" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -90,6 +107,18 @@
       <workItem from="1655124902932" duration="57000" />
       <workItem from="1655124991605" duration="4744000" />
       <workItem from="1655132638187" duration="2019000" />
+      <workItem from="1655151400256" duration="1798000" />
+      <workItem from="1655183197264" duration="691000" />
+      <workItem from="1655191377813" duration="443000" />
+      <workItem from="1655192068118" duration="1220000" />
+      <workItem from="1655204563549" duration="313000" />
+      <workItem from="1655282548164" duration="1263000" />
+      <workItem from="1655283871802" duration="2553000" />
+      <workItem from="1655286495459" duration="610000" />
+      <workItem from="1655295849644" duration="9000" />
+      <workItem from="1655296967765" duration="194000" />
+      <workItem from="1655300483502" duration="2083000" />
+      <workItem from="1655368490353" duration="2152000" />
     </task>
     <task id="LOCAL-00001" summary="Add Tables Classes">
       <created>1655052960523</created>
@@ -119,7 +148,56 @@
       <option name="project" value="LOCAL" />
       <updated>1655125026004</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Edit Kurs/Unternehmen via UID">
+      <created>1655285426860</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1655285426860</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Deep copies for changed variables">
+      <created>1655286666140</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1655286666140</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Deep copies for changed variables">
+      <created>1655286686444</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1655286686444</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Deep copies for changed variables">
+      <created>1655286809144</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1655286809144</updated>
+    </task>
+    <task id="LOCAL-00009" summary="update frame">
+      <created>1655288677765</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1655288677765</updated>
+    </task>
+    <task id="LOCAL-00010" summary="TODO">
+      <created>1655289020410</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1655289020410</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Unternehmen löschen funktioniert!">
+      <created>1655291738660</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1655291738660</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -154,6 +232,11 @@
     <MESSAGE value="implementin tables" />
     <MESSAGE value="implementing tables" />
     <MESSAGE value="IntelliJ stuff idk" />
-    <option name="LAST_COMMIT_MESSAGE" value="IntelliJ stuff idk" />
+    <MESSAGE value="Edit Kurs/Unternehmen via UID" />
+    <MESSAGE value="Deep copies for changed variables" />
+    <MESSAGE value="update frame" />
+    <MESSAGE value="TODO" />
+    <MESSAGE value="Unternehmen löschen funktioniert!" />
+    <option name="LAST_COMMIT_MESSAGE" value="Unternehmen löschen funktioniert!" />
   </component>
 </project>
