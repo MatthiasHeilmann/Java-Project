@@ -290,7 +290,7 @@ public class MainFrameController implements Initializable, Observer {
         EditStudentController controller = new EditStudentController(schueler);
         fxmlLoader.setController(controller);
         Scene scene = new Scene(fxmlLoader.load(), 470, 350);
-        scene.getStylesheets().add(getClass().getResource("editstudent.css").toExternalForm());
+        scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
         stage.setTitle("Student bearbeiten");
         stage.setResizable(false);
         stage.setScene(scene);
@@ -303,7 +303,7 @@ public class MainFrameController implements Initializable, Observer {
         EditCourseController controller = new EditCourseController(kurs);
         fxmlLoader.setController(controller);
         Scene scene = new Scene(fxmlLoader.load(), 470, 350);
-        scene.getStylesheets().add(getClass().getResource("editkurs.css").toExternalForm());
+        scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
         stage.setTitle("Kurs bearbeiten");
         stage.setResizable(false);
         stage.setScene(scene);
@@ -317,7 +317,7 @@ public class MainFrameController implements Initializable, Observer {
         EditUnternehmenController controller = new EditUnternehmenController(unternehmen);
         fxmlLoader.setController(controller);
         Scene scene = new Scene(fxmlLoader.load(), 470, 350);
-        scene.getStylesheets().add(getClass().getResource("editunternehmen.css").toExternalForm());
+        scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
         stage.setTitle("Unternehmen bearbeiten");
         stage.setScene(scene);
         stage.show();

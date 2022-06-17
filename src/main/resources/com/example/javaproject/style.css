@@ -1,7 +1,7 @@
-#button_delete:hover{
+#button_delete:hover, #button_delete_kurs:hover{
     -fx-text-fill: red;
     -fx-background-color: lightgrey;
 }
-#button_delete{
+#button_delete, #button_delete_kurs{
     -fx-background-color: red;
 }
