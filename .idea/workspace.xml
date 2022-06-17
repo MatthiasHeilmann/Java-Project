@@ -9,13 +9,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5d60d861-2ed3-4aed-a2a3-7ccca09202bd" name="Changes" comment="logo">
+    <list default="true" id="5d60d861-2ed3-4aed-a2a3-7ccca09202bd" name="Changes" comment="style änderungen">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javaproject/MainFrameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javaproject/MainFrameController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/javaproject/editkurs.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/javaproject/editstudent.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/javaproject/editunternehmen.css" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/javaproject/mainframe.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/javaproject/mainframe.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/javaproject/MainFrameController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/javaproject/MainFrameController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/javaproject/mainframe.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/javaproject/mainframe.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -128,7 +127,7 @@
       <workItem from="1655296967765" duration="194000" />
       <workItem from="1655300483502" duration="2083000" />
       <workItem from="1655368490353" duration="2152000" />
-      <workItem from="1655487126150" duration="2859000" />
+      <workItem from="1655487126150" duration="5819000" />
     </task>
     <task id="LOCAL-00001" summary="Add Tables Classes">
       <created>1655052960523</created>
@@ -214,7 +213,14 @@
       <option name="project" value="LOCAL" />
       <updated>1655405857778</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="style änderungen">
+      <created>1655493700188</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1655493700188</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -255,6 +261,7 @@
     <MESSAGE value="TODO" />
     <MESSAGE value="Unternehmen löschen funktioniert!" />
     <MESSAGE value="logo" />
-    <option name="LAST_COMMIT_MESSAGE" value="logo" />
+    <MESSAGE value="style änderungen" />
+    <option name="LAST_COMMIT_MESSAGE" value="style änderungen" />
   </component>
 </project>

@@ -8,6 +8,7 @@ import com.example.javaproject.Tables.Schueler;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.ObservableArray;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,6 +16,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -55,6 +58,54 @@ public class MainFrameController implements Initializable, Observer {
     private Label table_student_header_raum;
     @FXML
     private Button button_show_all;
+    @FXML
+    private Button button_search;
+    @FXML
+    private TextField text_search;
+
+    @FXML
+    private void button_search_click(){
+        if(text_search.isVisible()){
+            text_search.setVisible(false);
+            table_student_header.setVisible(true);
+            button_show_all.setVisible(false);
+            fillStudentTable();
+        }else {
+            text_search.setVisible(true);
+            table_student_header.setVisible(false);
+            button_show_all.setVisible(true);
+            System.out.println("search!");
+        }
+    }
+    @FXML
+    private void text_search_typed(){
+        String typedText=text_search.getText();
+        ArrayList<Schueler> arrayList = tables.getAllSchueler();
+        ArrayList<Schueler> newArrayList = new ArrayList<>();
+        for(Schueler schueler : arrayList){
+            String toFind = schueler.getVorname()+" "+schueler.getNachname();
+            if(isSubString(typedText.toLowerCase(),toFind.toLowerCase())){
+                newArrayList.add(schueler);
+            }
+        }
+        table_student.getItems().clear();
+        insertStudents(newArrayList);
+    }
+
+    private boolean isSubString(String s1, String s2){
+        boolean val = false;
+        int M = s1.length();
+        int N = s2.length();
+        for (int i = 0; i <= N - M; i++) {
+            int j;
+            for (j = 0; j < M; j++)
+                if (s2.charAt(i + j)!= s1.charAt(j))
+                    break;
+            if (j == M)
+                val = true;
+        }
+        return val;
+    }
 
     /**
      * Opens a Window where a new student can be added
@@ -230,8 +281,8 @@ public class MainFrameController implements Initializable, Observer {
 
         for (Schueler schueler : schuelerArrayList){
             table_student.getItems().add(schueler);
-            table_student.refresh();
         }
+            table_student.refresh();
     }
 
     private void insertStudent(Schueler schueler){

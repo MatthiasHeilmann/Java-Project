@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
@@ -98,7 +99,8 @@
             </TableView>
             <GridPane>
               <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="200.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="50.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="231.0" minWidth="10.0" prefWidth="218.0" />
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="298.0" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" />
               </columnConstraints>
@@ -106,7 +108,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label fx:id="table_student_header" prefHeight="30.0" prefWidth="203.0" text="Header">
+                  <Label fx:id="table_student_header" prefHeight="30.0" prefWidth="203.0" text="Header" GridPane.columnIndex="1">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -114,12 +116,17 @@
                         <Insets left="2.0" />
                      </padding>
                   </Label>
-                  <Button fx:id="button_show_all" mnemonicParsing="false" onAction="#button_show_all_click" prefHeight="25.0" prefWidth="99.0" text="Alle anzeigen" visible="false" GridPane.columnIndex="2" />
-                  <Label fx:id="table_student_header_raum" text="Raum:" visible="false" GridPane.columnIndex="1">
+                  <Button fx:id="button_show_all" mnemonicParsing="false" onAction="#button_show_all_click" prefHeight="25.0" prefWidth="99.0" text="Alle anzeigen" visible="false" GridPane.columnIndex="3" />
+                  <Label fx:id="table_student_header_raum" text="Raum:" visible="false" GridPane.columnIndex="2">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Label>
+                  <Button fx:id="button_search" mnemonicParsing="false" onAction="#button_search_click" text="S">
+                     <GridPane.margin>
+                        <Insets left="3.0" />
+                     </GridPane.margin></Button>
+                  <TextField fx:id="text_search" onAction="#text_search_typed" onKeyTyped="#text_search_typed" visible="false" GridPane.columnIndex="1" />
                </children>
             </GridPane>
          </children>
