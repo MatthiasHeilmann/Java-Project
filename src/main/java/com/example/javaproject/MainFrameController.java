@@ -152,6 +152,9 @@ public class MainFrameController implements Initializable, Observer {
     @FXML
     protected void button_show_all_click(){
         fillStudentTable();
+        table_student_header.setText("Alle Studenten");
+        table_student_header_raum.setVisible(false);
+        text_search.setVisible(false);
         button_show_all.setVisible(false);
     }
 
