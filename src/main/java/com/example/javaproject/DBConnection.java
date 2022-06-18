@@ -37,11 +37,10 @@ public class DBConnection{
     }
 
     private void createConnection(){
-        System.out.println("new Connection");
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             this.connection = DriverManager.getConnection(this.connectionUrl,this.userName,this.password);
-            System.out.println("New Connection created.");
+            System.out.println("[DBConnection] Connection successfully created.");
         }catch (Exception ex){
             ex.printStackTrace();
         }
@@ -157,7 +156,7 @@ public class DBConnection{
     /**
      * updates a student in database
      *
-     * @param schueler
+     * @param schueler Schueler
      */
     public void updateStudent(Schueler schueler){
         try{
@@ -178,6 +177,12 @@ public class DBConnection{
             ex.printStackTrace();
         }
     }
+
+    /**
+     * Deletes a Schueler from database
+     *
+     * @param schueler Schueler
+     */
     public void deleteStudent(Schueler schueler){
         try{
             PreparedStatement preparedStatement;
@@ -196,7 +201,7 @@ public class DBConnection{
     /**
      * inserts new kurs into database using prepared statement
      *
-     * @param kurs
+     * @param kurs Kurs
      */
     public void insertKurs(Kurs kurs){
         try{
@@ -216,7 +221,7 @@ public class DBConnection{
     /**
      * updates a kurs in database
      *
-     * @param kurs
+     * @param kurs Kurs
      */
     public void updateKurs(Kurs kurs){
         try{
@@ -233,6 +238,11 @@ public class DBConnection{
         }
     }
 
+    /**
+     * Deletes a Kurs from database
+     *
+     * @param kurs Kurs
+     */
     public void deleteKurs(Kurs kurs){
         try{
             PreparedStatement preparedStatement;
@@ -250,7 +260,7 @@ public class DBConnection{
     /**
      * inserts new unternehmen into database using prepared statement
      *
-     * @param unternehmen
+     * @param unternehmen Unternehmen
      */
     public int insertUnternehmen(Unternehmen unternehmen){
         try{
@@ -279,7 +289,7 @@ public class DBConnection{
     /**
      * updates an unternehmen in database
      *
-     * @param unternehmen
+     * @param unternehmen Unternehmen
      */
     public void updateUnternehmen(Unternehmen unternehmen) {
         try{
@@ -298,7 +308,7 @@ public class DBConnection{
     /**
      * deletes an unternehmen from database
      *
-     * @param unternehmen
+     * @param unternehmen Unternehmen
      */
     public void deleteUnternehmen(Unternehmen unternehmen){
         try{
@@ -315,9 +325,13 @@ public class DBConnection{
         }
     }
 
+    /**
+     * Closes the Connection to database
+     */
     public void closeConnection(){
         try {
             this.connection.close();
+            System.out.println("[DBConnection] Connection closed.");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

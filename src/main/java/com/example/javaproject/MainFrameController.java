@@ -67,6 +67,7 @@ public class MainFrameController implements Initializable, Observer {
     private void button_search_click(){
         if(text_search.isVisible()){
             text_search.setVisible(false);
+            text_search.setText("");
             table_student_header.setVisible(true);
             button_show_all.setVisible(false);
             fillStudentTable();
@@ -74,7 +75,6 @@ public class MainFrameController implements Initializable, Observer {
             text_search.setVisible(true);
             table_student_header.setVisible(false);
             button_show_all.setVisible(true);
-            System.out.println("search!");
         }
     }
     @FXML
@@ -143,7 +143,7 @@ public class MainFrameController implements Initializable, Observer {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        System.out.println("Neues Unternehmen!");
+        //System.out.println("Neues Unternehmen!");
     }
 
     /**
@@ -193,7 +193,7 @@ public class MainFrameController implements Initializable, Observer {
                     table_student_header_raum.setText("| Raum: "+rowData.getRaum());
                     table_student_header_raum.setVisible(true);
                     text_search.setVisible(false);
-                    System.out.println(rowData.getBezeichnung()+" clicked");
+                    //System.out.println(rowData.getBezeichnung()+" clicked");
                 }else if(event.getClickCount() == 2 && (!row.isEmpty())){
                     Kurs rowData = row.getItem();
                     try{
@@ -216,7 +216,7 @@ public class MainFrameController implements Initializable, Observer {
                     button_show_all.setVisible(true);
                     table_student_header_raum.setVisible(false);
                     text_search.setVisible(false);
-                    System.out.println(rowData.getName()+" clicked");
+                    //System.out.println(rowData.getName()+" clicked");
                 }else if(event.getClickCount() == 2 && (!row.isEmpty())){
                     Unternehmen rowData = row.getItem();
                     try{
@@ -234,7 +234,7 @@ public class MainFrameController implements Initializable, Observer {
                     row.setOnMouseClicked(event -> {
                         if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
                             Schueler rowData = row.getItem();
-                            System.out.println(rowData.getVorname()+" "+rowData.getNachname()+" clicked");
+                            //System.out.println(rowData.getVorname()+" "+rowData.getNachname()+" clicked");
                             try {
                             editStudent(rowData);
                             }catch (IOException e){
@@ -265,6 +265,7 @@ public class MainFrameController implements Initializable, Observer {
         table_kurs_column_kurs.setCellValueFactory(new PropertyValueFactory<>("bezeichnung"));
         // table_unternehmen setup
         table_unternehmen_column_unternehmen.setCellValueFactory(new PropertyValueFactory<>("name"));
+
         button_search.setTooltip(new Tooltip("Nach Studenten suchen"));
     }
 

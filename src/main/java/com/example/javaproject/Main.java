@@ -12,6 +12,7 @@ import java.sql.SQLException;
 
 /**
  * Main class of project
+ * execute main methode to start application
  */
 
 public class Main extends Application {
@@ -58,7 +59,6 @@ public class Main extends Application {
     public static void main(String[] args) {
         Runtime.getRuntime().addShutdownHook(new Thread(()->{
             DBConnection.getInstance().closeConnection();
-            System.out.println("Closing the Connection");
         }));
         launch();
     }
