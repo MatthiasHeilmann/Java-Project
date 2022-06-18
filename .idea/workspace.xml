@@ -10,14 +10,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5d60d861-2ed3-4aed-a2a3-7ccca09202bd" name="Changes" comment="Search button">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/javaproject/mainframe.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/javaproject/mainframe.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/javaproject/mainframe.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/javaproject/mainframe.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javaproject/EditCourseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javaproject/EditCourseController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javaproject/EditStudentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javaproject/EditStudentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javaproject/EditUnternehmenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javaproject/EditUnternehmenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javaproject/MainFrameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javaproject/MainFrameController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/javaproject/EditCourseController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/javaproject/EditCourseController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/javaproject/EditStudentController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/javaproject/EditStudentController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/javaproject/MainFrameController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/javaproject/MainFrameController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/javaproject/editkurs.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/javaproject/editstudent.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/javaproject/editunternehmen.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/javaproject/mainframe.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/javaproject/mainframe.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,15 +61,6 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "WebServerToolWindowFactoryState": "false",
-    "list.type.of.created.stylesheet": "CSS",
-    "project.structure.last.edited": "Artifacts",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.35747126"
-  }
-}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\schwas28\Documents\DHBW\Theorie 1\1.2\Java\Java-Project\src\main\java\com\example\javaproject" />
@@ -278,5 +270,10 @@
     <MESSAGE value="style änderungen" />
     <MESSAGE value="Search button" />
     <option name="LAST_COMMIT_MESSAGE" value="Search button" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Java_Project$Main.ic" NAME="Main Coverage Results" MODIFIED="1655549702204" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.example.javaproject.*</FILTER>
+    </SUITE>
   </component>
 </project>

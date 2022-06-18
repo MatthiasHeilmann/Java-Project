@@ -63,6 +63,11 @@ public class EditStudentController implements Initializable {
 		dbConnection = DBConnection.getInstance();
 	}
 
+	/**
+	 * Initializes the EditStudent GUI and enters preexisting attributes into the GUI elements
+	 * If a new student is created, its sID is 0. In this case the header label is changed to reflect
+	 * this, and the exmatriculate button is left invisible.
+	 */
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
 		text_vorname.setText(schueler.getVorname());
@@ -170,6 +175,9 @@ public class EditStudentController implements Initializable {
 
 	}
 
+	/**
+	 * Deletes the currently selected student locally and on database, updates the GUI to reflect this.
+	 */
 	@FXML
 	private void button_delete_click() {
 		Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -186,6 +194,9 @@ public class EditStudentController implements Initializable {
 		});
 	}
 
+	/**
+	 * Closes the stage without applying any changes.
+	 */
 	@FXML
 	private void button_abbrechen_click() {
 		Stage stage = (Stage) button_abbrechen.getScene().getWindow();
@@ -193,8 +204,9 @@ public class EditStudentController implements Initializable {
 	}
 
 	/**
-	 * If anything has changed at student information a alert is called with changed information
-	 * If Ok method calls updateStudent and updateStudentArrayList in DBConnection with changedStudent
+	 * If any student information has changed, an alert is called with changed information.
+	 * If Ok is pressed, the method calls updateStudent and updateStudentArrayList in DBConnection with changedStudent,
+	 * applying changes locally and in the database
 	 */
 	@FXML
 	private void button_speichern_click() {

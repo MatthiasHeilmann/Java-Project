@@ -43,6 +43,11 @@ public class EditCourseController implements Initializable {
 		this.changed = false;
 	}
 
+	/**
+	 * Initializes the EditCourse GUI and enters preexisting attributes into the Text boxes
+	 * If a new course is created, its kID is 0. In this case the header label is changed to reflect
+	 * this, and the delete course button is left invisible.
+	 */
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
 		text_kursraum.setText(this.kurs.getRaum());
@@ -69,6 +74,10 @@ public class EditCourseController implements Initializable {
 		}
 	}
 
+	/**
+	 * Deletes the currently selected course locally and on database, updates the GUI to reflect this.
+	 * If there are students in the course, they will be deleted on confirmation as well.
+	 */
 	@FXML
 	private void button_delete_kurs_click() {
 		ArrayList<Schueler> schuelerArrayList = tables.getAllSchueler();
@@ -118,6 +127,9 @@ public class EditCourseController implements Initializable {
 		}
 	}
 
+	/**
+	 * Closes the stage without applying any changes.
+	 */
 	@FXML
 	private void button_abbrechen_kurs_click() {
 		Stage stage = (Stage) button_abbrechen_kurs.getScene().getWindow();
@@ -125,8 +137,9 @@ public class EditCourseController implements Initializable {
 	}
 
 	/**
-	 * If anything has changed at course information an alert is called with changed information
-	 * If Ok method calls updateStudent and updateStudentArrayList in DBConnection with changedStudent
+	 * If any course information has changed, an alert is called with changed information.
+	 * If Ok is pressed, the method calls updateKurs and updateKursArrayList in DBConnection with changedkurs,
+	 * applying changes locally and in the database
 	 */
 	@FXML
 	private void button_speichern_click() {
@@ -145,10 +158,12 @@ public class EditCourseController implements Initializable {
 			alert.setContentText(check);
 			alert.showAndWait().ifPresent(rs -> {
 				if (rs == ButtonType.OK) {
-					if (!kurs.getRaum().equals("") && !kurs.getBezeichnung().equals("")) {
-						dbConnection.updateKurs(changedkurs);
-					} else if (!kurs.getRaum().equals(changedkurs.getRaum()) && !kurs.getBezeichnung().equals(changedkurs.getBezeichnung())) {
+					if (kurs.getRaum().equals("") && kurs.getBezeichnung().equals("") && !kurs.getRaum().equals(changedkurs.getRaum()) && !kurs.getBezeichnung().equals(changedkurs.getBezeichnung())) {
+						int newid=tables.getAllKurse().get(tables.getAllKurse().size()-1).getKId()+1;
+						changedkurs.setKId(newid);
 						dbConnection.insertKurs(changedkurs);
+					} else if (!kurs.getRaum().equals(changedkurs.getRaum()) && !kurs.getBezeichnung().equals(changedkurs.getBezeichnung())) {
+						dbConnection.updateKurs(changedkurs);
 					}
 					tables.updateKurs(changedkurs);
 					button_abbrechen_kurs_click();
