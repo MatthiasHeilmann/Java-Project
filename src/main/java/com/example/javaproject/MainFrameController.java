@@ -193,10 +193,12 @@ public class MainFrameController implements Initializable, Observer {
                 if (event.getClickCount() == 1 && (! row.isEmpty()) ) {
                     Kurs rowData = row.getItem();
                     table_student_header.setText(rowData.getBezeichnung());
+                    table_student_header.setVisible(true);
                     fillStudentTableOnKurs(rowData);
                     button_show_all.setVisible(true);
                     table_student_header_raum.setText("| Raum: "+rowData.getRaum());
                     table_student_header_raum.setVisible(true);
+                    text_search.setVisible(false);
                     System.out.println(rowData.getBezeichnung()+" clicked");
                 }else if(event.getClickCount() == 2 && (!row.isEmpty())){
                     Kurs rowData = row.getItem();
@@ -215,9 +217,11 @@ public class MainFrameController implements Initializable, Observer {
                 if (event.getClickCount() == 1 && (! row.isEmpty()) ) {
                     Unternehmen rowData = row.getItem();
                     table_student_header.setText(rowData.getName());
+                    table_student_header.setVisible(true);
                     fillStudentTableOnUnternehmen(rowData);
                     button_show_all.setVisible(true);
                     table_student_header_raum.setVisible(false);
+                    text_search.setVisible(false);
                     System.out.println(rowData.getName()+" clicked");
                 }else if(event.getClickCount() == 2 && (!row.isEmpty())){
                     Unternehmen rowData = row.getItem();
