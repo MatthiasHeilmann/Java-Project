@@ -37,6 +37,11 @@ public class EditUnternehmenController implements Initializable {
         this.tables = Tables.getInstance();
     }
 
+    /**
+     * Initializes the EditUnternehmen GUI and enters potentially preexisting attribute into the GUI elements
+     * If a new unternehmen is created, its uID is 0. In this case the header label is changed to reflect
+     * this, and the delete button is left invisible.
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         text_name.setText(unternehmen.getName());
@@ -46,12 +51,18 @@ public class EditUnternehmenController implements Initializable {
         }
     }
 
+    /**
+     * Closes the stage without applying any changes.
+     */
     @FXML
     private void button_abbrechen_click() {
         Stage stage = (Stage) button_abbrechen.getScene().getWindow();
         stage.close();
     }
 
+    /**
+     * Deletes the currently selected unternehmen locally and on database, updates the GUI to reflect this.
+     */
     @FXML
     private void button_delete_click() {
         ArrayList<Schueler> schuelerArrayList = tables.getAllSchueler();
@@ -102,6 +113,11 @@ public class EditUnternehmenController implements Initializable {
 
     }
 
+    /**
+     * If any Unternehmen information has changed, an alert is called with changed information.
+     * If Ok is pressed, the method calls updateUnternehmen and updateUnternehmenArrayList in DBConnection
+     * with changedStudent, applying changes locally and in the database.
+     */
     @FXML
     private void button_speichern_click() {
         if(unternehmen.getUId()==0){

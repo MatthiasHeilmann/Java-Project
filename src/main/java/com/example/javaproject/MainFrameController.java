@@ -127,17 +127,8 @@ public class MainFrameController implements Initializable, Observer {
      */
     @FXML
     protected void button_add_kurs_click() throws IOException {
-        // TODO Header -> Neuer Kurs
         ArrayList<Kurs> kursArrayList = tables.getAllKurse();
-        int max=0;
-        for (Kurs kurs:
-             kursArrayList) {
-            if(kurs.getKId()>max){
-                max=kurs.getKId();
-            }
-        }
-
-        editKurs(new Kurs(new SimpleIntegerProperty(max+1)
+        editKurs(new Kurs(new SimpleIntegerProperty(0)
                         , new SimpleStringProperty("")
                         , new SimpleStringProperty("")));
     }
@@ -360,6 +351,9 @@ public class MainFrameController implements Initializable, Observer {
         Scene scene = new Scene(fxmlLoader.load(), 470, 350);
         scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
         stage.setTitle("Kurs bearbeiten");
+        if(kurs.getKId()==0){
+            stage.setTitle("Neuer Kurs");
+        }
         stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
