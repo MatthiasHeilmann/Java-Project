@@ -261,12 +261,11 @@ public class MainFrameController implements Initializable, Observer {
             Unternehmen sUnternehmen = tables.getUnternehmen(studentData.getValue().getUId());
             return new ReadOnlyStringWrapper(sUnternehmen.getName());
         });
-
         // table_kurs setup
         table_kurs_column_kurs.setCellValueFactory(new PropertyValueFactory<>("bezeichnung"));
-
         // table_unternehmen setup
         table_unternehmen_column_unternehmen.setCellValueFactory(new PropertyValueFactory<>("name"));
+        button_search.setTooltip(new Tooltip("Nach Studenten suchen"));
     }
 
     /**
