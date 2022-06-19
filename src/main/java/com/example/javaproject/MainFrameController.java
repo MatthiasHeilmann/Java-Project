@@ -377,7 +377,7 @@ public class MainFrameController implements Initializable, Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        fillStudentTable();
+        button_show_all_click();
         fillUnternehmenTable();
         fillKursTable();
     }

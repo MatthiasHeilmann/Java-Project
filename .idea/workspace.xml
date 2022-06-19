@@ -9,11 +9,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5d60d861-2ed3-4aed-a2a3-7ccca09202bd" name="Changes" comment="Kommentare">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/javaproject/mainframe.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/javaproject/mainframe.fxml" afterDir="false" />
-    </list>
+    <list default="true" id="5d60d861-2ed3-4aed-a2a3-7ccca09202bd" name="Changes" comment="dhbw logo" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -266,7 +262,21 @@
       <option name="project" value="LOCAL" />
       <updated>1655563293787</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="search icon">
+      <created>1655642859668</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1655642859668</updated>
+    </task>
+    <task id="LOCAL-00021" summary="dhbw logo">
+      <created>1655642995459</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1655642995459</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -313,6 +323,8 @@
     <MESSAGE value="bugfix" />
     <MESSAGE value="another bugfix" />
     <MESSAGE value="tooltip" />
-    <option name="LAST_COMMIT_MESSAGE" value="tooltip" />
+    <MESSAGE value="search icon" />
+    <MESSAGE value="dhbw logo" />
+    <option name="LAST_COMMIT_MESSAGE" value="dhbw logo" />
   </component>
 </project>
