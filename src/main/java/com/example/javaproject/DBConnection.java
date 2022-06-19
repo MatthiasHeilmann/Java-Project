@@ -203,19 +203,28 @@ public class DBConnection{
      *
      * @param kurs Kurs
      */
-    public void insertKurs(Kurs kurs){
+    public int insertKurs(Kurs kurs){
         try{
             PreparedStatement preparedStatement;
             preparedStatement = connection.prepareStatement(
                     "INSERT INTO kurs (kId,bezeichnung,raum) "+
-                            "Values(?,?,?);");
+                            "Values(?,?,?);",Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setInt(1,kurs.getKId());
             preparedStatement.setString(2,kurs.getBezeichnung());
             preparedStatement.setString(3,kurs.getRaum());
             preparedStatement.execute();
+            try (ResultSet generatedKeys = preparedStatement.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    return generatedKeys.getInt(1);
+                }
+                else {
+                    throw new SQLException("Creating kurs failed, no ID obtained.");
+                }
+            }
         }catch (SQLException ex){
             ex.printStackTrace();
         }
+        return 0;
     }
 
     /**

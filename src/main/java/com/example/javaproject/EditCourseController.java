@@ -143,6 +143,13 @@ public class EditCourseController implements Initializable {
 	 */
 	@FXML
 	private void button_speichern_click() {
+		if(text_kursname.getText().equals("")||text_kursraum.getText().equals("")){
+			Alert alert1= new Alert(Alert.AlertType.ERROR);
+			alert1.setTitle("Fehler");
+			alert1.setContentText("Es fehlen Informationen.");
+			alert1.show();
+			return;
+		}
 		if (changed) {
 			String check = "Sie haben folgende Angaben geändert:\n";
 			if (!(kurs.getBezeichnung().equals(changedkurs.getBezeichnung()))) {
@@ -159,9 +166,7 @@ public class EditCourseController implements Initializable {
 			alert.showAndWait().ifPresent(rs -> {
 				if (rs == ButtonType.OK) {
 					if (kurs.getRaum().equals("") && kurs.getBezeichnung().equals("") && !kurs.getRaum().equals(changedkurs.getRaum()) && !kurs.getBezeichnung().equals(changedkurs.getBezeichnung())) {
-						int newid=tables.getAllKurse().get(tables.getAllKurse().size()-1).getKId()+1;
-						changedkurs.setKId(newid);
-						dbConnection.insertKurs(changedkurs);
+						changedkurs.setKId(dbConnection.insertKurs(changedkurs));
 					} else if (!kurs.getRaum().equals(changedkurs.getRaum()) && !kurs.getBezeichnung().equals(changedkurs.getBezeichnung())) {
 						dbConnection.updateKurs(changedkurs);
 					}
