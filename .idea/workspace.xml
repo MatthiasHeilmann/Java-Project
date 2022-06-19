@@ -9,12 +9,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5d60d861-2ed3-4aed-a2a3-7ccca09202bd" name="Changes" comment="DHBW image fix">
+    <list default="true" id="5d60d861-2ed3-4aed-a2a3-7ccca09202bd" name="Changes" comment="bugfix">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/javaproject/editkurs.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/javaproject/editkurs.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/javaproject/editstudent.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/javaproject/editstudent.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/javaproject/editunternehmen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/javaproject/editunternehmen.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/javaproject/mainframe.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/javaproject/mainframe.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javaproject/DBConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javaproject/DBConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javaproject/EditCourseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javaproject/EditCourseController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javaproject/EditUnternehmenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javaproject/EditUnternehmenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/javaproject/DBConnection.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/javaproject/DBConnection.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/javaproject/EditCourseController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/javaproject/EditCourseController.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,24 +58,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/out" />
-    <property name="node.js.detected.package.eslint" value="true" />
-    <property name="node.js.detected.package.tslint" value="true" />
-    <property name="node.js.selected.package.eslint" value="(autodetect)" />
-    <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Artifacts" />
-    <property name="project.structure.proportion" value="0.15" />
-    <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
-  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.35747126&quot;
+  }
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\schwas28\Documents\DHBW\Theorie 1\1.2\Java\Java-Project\src\main\java\com\example\javaproject" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\schwas28\Documents\DHBW\Theorie 1\1.2\Java\Java-Project\src\main\resources\images" />
       <recent name="C:\Users\Matth\IdeaProjects\Java-Project" />
       <recent name="C:\Users\Matth\IdeaProjects\Java-Project\src\main\resources\com\example\javaproject" />
       <recent name="C:\Users\Matth\IdeaProjects\Java-Project\src\main\resources" />
@@ -272,21 +269,28 @@
       <option name="project" value="LOCAL" />
       <updated>1655563293787</updated>
     </task>
-    <task id="LOCAL-00020" summary="DHBW image fix">
-      <created>1655642166513</created>
+    <task id="LOCAL-00020" summary="search icon">
+      <created>1655642859668</created>
       <option name="number" value="00020" />
       <option name="presentableId" value="LOCAL-00020" />
       <option name="project" value="LOCAL" />
-      <updated>1655642166513</updated>
+      <updated>1655642859668</updated>
     </task>
-    <task id="LOCAL-00021" summary="DHBW image fix">
-      <created>1655642185713</created>
+    <task id="LOCAL-00021" summary="dhbw logo">
+      <created>1655642995459</created>
       <option name="number" value="00021" />
       <option name="presentableId" value="LOCAL-00021" />
       <option name="project" value="LOCAL" />
-      <updated>1655642185713</updated>
+      <updated>1655642995459</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="bugfix">
+      <created>1655643234063</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1655643234063</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -330,10 +334,11 @@
     <MESSAGE value="style änderungen" />
     <MESSAGE value="Search button" />
     <MESSAGE value="Search button anpassung" />
-    <MESSAGE value="bugfix" />
     <MESSAGE value="another bugfix" />
     <MESSAGE value="tooltip" />
-    <MESSAGE value="DHBW image fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="DHBW image fix" />
+    <MESSAGE value="search icon" />
+    <MESSAGE value="dhbw logo" />
+    <MESSAGE value="bugfix" />
+    <option name="LAST_COMMIT_MESSAGE" value="bugfix" />
   </component>
 </project>

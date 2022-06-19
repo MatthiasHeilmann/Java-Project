@@ -22,7 +22,7 @@
          <children>
             <ImageView fitHeight="85.0" fitWidth="99.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../images/dhbwlogo-grey.png" />
+                  <Image url="@../../../images/dhbwlogo-removebg-preview.png" />
                </image>
                <HBox.margin>
                   <Insets bottom="10.0" left="20.0" right="10.0" top="10.0" />
@@ -99,8 +99,8 @@
             </TableView>
             <GridPane>
               <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="10.0" prefWidth="50.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="220.0" minWidth="10.0" prefWidth="220.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="35.0" minWidth="35.0" prefWidth="35.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="220.0" minWidth="10.0" prefWidth="181.0" />
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="298.0" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" />
               </columnConstraints>
@@ -108,7 +108,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label fx:id="table_student_header" prefHeight="30.0" prefWidth="203.0" text="Header" GridPane.columnIndex="1">
+                  <Label fx:id="table_student_header" prefHeight="30.0" prefWidth="194.0" text="Header" GridPane.columnIndex="1">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -122,10 +122,18 @@
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <Button fx:id="button_search" mnemonicParsing="false" onAction="#button_search_click" text="S">
+                  <Button fx:id="button_search" mnemonicParsing="false" onAction="#button_search_click">
                      <GridPane.margin>
                         <Insets left="3.0" />
-                     </GridPane.margin></Button>
+                     </GridPane.margin>
+                     <graphic>
+                        <ImageView fitHeight="62.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../images/lupe.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
                   <TextField fx:id="text_search" onAction="#text_search_typed" onKeyTyped="#text_search_typed" visible="false" GridPane.columnIndex="1" />
                </children>
             </GridPane>

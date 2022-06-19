@@ -120,6 +120,13 @@ public class EditUnternehmenController implements Initializable {
      */
     @FXML
     private void button_speichern_click() {
+        if(text_name.getText().equals("")){
+            Alert alert1= new Alert(Alert.AlertType.ERROR);
+            alert1.setTitle("Fehler");
+            alert1.setContentText("Es fehlen Informationen.");
+            alert1.show();
+            return;
+        }
         if(unternehmen.getUId()==0){
             if(!text_name.getText().equals("")){
                 unternehmen.setName(text_name.getText());
