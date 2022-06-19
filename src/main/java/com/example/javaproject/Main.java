@@ -33,7 +33,7 @@ public class Main extends Application {
         fxmlLoader.setController(new MainFrameController());
         Scene scene = new Scene(fxmlLoader.load(), 800, 600);
         scene.getStylesheets().add(getClass().getResource("mainframe.css").toExternalForm());
-        stage.getIcons().add(new Image("file:dhbwlogo.png"));
+        stage.getIcons().add(new Image("file:src/main/resources/images/dhbwlogo.png"));
         stage.setTitle("DHBW Datenbank");
         stage.setOnCloseRequest(e -> {
             stage.close();
