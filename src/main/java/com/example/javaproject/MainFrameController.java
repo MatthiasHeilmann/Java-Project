@@ -77,6 +77,10 @@ public class MainFrameController implements Initializable, Observer {
             button_show_all.setVisible(true);
         }
     }
+
+    /**
+     * compares inserted text in text_search with all students names and shows them in table_student
+     */
     @FXML
     private void text_search_typed(){
         String typedText=text_search.getText();
@@ -92,6 +96,13 @@ public class MainFrameController implements Initializable, Observer {
         insertStudents(newArrayList);
     }
 
+    /**
+     * checks if s1 is a substring of s2
+     *
+     * @param s1 subString
+     * @param s2 String
+     * @return boolean
+     */
     private boolean isSubString(String s1, String s2){
         boolean val = false;
         int M = s1.length();
@@ -292,7 +303,9 @@ public class MainFrameController implements Initializable, Observer {
     }
 
     /**
-     * fills student table with all students
+     * fills student table with all students from a kurs
+     *
+     * @param kurs Kurs
      */
     public void fillStudentTableOnKurs(Kurs kurs){
         table_student.getItems().clear();
@@ -308,6 +321,12 @@ public class MainFrameController implements Initializable, Observer {
 
         insertStudents(insertList);
     }
+
+    /**
+     * fills student table with all students from a unternehmen
+     *
+     * @param unternehmen Unternehmen
+     */
     public void fillStudentTableOnUnternehmen(Unternehmen unternehmen){
         table_student.getItems().clear();
 
@@ -323,16 +342,28 @@ public class MainFrameController implements Initializable, Observer {
         insertStudents(insertList);
     }
 
+    /**
+     * fills Kurs table with all kurse in tables
+     */
     public void fillKursTable(){
         table_kurs.getItems().clear();
         table_kurs.getItems().addAll(tables.getAllKurse());
     }
 
+    /**
+     * fills Unternehmen table with all unternehmen in tables
+     */
     public void fillUnternehmenTable(){
         table_unternehmen.getItems().clear();
         table_unternehmen.getItems().addAll(tables.getAllUnternehmen());
     }
 
+    /**
+     * opens EditStudentController on schueler
+     *
+     * @param schueler Schueler
+     * @throws IOException
+     */
     public void editStudent(Schueler schueler) throws IOException {
         Stage stage = new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("editstudent.fxml"));
@@ -345,7 +376,12 @@ public class MainFrameController implements Initializable, Observer {
         stage.setScene(scene);
         stage.show();
     }
-
+    /**
+     * opens EditCourseController on kurs
+     *
+     * @param kurs Kurs
+     * @throws IOException
+     */
     public void editKurs(Kurs kurs) throws IOException {
         Stage stage = new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("editkurs.fxml"));
@@ -362,7 +398,12 @@ public class MainFrameController implements Initializable, Observer {
         stage.show();
     }
 
-
+    /**
+     * opens EditUnternehmenController on unternehmen
+     *
+     * @param unternehmen unternehmen
+     * @throws IOException
+     */
     private void editUnternehmen(Unternehmen unternehmen) throws IOException {
         Stage stage = new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("editunternehmen.fxml"));
@@ -375,6 +416,14 @@ public class MainFrameController implements Initializable, Observer {
         stage.show();
     }
 
+    /**
+     * Opdate methode gets called when Oberservers are notified
+     * Updates the whole data in the tables
+     *
+     * @param o     the observable object.
+     * @param arg   an argument passed to the {@code notifyObservers}
+     *                 method.
+     */
     @Override
     public void update(Observable o, Object arg) {
         button_show_all_click();
