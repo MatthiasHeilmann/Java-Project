@@ -1,2 +1,2 @@
-C:\Users\schwas28\.jdks\openjdk-18\bin\java -Dfile.encoding=UTF-8 -classpath ".\src\main\resources\lib" -p ".\src\main\resources\lib;.\lib\mysql-connector-java-8.0.29.jar;.\target\classes" -m com.example.javaproject/com.example.javaproject.Main
+java -Dfile.encoding=UTF-8 -classpath ".\src\main\resources\lib" -p ".\src\main\resources\lib;.\lib\mysql-connector-java-8.0.29.jar;.\target\classes" -m com.example.javaproject/com.example.javaproject.Main
 pause
