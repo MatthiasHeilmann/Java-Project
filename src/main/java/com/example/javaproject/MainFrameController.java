@@ -371,6 +371,7 @@ public class MainFrameController implements Initializable, Observer {
         fxmlLoader.setController(controller);
         Scene scene = new Scene(fxmlLoader.load(), 470, 350);
         scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+        stage.getIcons().add(new Image("file:src/main/resources/images/dhbwlogo.png"));
         stage.setTitle("Student bearbeiten");
         stage.setResizable(false);
         stage.setScene(scene);
@@ -389,6 +390,7 @@ public class MainFrameController implements Initializable, Observer {
         fxmlLoader.setController(controller);
         Scene scene = new Scene(fxmlLoader.load(), 470, 350);
         scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+        stage.getIcons().add(new Image("file:src/main/resources/images/dhbwlogo.png"));
         stage.setTitle("Kurs bearbeiten");
         if(kurs.getKId()==0){
             stage.setTitle("Neuer Kurs");
@@ -411,6 +413,7 @@ public class MainFrameController implements Initializable, Observer {
         fxmlLoader.setController(controller);
         Scene scene = new Scene(fxmlLoader.load(), 470, 350);
         scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+        stage.getIcons().add(new Image("file:src/main/resources/images/dhbwlogo.png"));
         stage.setTitle("Unternehmen bearbeiten");
         stage.setScene(scene);
         stage.show();
