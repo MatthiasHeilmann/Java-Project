@@ -10,52 +10,30 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5d60d861-2ed3-4aed-a2a3-7ccca09202bd" name="Changes" comment="bugfix">
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/java_project_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/java-project.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/artifacts/Java_Project/Java-Project_jar.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/java_project/Java-Project.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/run.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/lib/javafx-base-17.0.1-win.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/lib/javafx-base-17.0.1.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/lib/javafx-controls-17.0.1-win.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/lib/javafx-controls-17.0.1.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/lib/javafx-fxml-17.0.1-win.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/lib/javafx-fxml-17.0.1.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/lib/javafx-graphics-17.0.1-win.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/lib/javafx-graphics-17.0.1.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/lib/javafx-base-17.0.1-win.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/lib/javafx-base-17.0.1.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/lib/javafx-controls-17.0.1-win.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/lib/javafx-controls-17.0.1.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/lib/javafx-fxml-17.0.1-win.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/lib/javafx-fxml-17.0.1.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/lib/javafx-graphics-17.0.1-win.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/lib/javafx-graphics-17.0.1.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/Java_Project_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/Java_Project_jar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/Java_Project_jar.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java-project.bat" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/Java_Project_jar/Java-Project.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javaproject/MainFrameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javaproject/MainFrameController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Java-Project-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/Java-Project-1.0-SNAPSHOT.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/javaproject/Converter/KursConverter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/javaproject/Converter/KursConverter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/javaproject/Converter/UnternehmenConverter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/javaproject/Converter/UnternehmenConverter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/javaproject/DBConnection.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/javaproject/DBConnection.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/javaproject/EditCourseController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/javaproject/EditCourseController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/javaproject/EditStudentController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/javaproject/EditStudentController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/javaproject/EditUnternehmenController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/javaproject/EditUnternehmenController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/javaproject/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/javaproject/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run.bat" beforeDir="false" afterPath="$PROJECT_DIR$/run.bat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/lib/javafx-base-17.0.1-win.jar" beforeDir="false" afterPath="$PROJECT_DIR$/lib/javafx-base-17.0.1-win.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/lib/javafx-base-17.0.1.jar" beforeDir="false" afterPath="$PROJECT_DIR$/lib/javafx-base-17.0.1.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/lib/javafx-controls-17.0.1-win.jar" beforeDir="false" afterPath="$PROJECT_DIR$/lib/javafx-controls-17.0.1-win.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/lib/javafx-controls-17.0.1.jar" beforeDir="false" afterPath="$PROJECT_DIR$/lib/javafx-controls-17.0.1.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/lib/javafx-fxml-17.0.1-win.jar" beforeDir="false" afterPath="$PROJECT_DIR$/lib/javafx-fxml-17.0.1-win.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/lib/javafx-fxml-17.0.1.jar" beforeDir="false" afterPath="$PROJECT_DIR$/lib/javafx-fxml-17.0.1.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/lib/javafx-graphics-17.0.1-win.jar" beforeDir="false" afterPath="$PROJECT_DIR$/lib/javafx-graphics-17.0.1-win.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/lib/javafx-graphics-17.0.1.jar" beforeDir="false" afterPath="$PROJECT_DIR$/lib/javafx-graphics-17.0.1.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/javaproject/MainFrameController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/javaproject/MainFrameController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/javaproject/Tables/DataSet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/javaproject/Tables/DataSet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/javaproject/Tables/Kurs.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/javaproject/Tables/Kurs.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/javaproject/Tables/Schueler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/javaproject/Tables/Schueler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/javaproject/Tables/Tables$TableName.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/javaproject/Tables/Tables$TableName.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/javaproject/Tables/Tables.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/javaproject/Tables/Tables.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/javaproject/Tables/Unternehmen.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/javaproject/Tables/Unternehmen.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/lib/javafx-base-17.0.1-win.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/lib/javafx-base-17.0.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/lib/javafx-controls-17.0.1-win.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/lib/javafx-controls-17.0.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/lib/javafx-fxml-17.0.1-win.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/lib/javafx-fxml-17.0.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/lib/javafx-graphics-17.0.1-win.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/lib/javafx-graphics-17.0.1.jar" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/module-info.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/module-info.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,16 +79,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "WebServerToolWindowFactoryState": "false"
-  }
-}]]></component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+  </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\schwas28\Documents\DHBW\Theorie 1\1.2\Java\Java-Project\src\main\java\com\example\javaproject" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\schwas28\Documents\DHBW\Theorie 1\1.2\Java\Java-Project\lib" />
       <recent name="C:\Users\Matth\IdeaProjects\Java-Project" />
       <recent name="C:\Users\Matth\IdeaProjects\Java-Project\src\main\resources\com\example\javaproject" />
       <recent name="C:\Users\Matth\IdeaProjects\Java-Project\src\main\resources" />
@@ -175,6 +155,7 @@
       <workItem from="1655487126150" duration="7194000" />
       <workItem from="1655562334885" duration="3910000" />
       <workItem from="1655908274445" duration="1643000" />
+      <workItem from="1655917334667" duration="96000" />
     </task>
     <task id="LOCAL-00001" summary="Add Tables Classes">
       <created>1655052960523</created>
