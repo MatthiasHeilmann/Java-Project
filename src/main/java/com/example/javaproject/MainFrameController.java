@@ -66,10 +66,9 @@ public class MainFrameController implements Initializable, Observer {
     @FXML
     private void button_search_click(){
         if(text_search.isVisible()){
-            text_search.setVisible(false);
             text_search.setText("");
             table_student_header.setVisible(true);
-            button_show_all.setVisible(false);
+            button_show_all_click();
             fillStudentTable();
         }else {
             text_search.setVisible(true);
